@@ -1,0 +1,5 @@
+<%= @developer.name %><br />
+<%= @developer.website %>
+<%= link_to "Edit", edit_developer_path(@developer) %>
+<%= link_to "Delete", @developer, method:  :delete,
+            confirm: "You sure?" %>

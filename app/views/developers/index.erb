@@ -1,0 +1,12 @@
+<% @developers.each do |d| %>
+    <p>
+      <%= d.name %> -
+      <%= d.website %>
+      <%= link_to "Show", developer_path(d) %>
+      <%= link_to "Edit", edit_developer_path(d) %>
+      <%= link_to "Delete", d, method:  :delete,
+                  confirm: "You sure?" %>
+    </p>
+<% end %>
+
+<p><%= link_to "New developer", new_developer_path %></p>
