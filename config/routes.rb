@@ -1,6 +1,7 @@
 Gametracker::Application.routes.draw do
 
   resources :developers
+  resources :games
 
   root :to => 'developers#index'
   # The priority is based upon order of creation:

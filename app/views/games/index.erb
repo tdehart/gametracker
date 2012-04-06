@@ -1,0 +1,15 @@
+<% @games.each do |d| %>
+    <p>
+      <%= d.name %> -
+      <%= d.website %> -
+      <%= d.genre %> -
+      <%= d.developer.name %> -
+      <%= d.players %>
+      <%= link_to "Show", game_path(d) %>
+      <%= link_to "Edit", edit_game_path(d) %>
+      <%= link_to "Delete", d, method:  :delete,
+                  confirm: "You sure?" %>
+    </p>
+<% end %>
+
+<p><%= link_to "New game", new_game_path %></p>

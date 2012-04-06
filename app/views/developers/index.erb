@@ -4,8 +4,10 @@
       <%= d.website %>
       <%= link_to "Show", developer_path(d) %>
       <%= link_to "Edit", edit_developer_path(d) %>
-      <%= link_to "Delete", d, method:  :delete,
-                  confirm: "You sure?" %>
+      <%= link_to "Delete", d, method: :delete,
+                  confirm: "You sure?" %><br/>
+      Games: <%= d.games.map { |f| f.name }.join ','%>
+
     </p>
 <% end %>
 

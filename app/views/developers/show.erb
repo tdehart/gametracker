@@ -1,5 +1,6 @@
 <%= @developer.name %><br />
-<%= @developer.website %>
+<%= @developer.website %><br />
+Games: <%= @developer.games.map { |f| f.name }.join ','%><br />
 <%= link_to "Edit", edit_developer_path(@developer) %>
 <%= link_to "Delete", @developer, method:  :delete,
             confirm: "You sure?" %>
