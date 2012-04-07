@@ -37,6 +37,26 @@ describe Game do
     it { should_not be_valid }
   end
 
+  describe "when genre is not present" do
+    before { game.genre = " " }
+    it { should_not be_valid }
+  end
+
+  describe "when developer is not present" do
+    before { game.developer = nil }
+    it { should_not be_valid }
+  end
+
+  describe "when players is not present" do
+    before { game.players = nil }
+    it { should be_valid }
+  end
+
+  describe "when players is less than 0" do
+    before { game.players = -1 }
+    it { should_not be_valid }
+  end
+
   describe "when name is too long" do
     before { game.name = "a"*51 }
     it { should_not be_valid }
@@ -45,5 +65,27 @@ describe Game do
   describe "when genre is too long" do
     before { game.genre = "a"*21 }
     it { should_not be_valid }
+  end
+
+  describe "when website format is invalid" do
+    it "should not be valid" do
+      @game = FactoryGirl.create(:game)
+      addresses = %w[test://1234 foobar www,foobar.com mailto:name@example.com]
+      addresses.each do |invalid_address|
+        @game.website = invalid_address
+        @game.should_not be_valid
+      end
+    end
+  end
+
+  describe "when website format is valid" do
+    it "should be valid" do
+      @game = FactoryGirl.create(:developer)
+      addresses = %w[www.foobar.com http://www.foobar.com/]
+      addresses.each do |valid_address|
+        @game.website = valid_address
+        @game.should be_valid
+      end
+    end
   end
 end

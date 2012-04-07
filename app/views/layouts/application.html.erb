@@ -8,10 +8,12 @@
 </head>
 <body>
 <p>
+  <%= link_to "Tournaments", tournaments_path %> |
   <%= link_to "Developers", developers_path %> |
   <%= link_to "Games", games_path %>
+
 </p>
 <%= yield %>
-
+<%= debug(params) if Rails.env.development? %>
 </body>
 </html>

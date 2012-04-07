@@ -1,7 +1,6 @@
 class GamesController < ApplicationController
   def index
     @games = Game.all
-
   end
 
   def show
@@ -20,7 +19,6 @@ class GamesController < ApplicationController
     else
       render 'new'
     end
-
   end
 
   def edit
@@ -33,6 +31,7 @@ class GamesController < ApplicationController
     if @game.update_attributes(params[:game])
       redirect_to @game
     else
+      @developers = Developer.all
       render 'edit'
     end
   end

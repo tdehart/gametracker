@@ -11,4 +11,16 @@ FactoryGirl.define do
     players  100000
     developer
   end
+
+  factory :tournament do
+    name              "Example Tournament"
+    link              "http://www.exampletournament.com"
+    region            "USA"
+    prize_pool        100000
+    num_competitors   18
+    tournament_date   Date.today
+    stream_time       Time.now
+    stream_link       "http://www.examplestreamlink.com"
+    game
+  end
 end

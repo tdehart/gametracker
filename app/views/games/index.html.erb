@@ -1,0 +1,17 @@
+<% @games.each do |g| %>
+    <p>
+      <%= g.name %> -
+      <%= g.website %> -
+      <%= g.genre %> -
+      <%= g.developer.name %> -
+      <%= g.players unless !g.players %>
+      <%= link_to "Show", game_path(g) %>
+      <%= link_to "Edit", edit_game_path(g) %>
+      <%= link_to "Delete", g, method:  :delete,
+                  confirm: "You sure?" %>
+      <br />Tournaments: <%= g.tournaments.map { |f| f.name }.join ', '%>
+    </p>
+
+<% end %>
+
+<p><%= link_to "New game", new_game_path %></p>

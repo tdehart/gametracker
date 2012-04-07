@@ -14,10 +14,10 @@ class Developer < ActiveRecord::Base
 
   has_many :games, :dependent => :destroy
 
-  validates :name,  :presence => true,
-            :length => { :maximum => 50 }
+  validates :name,    :presence => true,
+                      :length   => { :maximum => 50 }
 
-  validates :website,  :presence => true,
-            :length => { :maximum => 50 }
+  validates :website, :presence => true,
+                      :format   => { :with => VALID_LINK_REGEX}
 
 end

@@ -21,7 +21,6 @@ describe Developer do
   it { should respond_to(:website) }
   it { should respond_to(:games) }
 
-
   describe "when name is not present" do
     before { developer.name = " " }
     it { should_not be_valid }
@@ -37,8 +36,26 @@ describe Developer do
     it { should_not be_valid }
   end
 
-  describe "when website is too long" do
-    before { developer.website = "a"*51 }
-    it { should_not be_valid }
+  describe "when website format is invalid" do
+    it "should not be valid" do
+      @developer = FactoryGirl.create(:developer)
+      addresses = %w[test://1234 foobar www,foobar.com mailto:name@example.com]
+      addresses.each do |invalid_address|
+        @developer.website = invalid_address
+        @developer.should_not be_valid
+      end
+    end
   end
+
+  describe "when website format is valid" do
+    it "should be valid" do
+      @developer = FactoryGirl.create(:developer)
+      addresses = %w[www.foobar.com http://www.foobar.com/]
+      addresses.each do |valid_address|
+        @developer.website = valid_address
+        @developer.should be_valid
+      end
+    end
+  end
+
 end

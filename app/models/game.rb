@@ -16,14 +16,18 @@ class Game < ActiveRecord::Base
   attr_accessible :genre, :name, :players, :website, :developer_id
 
   belongs_to :developer
+  has_many :tournaments, :dependent => :destroy
 
-  validates :name,  :presence => true,
-            :length => { :maximum => 50 }
+  validates :name,         :presence     => true,
+                           :length       => { :maximum => 50 }
 
-  validates :genre,  :presence => true,
-            :length => { :maximum => 20 }
+  validates :genre,        :presence     => true,
+                           :length       => { :maximum => 20 }
 
-  validates :website,  :presence => true,
-            :length => { :maximum => 50 }
+  validates :website,      :presence     => true,
+                           :format       => { :with => VALID_LINK_REGEX }
 
+  validates :developer_id, :presence     => true
+
+  validates :players,      :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true }
 end
