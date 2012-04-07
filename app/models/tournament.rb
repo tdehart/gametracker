@@ -19,8 +19,7 @@ class Tournament < ActiveRecord::Base
 
   belongs_to :game
 
-  validates :link,            :presence =>     true,
-                              :format   =>     { :with => VALID_LINK_REGEX }
+  validates :link,            :format   =>     { :with => VALID_LINK_REGEX }
 
   validates :name,            :presence =>     true
 

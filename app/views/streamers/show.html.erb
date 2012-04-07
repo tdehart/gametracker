@@ -1,0 +1,9 @@
+<%= @streamer.online_name %><br />
+<%= @streamer.real_name unless !@streamer.real_name %><br />
+<%= @streamer.biography unless !@streamer.biography %><br />
+<%= @streamer.website unless !@streamer.website %><br />
+<%= @streamer.nationality unless !@streamer.nationality %><br />
+<%= @streamer.birthday unless !@streamer.birthday %><br />
+<%= link_to "Edit", edit_streamer_path(@streamer) %>
+<%= link_to "Delete", @streamer, method:  :delete,
+            confirm: "You sure?" %>

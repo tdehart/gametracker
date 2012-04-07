@@ -1,0 +1,17 @@
+<% @streamers.each do |s| %>
+    <p>
+      <%= s.online_name %> -
+      <%= s.real_name unless !s.real_name %>
+      <%= s.biography unless !s.biography %>
+      <%= s.website unless !s.website %>
+      <%= s.nationality unless !s.nationality %>
+      <%= s.birthday unless !s.birthday %>
+      <%= link_to "Show", streamer_path(s) %>
+      <%= link_to "Edit", edit_streamer_path(s) %>
+      <%= link_to "Delete", s, method:  :delete,
+                  confirm: "You sure?" %>
+    </p>
+
+<% end %>
+
+<p><%= link_to "New streamer", new_streamer_path %></p>

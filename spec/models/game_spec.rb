@@ -80,7 +80,7 @@ describe Game do
 
   describe "when website format is valid" do
     it "should be valid" do
-      @game = FactoryGirl.create(:developer)
+      @game = FactoryGirl.create(:game)
       addresses = %w[www.foobar.com http://www.foobar.com/]
       addresses.each do |valid_address|
         @game.website = valid_address

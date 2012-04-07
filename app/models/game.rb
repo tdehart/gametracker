@@ -24,10 +24,9 @@ class Game < ActiveRecord::Base
   validates :genre,        :presence     => true,
                            :length       => { :maximum => 20 }
 
-  validates :website,      :presence     => true,
-                           :format       => { :with => VALID_LINK_REGEX }
+  validates :website,      :format       => { :with => VALID_LINK_REGEX }
 
   validates :developer_id, :presence     => true
 
-  validates :num_players,      :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true }
+  validates :num_players,  :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true }
 end

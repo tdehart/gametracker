@@ -3,6 +3,7 @@ Gametracker::Application.routes.draw do
   resources :tournaments
   resources :developers
   resources :games
+  resources :streamers
 
   root :to => 'tournaments#index'
   # The priority is based upon order of creation:

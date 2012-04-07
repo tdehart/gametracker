@@ -21,4 +21,13 @@ FactoryGirl.define do
     date              Date.today
     game
   end
+
+  factory :streamer do
+    online_name "Example Online Name"
+    real_name   "Example Real Name"
+    website     "http://www.examplewebsite.com"
+    biography   "Example Biography"
+    birthday    Date.today
+    nationality "American"
+  end
 end
