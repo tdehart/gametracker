@@ -1,0 +1,44 @@
+<div class="field">
+  <%= f.label :link %><br />
+  <%= f.text_field :link %>
+</div>
+
+<div class="field">
+  <%= f.label :name %><br />
+  <%= f.text_field :name %>
+</div>
+
+<div class="field">
+  <%= f.label :tournament_date %><br />
+  <%= f.date_select :tournament_date %>
+</div>
+
+<div class="field">
+  <%= f.label :region %><br />
+  <%= f.text_field :region %>
+</div>
+
+<div class="field">
+  <%= f.label :prize_pool %><br />
+  <%= f.text_field :prize_pool %>
+</div>
+
+<div class="field">
+  <%= f.label :game %><br />
+  <%= f.collection_select :game_id, @games, :id, :name %>
+</div>
+
+<div class="field">
+  <%= f.label :num_competitors, "Number of competitors" %><br />
+  <%= f.text_field :num_competitors %>
+</div>
+
+<div class="field">
+  <%= f.label :stream_link %><br />
+  <%= f.text_field :stream_link %>
+</div>
+
+<div class="field">
+  <%= f.label :stream_time %><br />
+  <%= f.time_select :stream_time %>
+</div>

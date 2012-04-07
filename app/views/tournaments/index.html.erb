@@ -1,0 +1,18 @@
+<% @tournaments.each do |t| %>
+    <p>
+      <%= t.link %><br />
+      <%= t.name %> -
+      <%= t.game.name %> -
+      <%= t.tournament_date %> -
+      <%= t.region %> -
+      $<%= t.prize_pool %><br />
+      <%= t.num_competitors unless !t.num_competitors %> competitors
+      <%= t.stream_link unless !t.stream_link %> @ <%= t.stream_time.to_s(:time) unless !t.stream_time %>
+      <%= link_to "Show", tournament_path(t) %>
+      <%= link_to "Edit", edit_tournament_path(t) %>
+      <%= link_to "Delete", t, method:  :delete,
+                  confirm: "You sure?" %>
+    </p>
+<% end %>
+
+<p><%= link_to "New tournament", new_tournament_path %></p>
