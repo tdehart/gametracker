@@ -6,7 +6,7 @@
 #  name         :string(255)
 #  website      :string(255)
 #  genre        :string(255)
-#  players      :integer
+#  num_players  :integer
 #  developer_id :integer
 #  created_at   :datetime        not null
 #  updated_at   :datetime        not null

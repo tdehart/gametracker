@@ -6,11 +6,9 @@
 #  name            :string(255)
 #  link            :string(255)
 #  region          :string(255)
-#  tournament_date :date
+#  date            :date
 #  prize_pool      :integer
 #  num_competitors :integer
-#  stream_link     :string(255)
-#  stream_time     :time
 #  game_id         :integer
 #  created_at      :datetime        not null
 #  updated_at      :datetime        not null

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120406151320) do
+ActiveRecord::Schema.define(:version => 20120407173853) do
 
   create_table "developers", :force => true do |t|
     t.string   "name"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20120406151320) do
     t.string   "name"
     t.string   "website"
     t.string   "genre"
-    t.integer  "players"
+    t.integer  "num_players"
     t.integer  "developer_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
@@ -40,11 +40,9 @@ ActiveRecord::Schema.define(:version => 20120406151320) do
     t.string   "name"
     t.string   "link"
     t.string   "region"
-    t.date     "tournament_date"
+    t.date     "date"
     t.integer  "prize_pool"
     t.integer  "num_competitors"
-    t.string   "stream_link"
-    t.time     "stream_time"
     t.integer  "game_id"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
