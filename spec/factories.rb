@@ -5,10 +5,10 @@ FactoryGirl.define do
   end
 
   factory :game do
-    name     "Example Game"
-    website  "http://www.examplegame.com"
-    genre    "Example Genre"
-    players  100000
+    name         "Example Game"
+    website      "http://www.examplegame.com"
+    genre        "Example Genre"
+    num_players  100000
     developer
   end
 
@@ -18,9 +18,7 @@ FactoryGirl.define do
     region            "USA"
     prize_pool        100000
     num_competitors   18
-    tournament_date   Date.today
-    stream_time       Time.now
-    stream_link       "http://www.examplestreamlink.com"
+    date              Date.today
     game
   end
 end

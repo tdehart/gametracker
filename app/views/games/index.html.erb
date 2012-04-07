@@ -4,7 +4,7 @@
       <%= g.website %> -
       <%= g.genre %> -
       <%= g.developer.name %> -
-      <%= g.players unless !g.players %>
+      <%= g.num_players unless !g.num_players %>
       <%= link_to "Show", game_path(g) %>
       <%= link_to "Edit", edit_game_path(g) %>
       <%= link_to "Delete", g, method:  :delete,

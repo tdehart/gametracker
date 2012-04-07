@@ -2,7 +2,7 @@
 <%= @game.website %><br />
 <%= @game.developer.name %><br />
 <%= @game.genre %><br />
-<%= @game.players unless !@game.players %>
+<%= @game.num_players unless !@game.num_players %>
 <p>Tournaments: <br /><%= @game.tournaments.map { |f| f.name }.join ', '%></p>
 
 <%= link_to "Edit", edit_game_path(@game) %>

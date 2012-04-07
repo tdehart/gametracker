@@ -15,7 +15,7 @@
 #
 
 class Tournament < ActiveRecord::Base
-  attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :stream_link, :stream_time, :tournament_date
+  attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :date
 
   belongs_to :game
 
@@ -30,7 +30,7 @@ class Tournament < ActiveRecord::Base
 
   validates :game_id,         :presence =>     true
 
-  validates :tournament_date, :presence =>     true
+  validates :date,            :presence =>     true
 
   validates :prize_pool,      :presence =>     true
 

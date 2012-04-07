@@ -25,11 +25,9 @@ describe Tournament do
   it { should respond_to(:name) }
   it { should respond_to(:link) }
   it { should respond_to(:region) }
-  it { should respond_to(:tournament_date) }
+  it { should respond_to(:date) }
   it { should respond_to(:prize_pool) }
   it { should respond_to(:num_competitors) }
-  it { should respond_to(:stream_link) }
-  it { should respond_to(:stream_time) }
   it { should respond_to(:game) }
 
 
@@ -49,7 +47,7 @@ describe Tournament do
   end
 
   describe "when tournament date is not present" do
-    before { tournament.tournament_date = nil }
+    before { tournament.date = nil }
     it { should_not be_valid }
   end
 
@@ -65,16 +63,6 @@ describe Tournament do
 
   describe "when number of competitors is not present" do
     before { tournament.num_competitors = nil }
-    it { should be_valid }
-  end
-
-  describe "when stream link is not present" do
-    before { tournament.stream_link = nil }
-    it { should be_valid }
-  end
-
-  describe "when stream time is not present" do
-    before { tournament.stream_time = nil }
     it { should be_valid }
   end
 

@@ -13,7 +13,7 @@
 #
 
 class Game < ActiveRecord::Base
-  attr_accessible :genre, :name, :players, :website, :developer_id
+  attr_accessible :genre, :name, :num_players, :website, :developer_id
 
   belongs_to :developer
   has_many :tournaments, :dependent => :destroy
@@ -29,5 +29,5 @@ class Game < ActiveRecord::Base
 
   validates :developer_id, :presence     => true
 
-  validates :players,      :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true }
+  validates :num_players,      :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true }
 end

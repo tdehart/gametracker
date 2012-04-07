@@ -22,7 +22,7 @@ describe Game do
   it { should be_valid }
   it { should respond_to(:name) }
   it { should respond_to(:website) }
-  it { should respond_to(:players) }
+  it { should respond_to(:num_players) }
   it { should respond_to(:genre) }
   it { should respond_to(:developer) }
 
@@ -48,12 +48,12 @@ describe Game do
   end
 
   describe "when players is not present" do
-    before { game.players = nil }
+    before { game.num_players = nil }
     it { should be_valid }
   end
 
   describe "when players is less than 0" do
-    before { game.players = -1 }
+    before { game.num_players = -1 }
     it { should_not be_valid }
   end
 

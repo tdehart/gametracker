@@ -1,11 +1,10 @@
 <%= @tournament.link %><br />
 <%= @tournament.name %> -
 <%= @tournament.game.name %> -
-<%= @tournament.tournament_date %> -
+<%= @tournament.date %> -
 <%= @tournament.region %> -
 $<%= @tournament.prize_pool %><br />
 <%= @tournament.num_competitors unless !@tournament.num_competitors %> competitors
-<%= @tournament.stream_link unless !@tournament.stream_link %> @ <%= @tournament.stream_time.to_s(:time) unless !@tournament.stream_time %><br />
 <%= link_to "Edit", edit_tournament_path(@tournament) %>
 <%= link_to "Delete", @tournament, method: :delete,
             confirm: "You sure?" %>
