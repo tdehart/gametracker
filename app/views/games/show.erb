@@ -1,9 +1,0 @@
-<%= @game.name %><br />
-<%= @game.website %><br />
-<%= @game.developer.name %><br />
-<%= @game.genre %><br />
-<%= @game.players %><br />
-
-<%= link_to "Edit", edit_game_path(@game) %>
-<%= link_to "Delete", @game, method:  :delete,
-            confirm: "You sure?" %>
