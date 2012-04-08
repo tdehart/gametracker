@@ -29,6 +29,8 @@ describe Tournament do
   it { should respond_to(:prize_pool) }
   it { should respond_to(:num_competitors) }
   it { should respond_to(:game) }
+  it { should respond_to(:events) }
+  it { should respond_to(:streams) }
 
 
   describe "when name is not present" do

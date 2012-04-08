@@ -18,6 +18,8 @@ class Tournament < ActiveRecord::Base
   attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :date
 
   belongs_to :game
+  has_many :events
+  has_many :streams, :through => :events
 
   validates :link,            :format   =>     { :with => VALID_LINK_REGEX }
 

@@ -21,4 +21,6 @@ describe Stream do
   it { should respond_to(:description) }
   it { should respond_to(:streamers) }
   it { should respond_to(:games) }
+  it { should respond_to(:events) }
+  it { should respond_to(:tournaments) }
 end

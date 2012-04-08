@@ -15,6 +15,9 @@
 class Event < ActiveRecord::Base
   attr_accessible :date, :max_concurrent_viewers, :stream_id, :time, :tournament_id
 
+  belongs_to :tournament
+  belongs_to :stream
+
   validates :tournament_id,          :presence => true
   validates :stream_id,              :presence => true
   validates :date,                   :presence => true

@@ -14,6 +14,10 @@ class Stream < ActiveRecord::Base
 
   has_and_belongs_to_many :streamers
   has_and_belongs_to_many :games
+  has_many :events
+  has_many :tournaments, :through => :events
+
+
 
   validates :link,        :presence => true
 end
