@@ -25,6 +25,8 @@ describe Game do
   it { should respond_to(:num_players) }
   it { should respond_to(:genre) }
   it { should respond_to(:developer) }
+  it { should respond_to(:streams) }
+  it { should respond_to(:tournaments) }
 
 
   describe "when name is not present" do

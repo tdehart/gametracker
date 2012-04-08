@@ -13,10 +13,11 @@
 #
 
 class Game < ActiveRecord::Base
-  attr_accessible :genre, :name, :num_players, :website, :developer_id
+  attr_accessible :genre, :name, :num_players, :website, :developer_id, :streams, :tournaments
 
   belongs_to :developer
   has_many :tournaments, :dependent => :destroy
+  has_and_belongs_to_many :streams
 
   validates :name,         :presence     => true,
                            :length       => { :maximum => 50 }

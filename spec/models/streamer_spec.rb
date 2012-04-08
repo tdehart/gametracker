@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: streamers
+#
+#  id          :integer         not null, primary key
+#  online_name :string(255)
+#  real_name   :string(255)
+#  nationality :string(255)
+#  website     :string(255)
+#  birthday    :date
+#  biography   :text
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
+#
+
 require 'spec_helper'
 
 describe Streamer do
@@ -12,6 +27,7 @@ describe Streamer do
   it { should respond_to(:biography) }
   it { should respond_to(:birthday) }
   it { should respond_to(:nationality) }
+  it { should respond_to(:streams) }
 
   describe "when online name is not present" do
     before { streamer.online_name = " " }

@@ -30,4 +30,10 @@ FactoryGirl.define do
     birthday    Date.today
     nationality "American"
   end
+
+  factory :stream do
+    link        "http://www.examplestreamlink.com"
+    description "Example Description"
+  end
+
 end
