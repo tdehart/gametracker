@@ -2,19 +2,30 @@
 <html>
 <head>
   <title>Gametracker</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<p>
-  <%= link_to "Tournaments", tournaments_path %> |
-  <%= link_to "Developers", developers_path %> |
-  <%= link_to "Games", games_path %> |
-  <%= link_to "Streamers", streamers_path %>
+<div id="header">
+  <%= link_to "eSports eXposure", root_path %>
+  <nav>
+    <ul>
+      <li><%= link_to "Tournaments", tournaments_path %> |</li>
+      <li><%= link_to "Developers", developers_path %></li>
+      |
+      <li><%= link_to "Games", games_path %></li>
+      |
+      <li><%= link_to "Streamers", streamers_path %></li>
+    </ul>
+  </nav>
+</div>
 
-</p>
-<%= yield %>
-<%= debug(params) if Rails.env.development? %>
+
+
+<div class="layout">
+  <%= yield %>
+  <%= debug(params) if Rails.env.development? %>
+</div>
 </body>
 </html>
