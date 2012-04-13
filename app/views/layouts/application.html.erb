@@ -9,23 +9,52 @@
 <body>
 <div id="header">
   <%= link_to "eSports eXposure", root_path %>
-  <nav>
-    <ul>
-      <li><%= link_to "Tournaments", tournaments_path %> |</li>
-      <li><%= link_to "Developers", developers_path %></li>
-      |
-      <li><%= link_to "Games", games_path %></li>
-      |
-      <li><%= link_to "Streamers", streamers_path %></li>
-    </ul>
-  </nav>
+  <span class="temp"><%= link_to "Log in", tournaments_path %></span>
 </div>
 
-
-
 <div class="layout">
-  <%= yield %>
-  <%= debug(params) if Rails.env.development? %>
+  <!--TODO: If user signed in show this -->
+  <% if current_page? !root_path %>
+    <div class="row">
+      <div class="col8">
+        <nav class="dashboard">
+          <ul>
+            <li><%= link_to "Tournaments", tournaments_path %></li>
+            <li><%= link_to "Games", games_path %></li>
+            <li><%= link_to "Streams", streamers_path %></li>
+          </ul>
+        </nav>
+        <%= yield %>
+        <%= debug(params) if Rails.env.development? %>
+      </div>
+
+      <div class="col4">
+        <div class="events">
+          <span class="dashboard_header">Events</span>
+          <ul class="dashboard_list">
+            <li>PGL Dota 2</li>
+            <li>ESL 2012 Semi-finals</li>
+            <li>The Evolution</li>
+          </ul>
+        </div>
+
+        <div class="streams">
+          <span class="dashboard_header">Streams</span>
+          <ul class="dashboard_list">
+            <li>Dendi</li>
+            <li>Reginald</li>
+            <li>-orb-</li>
+          </ul>
+        </div>
+
+        <div class="row-end">&nbsp;</div>
+      </div>
+    </div>
+  <% else %>
+    <%= yield %>
+    <%= debug(params) if Rails.env.development? %>
+  <% end %>
+
 </div>
 </body>
 </html>
