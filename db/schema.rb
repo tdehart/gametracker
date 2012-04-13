@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120408031018) do
+ActiveRecord::Schema.define(:version => 20120413040925) do
 
   create_table "developers", :force => true do |t|
     t.string   "name"
     t.string   "website"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "image"
   end
 
   add_index "developers", ["name"], :name => "index_developers_on_name", :unique => true
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20120408031018) do
     t.integer  "developer_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.string   "image"
   end
 
   add_index "games", ["developer_id"], :name => "index_games_on_developer_id"
@@ -59,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20120408031018) do
     t.text     "biography"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "image"
   end
 
   create_table "streamers_streams", :id => false, :force => true do |t|

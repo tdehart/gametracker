@@ -3,4 +3,5 @@
 Games: <%= @developer.games.map { |f| f.name }.join ', '%><br />
 <%= link_to "Edit", edit_developer_path(@developer) %>
 <%= link_to "Delete", @developer, method:  :delete,
-            confirm: "You sure?" %>
+            confirm: "You sure?" %><br />
+<%= image_tag @developer.image_url.to_s %>

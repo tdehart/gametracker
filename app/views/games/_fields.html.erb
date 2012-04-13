@@ -1,24 +1,40 @@
 <div class="field">
-  <%= f.label :name %><br />
+  <%= f.label :name %>
+  <br/>
   <%= f.text_field :name %>
 </div>
 
 <div class="field">
-  <%= f.label :website %><br />
+  <%= f.label :website %>
+  <br/>
   <%= f.text_field :website %>
 </div>
 
 <div class="field">
-  <%= f.label :genre %><br />
+  <%= f.label :genre %>
+  <br/>
   <%= f.text_field :genre %>
 </div>
 
 <div class="field">
-  <%= f.label :num_players %><br />
+  <%= f.label :num_players %>
+  <br/>
   <%= f.text_field :num_players %>
 </div>
 
 <div class="field">
-  <%= f.label :developer %><br />
+  <%= f.label :developer %>
+  <br/>
   <%= f.collection_select :developer_id, @developers, :id, :name %>
+</div>
+
+<div class="field">
+  <%= f.label :image %>
+  <br/>
+  <%= f.file_field :image %>
+</div>
+
+<div class="field">
+  <%= f.label :remote_image_url, "or image URL" %>
+  <%= f.text_field :remote_image_url %>
 </div>

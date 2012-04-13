@@ -1,3 +1,4 @@
+
 <%= @game.name %><br />
 <%= @game.website %><br />
 <%= @game.developer.name %><br />
@@ -7,4 +8,6 @@
 
 <%= link_to "Edit", edit_game_path(@game) %>
 <%= link_to "Delete", @game, method:  :delete,
-            confirm: "You sure?" %>
+            confirm: "You sure?" %> <br />
+
+<%= image_tag @game.image_url.to_s %>

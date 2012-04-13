@@ -7,10 +7,11 @@
 #  website    :string(255)
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
+#  image      :string(255)
 #
 
 class Developer < ActiveRecord::Base
-  attr_accessible :name, :website
+  attr_accessible :name, :website, :image, :remote_image_url
 
   has_many :games, :dependent => :destroy
 
@@ -20,4 +21,5 @@ class Developer < ActiveRecord::Base
   validates :website, :presence => true,
                       :format   => { :with => VALID_LINK_REGEX}
 
+  mount_uploader :image, ImageUploader
 end

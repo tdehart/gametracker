@@ -6,4 +6,6 @@
 <%= @streamer.birthday unless !@streamer.birthday %><br />
 <%= link_to "Edit", edit_streamer_path(@streamer) %>
 <%= link_to "Delete", @streamer, method:  :delete,
-            confirm: "You sure?" %>
+            confirm: "You sure?" %> <br />
+
+<%= image_tag @streamer.image_url.to_s %>
