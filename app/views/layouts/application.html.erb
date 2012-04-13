@@ -16,7 +16,7 @@
   <!--TODO: If user signed in show this -->
   <% if current_page? !root_path %>
     <div class="row">
-      <div class="col8">
+      <div class="col9">
         <nav class="dashboard">
           <ul>
             <li><%= link_to "Tournaments", tournaments_path %></li>
@@ -28,7 +28,7 @@
         <%= debug(params) if Rails.env.development? %>
       </div>
 
-      <div class="col4">
+      <div class="col3">
         <div class="events">
           <span class="dashboard_header">Events</span>
           <ul class="dashboard_list">
@@ -47,8 +47,9 @@
           </ul>
         </div>
 
-        <div class="row-end">&nbsp;</div>
+
       </div>
+      <div class="row-end">&nbsp;</div>
     </div>
   <% else %>
     <%= yield %>

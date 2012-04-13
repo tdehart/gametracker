@@ -1,37 +1,35 @@
 <h2>Upcoming Tournaments <span class="heading_sublink"><%= link_to "browse all tournaments", "#" %></span></h2>
 
-<div class="upcoming_tournaments">
-  <% @tournaments.each do |t| %>
-    <div class="upcoming_tournament">
+<% @tournaments.each do |t| %>
+  <div class="row">
+    <div class="col6">
       <div class="tournament_info">
-
         <%= image_tag t.game.image_url.to_s, :size => "32x32", :class => "game_image" %>
-        <%= link_to t.game.name, game_path(t.game) %>
-        <br/>
+        <%= link_to t.game.name, game_path(t.game) %><br/>
         <!--TODO: make region flag dynamic -->
         <%= image_tag image_path('us-flag.png'), :size => "16x16", :class => "game_image" %>
         <%= link_to t.name, tournament_path(t) %>
-        <br/>
         <!--TODO: make submitter dynamic -->
         <span class="tournament_submitter">submitted by Tomed</span> <br/>
+        <span class="tournament_desc">After a short hiatus to allow MLG and IPL to hold their 'big boy' shows, The Rundown is back and bigger then ever. Rundown #16 will be a 16 player...</span>
       </div>
+    </div>
 
+    <div class="col2">
       <div class="tournament_stats">
         <!-- TODO: consider using event time instead of tournament time -->
         <!-- TODO: create date format helper -->
-        <%= t.date.to_time.strftime("%m/%d") %>
-        <br/>
+        <%= t.date %><br/>
         <!-- TODO: make prize pool localized -->
         <!-- TODO: create prize pool format helper -->
-        $<%= t.prize_pool %>
-        <br/>
+        $<%= t.prize_pool %><br/>
         <!-- TODO: make competitors dynamic (teams vs. players) -->
         <%= t.num_competitors %> players
       </div>
-
     </div>
-  <% end %>
-</div>
+    <div class="row-end">&nbsp;</div>
+  </div>
+<% end %>
 
 <p><%= link_to "New tournament", new_tournament_path %></p>
 

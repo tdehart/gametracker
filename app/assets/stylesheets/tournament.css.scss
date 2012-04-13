@@ -2,3 +2,57 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+span.heading_sublink {
+  font-size: 50%;
+  vertical-align: 2px;
+}
+
+.game_image {
+  float: left;
+}
+
+span.tournament_desc {
+  display: block;
+  width: 90%;
+  position: relative;
+  left: 32px;
+}
+
+span.tournament_submitter {
+  position: relative;
+  left: 32px;
+}
+
+div.tournament_info, div.tournament_stats {
+  display: block;
+  float: left;
+  margin: 0px auto;
+}
+
+div.upcoming_tournaments {
+  display: block;
+  overflow: hidden;
+}
+
+div.upcoming_tournaments > *:nth-child(even) {
+  margin-left: 45px;
+}
+
+div.upcoming_tournament {
+  float: left;
+  padding-bottom: 20px;
+}
+
+div.tournament_info {
+  width: 265px;
+  margin-right: 5px;
+}
+
+div.tournament_stats {
+  width: 70px;
+  text-align: right;
+}
+
+p {
+  clear: both;
+}

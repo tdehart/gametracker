@@ -1,5 +1,5 @@
 /* Temp */
-h1, h2, h3, p, nav, span {
+h1, h2, h3, p, nav {
   border: solid 1px #000;
 }
 
@@ -24,6 +24,10 @@ a {
   font-weight: bold;
 }
 
+div.col1, div.col2, div.col3, div.col4, div.col5, div.col6, div.col7, div.col8, div.col9, div.col10, div.col11, div.col12, div.row, div.layout, div.row-end {
+  border: none;
+}
+
 /* End Temp */
 body {
   margin: 0;
@@ -31,6 +35,7 @@ body {
   background-color: #F7F9FE;
   font-size: 14px;
   font-family: $helvetica;
+
 }
 
 div.layout {
