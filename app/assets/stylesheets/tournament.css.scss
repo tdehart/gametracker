@@ -56,3 +56,13 @@ div.tournament_stats {
 p {
   clear: both;
 }
+
+table#tournaments {
+  tr { text-align: center }
+  margin-bottom: 5px;
+}
+
+div#tournaments_wrapper {
+  overflow: hidden;
+  margin-top: 20px;
+}

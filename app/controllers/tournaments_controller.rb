@@ -3,6 +3,13 @@ class TournamentsController < ApplicationController
     @tournaments = Tournament.all
   end
 
+  def table
+    respond_to do |format|
+      format.html
+      format.json { render json: TournamentsDatatable.new(view_context) }
+    end
+  end
+
   def show
     @tournament = Tournament.find(params[:id])
   end
@@ -41,10 +48,6 @@ class TournamentsController < ApplicationController
       @games = Game.all
       render 'edit'
     end
-  end
-
-  def update_events
-
   end
 
   def destroy

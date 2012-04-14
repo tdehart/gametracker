@@ -1,0 +1,16 @@
+<span class="back_link"><%= link_to "<< back", tournaments_path %></span>
+<table id="tournaments" data-source="<%= table_tournaments_url(format: "json") %>">
+
+  <thead>
+  <tr>
+    <th>Tournament Name</th>
+    <th>Game</th>
+    <th>Region</th>
+    <th>Prize Pool</th>
+    <th>Competitors</th>
+    <th>Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>

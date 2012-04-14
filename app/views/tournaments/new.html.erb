@@ -1,5 +1,5 @@
 <%= simple_form_for @tournament do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <%= render 'fields', :f => f %>
-  <%= f.button :submit %>
+  <%= f.button :submit %> <span class="back_link"><%= link_to "cancel", :back %></span>
 <% end %>

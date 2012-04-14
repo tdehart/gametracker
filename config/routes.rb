@@ -3,12 +3,17 @@ Gametracker::Application.routes.draw do
   match '/landing', :to => 'static_pages#landing'
   match '/about',   :to => 'static_pages#about'
 
-  resources :tournaments
+  match 'tournaments/:id/events' => 'tournaments#events'
+
+
+  resources :tournaments do
+    collection do
+      get 'table'
+    end
+  end
   resources :developers
   resources :games
   resources :streamers
-
-  match "tournaments/:id/events" => "tournaments#events"
 
   root :to => 'static_pages#landing'
   # The priority is based upon order of creation:
