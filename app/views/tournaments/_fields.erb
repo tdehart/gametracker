@@ -1,0 +1,10 @@
+<%= f.input :link, :label => "Tournament Link" %>
+<!-- TODO: Change select box to string with autocomplete -->
+<%= f.association :game, :as => :select %>
+<%= f.input :name, :label => "Tournament Name" %>
+<%= f.input :region, :collection => ["Select a region"] + %w[International US EU Asia], :label => "Tournament Region", :selected => "Select a region" %>
+<%= f.input :prize_pool, :label => "Prize Pool" %>
+<%= f.input :date %>
+<%= f.input :num_competitors, :label => "Number of players/teams" %>
+<!-- TODO: Expand this field when clicked on -->
+<%= f.input :description %>

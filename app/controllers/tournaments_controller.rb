@@ -12,11 +12,17 @@ class TournamentsController < ApplicationController
     @games = Game.all
   end
 
+  def events
+    @tournament = Tournament.find(params[:id])
+    @event = @tournament.events.build(:date => @tournament.date)
+  end
+
   def create
     @tournament = Tournament.new(params[:tournament])
     if @tournament.save
-      redirect_to @tournament
+      redirect_to :action => :events, :id => @tournament.id
     else
+      @games = Game.all
       render 'new'
     end
   end
@@ -26,6 +32,7 @@ class TournamentsController < ApplicationController
     @games = Game.all
   end
 
+
   def update
     @tournament = Tournament.find(params[:id])
     if @tournament.update_attributes(params[:tournament])
@@ -34,6 +41,10 @@ class TournamentsController < ApplicationController
       @games = Game.all
       render 'edit'
     end
+  end
+
+  def update_events
+
   end
 
   def destroy

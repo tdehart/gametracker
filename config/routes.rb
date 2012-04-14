@@ -8,6 +8,8 @@ Gametracker::Application.routes.draw do
   resources :games
   resources :streamers
 
+  match "tournaments/:id/events" => "tournaments#events"
+
   root :to => 'static_pages#landing'
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -12,6 +12,7 @@
 #  game_id         :integer
 #  created_at      :datetime        not null
 #  updated_at      :datetime        not null
+#  description     :string(255)
 #
 
 require 'spec_helper'

@@ -12,19 +12,23 @@
 #  game_id         :integer
 #  created_at      :datetime        not null
 #  updated_at      :datetime        not null
+#  description     :string(255)
 #
 
 class Tournament < ActiveRecord::Base
-  attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :date
+  attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :date, :description, :events_attributes
 
   belongs_to :game
-  has_many :events
+  has_many :events, :dependent => :destroy
   has_many :streams, :through => :events
+  accepts_nested_attributes_for :events
 
-  validates :link,            :format   =>     { :with => VALID_LINK_REGEX }
+  validates :link,            :format   =>     { :with => VALID_LINK_REGEX },
+                              :presence =>     true
 
   validates :name,            :presence =>     true
 
+  #TODO: Write validator for region correctness
   validates :region,          :presence =>     true
 
   validates :prize_pool,      :numericality => { :greater_than_or_equal_to => 0 }
@@ -35,6 +39,7 @@ class Tournament < ActiveRecord::Base
 
   validates :prize_pool,      :presence =>     true
 
-  validates :num_competitors, :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true }
+  validates :num_competitors, :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true },
+                              :presence     => true
 
 end
