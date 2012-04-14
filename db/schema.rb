@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120413162926) do
+ActiveRecord::Schema.define(:version => 20120414012544) do
 
   create_table "developers", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20120413162926) do
     t.integer  "max_concurrent_viewers"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
+    t.string   "name"
   end
 
   add_index "events", ["stream_id"], :name => "index_events_on_stream_id"
