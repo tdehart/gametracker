@@ -14,6 +14,9 @@
 #
 
 class Game < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   attr_accessible :genre, :name, :num_players, :website, :developer_id, :streams, :tournaments, :image, :remote_image_url
 
   belongs_to :developer

@@ -15,6 +15,9 @@
 #
 
 class Streamer < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :online_name, use: :slugged
+
   attr_accessible :biography, :birthday, :nationality, :online_name, :real_name, :website, :streams, :image, :remote_image_url
 
   has_and_belongs_to_many :streams

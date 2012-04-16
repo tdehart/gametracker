@@ -11,6 +11,9 @@
 #
 
 class Developer < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   attr_accessible :name, :website, :image, :remote_image_url
 
   has_many :games, :dependent => :destroy

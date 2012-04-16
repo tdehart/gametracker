@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120416215639) do
+ActiveRecord::Schema.define(:version => 20120416223305) do
 
   create_table "developers", :force => true do |t|
     t.string   "name"
@@ -19,9 +19,11 @@ ActiveRecord::Schema.define(:version => 20120416215639) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "image"
+    t.string   "slug"
   end
 
   add_index "developers", ["name"], :name => "index_developers_on_name", :unique => true
+  add_index "developers", ["slug"], :name => "index_developers_on_slug"
 
   create_table "events", :force => true do |t|
     t.integer  "tournament_id"
@@ -47,11 +49,13 @@ ActiveRecord::Schema.define(:version => 20120416215639) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "image"
+    t.string   "slug"
   end
 
   add_index "games", ["developer_id"], :name => "index_games_on_developer_id"
   add_index "games", ["genre"], :name => "index_games_on_genre"
   add_index "games", ["name"], :name => "index_games_on_name"
+  add_index "games", ["slug"], :name => "index_games_on_slug"
 
   create_table "games_streams", :id => false, :force => true do |t|
     t.integer "game_id"
@@ -71,7 +75,10 @@ ActiveRecord::Schema.define(:version => 20120416215639) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "image"
+    t.string   "slug"
   end
+
+  add_index "streamers", ["slug"], :name => "index_streamers_on_slug"
 
   create_table "streamers_streams", :id => false, :force => true do |t|
     t.integer "streamer_id"
