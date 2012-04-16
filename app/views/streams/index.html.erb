@@ -1,0 +1,15 @@
+<% @streams.each do |s| %>
+    <p>
+      <%= s.link %> -
+      <%= s.games %>
+      <%= s.streamers %>
+      <%= s.description unless !s.description %>
+      <%= link_to "Show", stream_path(s) %>
+      <%= link_to "Edit", edit_stream_path(s) %>
+      <%= link_to "Delete", s, method:  :delete,
+                  confirm: "You sure?" %>
+    </p>
+
+<% end %>
+
+<p><%= link_to "New stream", new_stream_path %></p>

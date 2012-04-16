@@ -1,0 +1,8 @@
+<%= @stream.link %><br />
+<%= @stream.games %><br />
+<%= @stream.streamers %><br />
+<%= @stream.description unless !@stream.description %><br />
+
+<%= link_to "Edit", edit_stream_path(@stream) %>
+<%= link_to "Delete", @stream, method:  :delete,
+            confirm: "You sure?" %> <br />

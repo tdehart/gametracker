@@ -36,6 +36,6 @@ class StreamersController < ApplicationController
 
   def destroy
     Streamer.find(params[:id]).destroy
-    redirect_to games_path
+    redirect_to streamers_path
   end
 end
