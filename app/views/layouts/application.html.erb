@@ -7,54 +7,51 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div id="header">
-  <%= link_to "eSports eXposure", root_path %>
-  <span class="temp"><%= link_to "Log in", tournaments_path %></span>
-</div>
+<header>
+  <h1 id="header_logo">
+    <%= link_to "eSports eXposure", root_path %>
+  </h1>
+</header>
 
 <div class="layout">
   <!--TODO: If user signed in show this -->
-  <% if !current_page? root_path %>
-    <div class="row">
-      <div class="col9">
-        <nav class="dashboard">
-          <ul>
-            <li><%= link_to "Tournaments", tournaments_path %></li>
-            <li><%= link_to "Games", games_path %></li>
-            <li><%= link_to "Streams", streamers_path %></li>
-          </ul>
-        </nav>
-        <%= yield %>
-        <%= debug(params) if Rails.env.development? %>
-      </div>
 
-      <div class="col3">
-        <div class="events">
-          <span class="dashboard_header">Events</span>
-          <ul class="dashboard_list">
-            <li>PGL Dota 2</li>
-            <li>ESL 2012 Semi-finals</li>
-            <li>The Evolution</li>
-          </ul>
-        </div>
-
-        <div class="streams">
-          <span class="dashboard_header">Streams</span>
-          <ul class="dashboard_list">
-            <li>Dendi</li>
-            <li>Reginald</li>
-            <li>-orb-</li>
-          </ul>
-        </div>
-
-
-      </div>
-      <div class="row-end">&nbsp;</div>
+  <div class="row">
+    <div class="col9">
+      <nav class="dashboard">
+        <ul>
+          <li><%= link_to "Tournaments", tournaments_path %></li>
+          <li><%= link_to "Games", games_path %></li>
+          <li><%= link_to "Streams", streams_path %></li>
+        </ul>
+      </nav>
+      <%= yield %>
+      <%= debug(params) if Rails.env.development? %>
     </div>
-  <% else %>
-    <%= yield %>
-    <%= debug(params) if Rails.env.development? %>
-  <% end %>
+
+    <div class="col3">
+      <div class="events">
+        <span class="dashboard_header">Events</span>
+        <ul class="dashboard_list">
+          <li>PGL Dota 2</li>
+          <li>ESL 2012 Semi-finals</li>
+          <li>The Evolution</li>
+        </ul>
+      </div>
+
+      <div class="streams">
+        <span class="dashboard_header">Streams</span>
+        <ul class="dashboard_list">
+          <li>Dendi</li>
+          <li>Reginald</li>
+          <li>-orb-</li>
+        </ul>
+      </div>
+
+
+    </div>
+    <div class="row-end">&nbsp;</div>
+  </div>
 
 </div>
 </body>
