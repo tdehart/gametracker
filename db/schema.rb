@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120414012544) do
+ActiveRecord::Schema.define(:version => 20120416215639) do
 
   create_table "developers", :force => true do |t|
     t.string   "name"
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(:version => 20120414012544) do
   add_index "games", ["genre"], :name => "index_games_on_genre"
   add_index "games", ["name"], :name => "index_games_on_name"
 
+  create_table "games_streams", :id => false, :force => true do |t|
+    t.integer "game_id"
+    t.integer "stream_id"
+  end
+
+  add_index "games_streams", ["game_id", "stream_id"], :name => "index_games_streams_on_game_id_and_stream_id"
+  add_index "games_streams", ["stream_id", "game_id"], :name => "index_games_streams_on_stream_id_and_game_id"
+
   create_table "streamers", :force => true do |t|
     t.string   "online_name"
     t.string   "real_name"
@@ -75,11 +83,6 @@ ActiveRecord::Schema.define(:version => 20120414012544) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-  end
-
-  create_table "streams_games", :id => false, :force => true do |t|
-    t.integer "stream_id"
-    t.integer "game_id"
   end
 
   create_table "tournaments", :force => true do |t|
