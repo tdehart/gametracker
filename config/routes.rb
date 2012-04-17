@@ -1,14 +1,10 @@
 Gametracker::Application.routes.draw do
 
   match '/landing', :to => 'static_pages#landing'
-  match '/about',   :to => 'static_pages#about'
-
-  match 'tournaments/:id/events' => 'tournaments#events'
+  match '/about', :to => 'static_pages#about'
 
   resources :tournaments do
-    collection do
-      get 'table'
-    end
+    get 'table',  :on => :collection
   end
   resources :developers
   resources :games

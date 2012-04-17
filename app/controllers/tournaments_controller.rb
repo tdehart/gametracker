@@ -12,41 +12,42 @@ class TournamentsController < ApplicationController
 
   def show
     @tournament = Tournament.find(params[:id])
+    @tournament.events.build(:date => @tournament.date)
   end
 
   def new
     @tournament = Tournament.new
-    @games = Game.all
-  end
-
-  def events
-    @tournament = Tournament.find(params[:id])
-    @event = @tournament.events.build(:date => @tournament.date)
   end
 
   def create
     @tournament = Tournament.new(params[:tournament])
     if @tournament.save
-      redirect_to :action => :events, :id => @tournament.id
+      @tournament.events.build(:date => @tournament.date)
+      render 'events'
     else
-      @games = Game.all
       render 'new'
     end
   end
 
   def edit
     @tournament = Tournament.find(params[:id])
-    @games = Game.all
   end
 
 
   def update
     @tournament = Tournament.find(params[:id])
-    if @tournament.update_attributes(params[:tournament])
+    if params[:tournament][:events_attributes] && @tournament.update_attributes(params[:tournament])
+      @tournament.events.build(:date => @tournament.date)
+      render 'events'
+    elsif @tournament.update_attributes(params[:tournament])
       redirect_to @tournament
-    else
-      @games = Game.all
-      render 'edit'
+    else #no update
+      if params[:tournament][:events_attributes]
+        @tournament.events.build(:date => @tournament.date)
+        render 'events'
+      else
+        render 'edit'
+      end
     end
   end
 

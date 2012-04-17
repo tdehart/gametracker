@@ -18,4 +18,11 @@ class Event < ActiveRecord::Base
 
   belongs_to :tournament
   belongs_to :stream
+
+  validates :name,                   :presence => { :message => "can't be blank" }
+  validates :stream_id,              :presence => { :message => "can't be blank" }
+
+  validates :date,                   :presence => true
+  validates :time,                   :presence => true
+  #validates :max_concurrent_viewers, :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true }
 end

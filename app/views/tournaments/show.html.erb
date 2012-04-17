@@ -7,12 +7,14 @@
 $<%= @tournament.prize_pool %><br />
 <%= @tournament.num_competitors unless !@tournament.num_competitors %> competitors
 <p>
-  <strong>Streams:</strong><br />
+  <strong>Streams:</strong><br/>
   <% @tournament.events.each do |e| %>
-    <%= e.name %><br/>
-    <%= e.stream.link %><br/>
-    <%= e.date %><br/>
-    <%= e.time %><br/>
+    <% if e.valid? %>
+      <%= e.name %><br/>
+      <%= e.stream.link %><br/>
+      <%= e.date %><br/>
+      <%= e.time %><br/>
+    <% end %>
   <% end %>
 </p>
 
@@ -21,3 +23,6 @@ $<%= @tournament.prize_pool %><br />
 <%= link_to "Edit", edit_tournament_path(@tournament) %>
 <%= link_to "Delete", @tournament, method: :delete,
             confirm: "You sure?" %>
+
+<h3>Add new stream</h3>
+<%= render 'form', :fields => "event_fields" %>

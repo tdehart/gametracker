@@ -20,4 +20,8 @@ class Stream < ActiveRecord::Base
   validates :link,      :presence => true
   validates :streamers, :presence => true
   validates :games,     :presence => true
+
+  def to_s
+    link
+  end
 end

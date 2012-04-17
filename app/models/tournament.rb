@@ -21,7 +21,7 @@ class Tournament < ActiveRecord::Base
   belongs_to :game
   has_many :events, :dependent => :destroy
   has_many :streams, :through => :events
-  accepts_nested_attributes_for :events
+  accepts_nested_attributes_for :events#, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 
   validates :link,            :format   =>     { :with => VALID_LINK_REGEX },
                               :presence =>     true
@@ -41,5 +41,4 @@ class Tournament < ActiveRecord::Base
 
   validates :num_competitors, :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true },
                               :presence     => true
-
 end
