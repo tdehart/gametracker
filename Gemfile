@@ -27,6 +27,7 @@ group :development, :test do
   gem 'spork-rails'
   gem 'factory_girl_rails'
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+  gem 'faker', '1.0.1'
 end
 
 group :production do
