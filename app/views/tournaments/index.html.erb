@@ -1,10 +1,8 @@
-<h2>Upcoming Tournaments <span class="heading_sublink"><%= link_to "browse all tournaments", table_tournaments_path %></span></h2>
-
+<h2>Upcoming Tournaments<span class="heading_sublink"> <%= link_to "browse all tournaments", table_tournaments_path %></span></h2>
 <div class="upcoming_tournaments">
   <% @tournaments.each do |t| %>
     <div class="upcoming_tournament">
       <div class="tournament_info">
-
         <%= image_tag t.game.image_url.to_s, :size => "32x32", :class => "game_image" %>
         <%= link_to t.game.name, game_path(t.game) %>
         <br/>
@@ -23,12 +21,11 @@
         <br/>
         <!-- TODO: make prize pool localized -->
         <!-- TODO: create prize pool format helper -->
-        $<%= t.prize_pool %>
+        <%= number_to_currency(t.prize_pool, :precision => 0) %>
         <br/>
         <!-- TODO: make competitors dynamic (teams vs. players) -->
-        <%= t.num_competitors %> players
+        <span class="num_competitors"><%= t.num_competitors %> players</span>
       </div>
-
     </div>
   <% end %>
 </div>

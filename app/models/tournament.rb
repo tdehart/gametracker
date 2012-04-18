@@ -42,5 +42,5 @@ class Tournament < ActiveRecord::Base
   validates :num_competitors, :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true },
                               :presence     => true
 
-  default_scope :order => 'date ASC'
+  scope :soon, where("date >= ?", Date.today)
 end

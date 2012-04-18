@@ -22,7 +22,7 @@ class TournamentsDatatable
           link_to(tournament.name, tournament),
           link_to(tournament.game.name, tournament.game),
           h(tournament.region),
-          number_to_currency(tournament.prize_pool),
+          number_to_currency(tournament.prize_pool, :precision => 0),
           h(tournament.num_competitors) + " competitors",
           h(tournament.date.strftime("%B %e, %Y"))
       ]

@@ -35,7 +35,7 @@ div.upcoming_tournaments {
 }
 
 div.upcoming_tournaments > *:nth-child(even) {
-  margin-left: 35px;
+  margin-left: 26px;
 }
 
 div.upcoming_tournament {
@@ -45,11 +45,15 @@ div.upcoming_tournament {
 
 div.tournament_info {
   width: 265px;
-  margin-right: 5px;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 div.tournament_stats {
-  width: 75px;
+  width: 85px;
   text-align: right;
 }
 
@@ -65,4 +69,9 @@ table#tournaments {
 div#tournaments_wrapper {
   overflow: hidden;
   margin-top: 20px;
+}
+
+.num_competitors {
+  position: relative;
+  left: -4px;
 }
