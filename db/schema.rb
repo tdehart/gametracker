@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120416231918) do
+ActiveRecord::Schema.define(:version => 20120418182649) do
 
   create_table "developers", :force => true do |t|
     t.string   "name"
@@ -28,14 +28,14 @@ ActiveRecord::Schema.define(:version => 20120416231918) do
   create_table "events", :force => true do |t|
     t.integer  "tournament_id"
     t.integer  "stream_id"
-    t.date     "date"
-    t.time     "time"
     t.integer  "max_concurrent_viewers"
     t.datetime "created_at",             :null => false
     t.datetime "updated_at",             :null => false
     t.string   "name"
+    t.datetime "event_time"
   end
 
+  add_index "events", ["event_time"], :name => "index_events_on_event_time"
   add_index "events", ["stream_id"], :name => "index_events_on_stream_id"
   add_index "events", ["tournament_id"], :name => "index_events_on_tournament_id"
 

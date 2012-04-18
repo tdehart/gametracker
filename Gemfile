@@ -9,6 +9,7 @@ gem 'jquery-ui-rails'
 gem 'will_paginate'
 gem 'friendly_id', '~> 4.0.1'
 gem 'squeel'
+gem 'chronic'
 
 group :assets do
   gem 'sass-rails', '~> 3.2.3'
