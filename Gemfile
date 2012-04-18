@@ -7,7 +7,8 @@ gem 'simple_form'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-ui-rails'
 gem 'will_paginate'
-gem "friendly_id", "~> 4.0.1"
+gem 'friendly_id', '~> 4.0.1'
+gem 'squeel'
 
 group :assets do
   gem 'sass-rails', '~> 3.2.3'

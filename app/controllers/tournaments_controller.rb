@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
   def index
-    @tournaments = Tournament.soon.limit(10)
+    @tournaments = Tournament.soon
   end
 
   def table
