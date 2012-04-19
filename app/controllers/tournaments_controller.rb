@@ -12,7 +12,7 @@ class TournamentsController < ApplicationController
 
   def show
     @tournament = Tournament.find(params[:id])
-    @tournament.events.build(:date => @tournament.date)
+    @tournament.events.build
   end
 
   def new
@@ -22,7 +22,7 @@ class TournamentsController < ApplicationController
   def create
     @tournament = Tournament.new(params[:tournament])
     if @tournament.save
-      @tournament.events.build(:date => @tournament.date)
+      @tournament.events.build
       render 'events'
     else
       render 'new'
@@ -37,13 +37,13 @@ class TournamentsController < ApplicationController
   def update
     @tournament = Tournament.find(params[:id])
     if params[:tournament][:events_attributes] && @tournament.update_attributes(params[:tournament])
-      @tournament.events.build(:date => @tournament.date)
+      @tournament.events.build
       render 'events'
     elsif @tournament.update_attributes(params[:tournament])
       redirect_to @tournament
     else #no update
       if params[:tournament][:events_attributes]
-        @tournament.events.build(:date => @tournament.date)
+        @tournament.events.build
         render 'events'
       else
         render 'edit'

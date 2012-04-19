@@ -42,5 +42,5 @@ class Tournament < ActiveRecord::Base
   validates :num_competitors, :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true },
                               :presence     => true
 
-  scope :soon, where{{date => Date.today..Date.today+14}}.order{date.asc}
+  scope :soon, lambda { where { {date => Date.today-7..Date.today+7} }.order{ date.asc } }
 end

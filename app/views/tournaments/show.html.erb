@@ -12,8 +12,8 @@ $<%= @tournament.prize_pool %><br />
     <% if e.valid? %>
       <%= e.name %><br/>
       <%= e.stream.link %><br/>
-      <%= e.date %><br/>
-      <%= e.time %><br/>
+      <%= e.event_time %><br/>
+      <%= distance_of_time_in_words_hash(Time.now, e.event_time) %>
     <% end %>
   <% end %>
 </p>

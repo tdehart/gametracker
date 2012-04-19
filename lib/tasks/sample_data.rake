@@ -1,17 +1,30 @@
 namespace :db do
+  require 'chronic'
   desc "Fill database with sample data"
   task populate: :environment do
     Tournament.delete_all
     Event.delete_all
 
-    Tournament.create!(name: "ESL Major Series X",
-                       link: "http://www.twitch.tv/esltv_studio1",
-                       region: "US",
-                       num_competitors: 24,
-                       game_id: Game.find_by_name("League of Legends"),
-                       prize_pool: 12000,
-                       date: Date.today,
-                       description: "The ESL Major Series is a series of prize winning eSports tournaments hosted by Electronic Sports League.")
+    @tournament = Tournament.create!(name: "ESL Major Series X",
+                                     link: "http://www.twitch.tv/esltv_studio1",
+                                     region: "US",
+                                     num_competitors: 24,
+                                     game_id: Game.find_by_name("League of Legends"),
+                                     prize_pool: 12000,
+                                     date: Date.today,
+                                     description: "The ESL Major Series is a series of prize winning eSports tournaments hosted by Electronic Sports League.")
+
+    @tournament.events.create(name: "Ro64",
+                              event_time: Chronic.parse("in 1 hour").to_datetime,
+                              stream_id: Stream.all.sample)
+
+    @tournament.events.create(name: "Ro32",
+                              event_time: Chronic.parse("in 3 hours").to_datetime,
+                              stream_id: Stream.all.sample)
+
+    @tournament.events.create(name: "Quarter Finals",
+                              event_time: Chronic.parse("in 8 hours").to_datetime,
+                              stream_id: Stream.all.sample)
 
     99.times do
       name = Faker::Lorem.words(rand(3..5)).join(" ").capitalize
@@ -33,16 +46,15 @@ namespace :db do
                                        date: date,
                                        description: description)
 
-      (rand(3)+1).times do
+      (rand(4)+1).times do
         name = ["Ro256", "Ro128", "Ro64", "Ro32", "Ro16", "Ro8", "Quarter Finals", "Semi Finals", "Grand Finals"].sample
-        date = @tournament.date
-        time = Time.at((date2.to_f - date1.to_f)*rand + date1.to_f)
+        day = [@tournament.date, @tournament.date+1, @tournament.date+2].sample
+        time = Chronic.parse(%w[1pm 1:30pm 2pm 2:30pm 3pm 3:30pm 4pm 4:30pm 5pm 5:30pm 6pm 6:30pm 7pm 7:30pm 8pm].sample, :now => day).to_datetime
 
-        @tournament.events.create(
-            name: name,
-            date: date,
-            time: time,
-            stream_id: Stream.first.id)
+        stream = Stream.all.sample
+        @tournament.events.create(name: name,
+                                  event_time: time,
+                                  stream_id: stream)
       end
     end
   end

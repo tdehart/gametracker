@@ -1,0 +1,16 @@
+<div class="events">
+  <span class="sidebar_header">Events</span>
+  <ul class="sidebar_list">
+    <% @sidebar_events.each do |e| %>
+      <li class="sidebar_event">
+        <%= image_tag e.tournament.game.image_url.to_s, :size => "32x32", :class => "game_image" %>
+        <%= link_to e.tournament.game.name, game_path(e.tournament.game) %>
+        <span class="sidebar_event_time"><%= event_time_format(e.event_time) %></span> <br />
+        <%= image_tag image_path('us-flag.png'), :size => "16x16", :class => "game_image" %>
+        <% #link_to "#{e.tournament.name} (#{e.name})", tournament_path(e.tournament) %>
+        <%= link_to e.tournament.name, tournament_path(e.tournament) %><br />
+        <span class="sidebar_event_name"><%= link_to e.name, tournament_path(e.tournament) %></span>
+      </li>
+    <% end %>
+  </ul>
+</div>

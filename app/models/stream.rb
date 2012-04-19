@@ -24,4 +24,10 @@ class Stream < ActiveRecord::Base
   def to_s
     link
   end
+
+  #own3d.tv (XML)
+  #http://api.own3d.tv/liveCheck.php?live_id=123456
+
+  #Justin.tv/Twitch.tv (JSON) - http://apiwiki.justin.tv/mediawiki/index.php/Stream/list
+  #http://api.justin.tv/api/stream/list.json?channel=example_streamer
 end

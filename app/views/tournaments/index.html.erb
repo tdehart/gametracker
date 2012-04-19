@@ -1,36 +1,8 @@
-<h2>Upcoming Tournaments<span class="heading_sublink"> <%= link_to "browse all tournaments", table_tournaments_path %></span></h2>
+<h2>Recent & Upcoming Tournaments<span class="heading_sublink"> <%= link_to "browse all tournaments", table_tournaments_path %></span></h2>
 <div class="upcoming_tournaments">
   <% @tournaments.each do |t| %>
-    <div class="upcoming_tournament">
-      <div class="tournament_info">
-        <%= image_tag t.game.image_url.to_s, :size => "32x32", :class => "game_image" %>
-        <%= link_to t.game.name, game_path(t.game) %>
-        <br/>
-        <!--TODO: make region flag dynamic -->
-        <%= image_tag image_path('us-flag.png'), :size => "16x16", :class => "game_image" %>
-        <%= link_to t.name, tournament_path(t) %>
-        <br/>
-        <!--TODO: make submitter dynamic -->
-        <span class="tournament_submitter">submitted by Tomed</span> <br/>
-      </div>
-
-      <div class="tournament_stats">
-        <!-- TODO: consider using event time instead of tournament time -->
-        <!-- TODO: create date format helper -->
-        <%= t.date.to_time.strftime("%m/%d") %>
-        <br/>
-        <!-- TODO: make prize pool localized -->
-        <!-- TODO: create prize pool format helper -->
-        <%= number_to_currency(t.prize_pool, :precision => 0) %>
-        <br/>
-        <!-- TODO: make competitors dynamic (teams vs. players) -->
-        <span class="num_competitors"><%= t.num_competitors %> players</span>
-      </div>
-    </div>
+    <%= render 'compact', :t => t %>
   <% end %>
 </div>
 
 <p><%= link_to "New tournament", new_tournament_path %></p>
-
-
-

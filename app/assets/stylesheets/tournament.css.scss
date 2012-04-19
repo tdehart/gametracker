@@ -9,6 +9,7 @@ span.heading_sublink {
 
 .game_image {
   float: left;
+  padding-right: 3px;
 }
 
 span.tournament_desc {
@@ -20,7 +21,7 @@ span.tournament_desc {
 
 span.tournament_submitter {
   position: relative;
-  left: 32px;
+  left: 35px;
 }
 
 div.tournament_info, div.tournament_stats {
@@ -35,7 +36,7 @@ div.upcoming_tournaments {
 }
 
 div.upcoming_tournaments > *:nth-child(even) {
-  margin-left: 26px;
+  margin-left: 72px;
 }
 
 div.upcoming_tournament {
@@ -44,7 +45,7 @@ div.upcoming_tournament {
 }
 
 div.tournament_info {
-  width: 265px;
+  width: 200px;
   text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
   -webkit-text-overflow: ellipsis;

@@ -11,6 +11,7 @@
 #  created_at   :datetime        not null
 #  updated_at   :datetime        not null
 #  image        :string(255)
+#  slug         :string(255)
 #
 
 require 'spec_helper'

@@ -17,7 +17,7 @@
   <!--TODO: If user signed in show this -->
 
   <div class="row">
-    <div class="col9">
+    <div class="col8">
       <nav class="dashboard">
         <ul>
           <li><%= link_to "Tournaments", tournaments_path %></li>
@@ -31,26 +31,9 @@
       <%= debug(params) if Rails.env.development? %>
     </div>
 
-    <div class="col3">
-      <div class="events">
-        <span class="dashboard_header">Events</span>
-        <ul class="dashboard_list">
-          <li>PGL Dota 2</li>
-          <li>ESL 2012 Semi-finals</li>
-          <li>The Evolution</li>
-        </ul>
-      </div>
-
-      <div class="streams">
-        <span class="dashboard_header">Streams</span>
-        <ul class="dashboard_list">
-          <li>Dendi</li>
-          <li>Reginald</li>
-          <li>-orb-</li>
-        </ul>
-      </div>
-
-
+    <div class="col4">
+      <%= render 'layouts/events' %>
+      <%= render 'layouts/streams' %>
     </div>
     <div class="row-end">&nbsp;</div>
   </div>
