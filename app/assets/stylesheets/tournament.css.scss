@@ -24,13 +24,13 @@ span.tournament_submitter {
   left: 35px;
 }
 
-div.tournament_info, div.tournament_stats {
+div.tournament_info, div.tournament_stats, div#tournament_left, div#tournament_right {
   display: block;
   float: left;
   margin: 0px auto;
 }
 
-div.upcoming_tournaments {
+div.upcoming_tournaments, div#tournament_show {
   display: block;
   overflow: hidden;
 }
@@ -63,7 +63,9 @@ p {
 }
 
 table#tournaments {
-  tr { text-align: center }
+  tr {
+    text-align: center
+  }
   margin-bottom: 5px;
 }
 
@@ -75,4 +77,56 @@ div#tournaments_wrapper {
 .num_competitors {
   position: relative;
   left: -4px;
+}
+
+// Tournament show page
+
+div#tournament_show_stats {
+  overflow: hidden;
+  font-size: 2em;
+  margin-top: 20px;
+
+  img { vertical-align: middle;}
+}
+
+div#tournament_left {
+  max-width: 360px;
+}
+
+div#tournament_right {
+  float: right;
+}
+
+span#tournament_name {
+  font-size: 2em;
+}
+
+span#tournament_game {
+  font-size: 2em;
+}
+
+span#submitter_subtext {
+  font-size: 0.85em;
+  color: grey;
+}
+
+div#tournament_show_date, div#tournament_show_prize, div#tournament_show_competitors {
+  display: block;
+  float: left;
+  width: 214px;
+  margin: 0px auto;
+}
+
+
+
+table#tournament_show_stats {
+  margin-top: 20px;
+  width: 100%;
+  font-size: 1.5em;
+
+}
+
+img.tournament_show_stat {
+  float: none;
+  vertical-align: middle;
 }

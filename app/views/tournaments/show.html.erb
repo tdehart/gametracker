@@ -1,28 +1,36 @@
 <span class="back_link"><%= link_to "<< back", :back %></span>
-<%= @tournament.link %><br />
-<%= @tournament.name %> -
-<%= @tournament.game.name %> -
-<%= @tournament.date %> -
-<%= @tournament.region %> -
-$<%= @tournament.prize_pool %><br />
-<%= @tournament.num_competitors unless !@tournament.num_competitors %> competitors
-<p>
-  <strong>Streams:</strong><br/>
-  <% @tournament.events.each do |e| %>
-    <% if e.valid? %>
-      <%= e.name %><br/>
-      <%= e.stream.link %><br/>
-      <%= e.event_time %><br/>
-      <%= distance_of_time_in_words_hash(Time.now, e.event_time) %>
-    <% end %>
-  <% end %>
-</p>
 
-<p><%= @tournament.streams %></p>
 
-<%= link_to "Edit", edit_tournament_path(@tournament) %>
-<%= link_to "Delete", @tournament, method: :delete,
-            confirm: "You sure?" %>
+<div id="tournament_show">
+  <div id="tournament_left">
+    <!-- TODO: Make submitter dynamic -->
+    <%= image_tag image_path("us-flag.png"), :size => "32x32", :class => "game_image" %>
+    <span id="tournament_name"><%= @tournament.name %></span><br />
+    <span id="submitter_subtext">submitted by Tomed</span>
+  </div>
 
-<h3>Add new stream</h3>
-<%= render 'form', :fields => "event_fields" %>
+  <div id="tournament_right">
+    <span id="tournament_game"><%= image_tag @tournament.game.image_url.to_s, :size => "32x32", :class => "game_image" %> <%= @tournament.game.name %></span>
+  </div>
+
+  <div class="row-end">&nbsp;</div>
+
+  <table id="tournament_show_stats">
+    <tr>
+      <td align="left"><%= image_tag image_path("date32.png"), :class => "tournament_show_stat" %><%= @tournament.date %></td>
+      <td align="center"><%= image_tag image_path("coins32.png"), :class => "tournament_show_stat" %> <%= number_to_currency(@tournament.prize_pool, :precision => 0) %></td>
+      <td align="right"><%= image_tag image_path("people32.png"), :class => "tournament_show_stat" %><%= @tournament.num_competitors %> players</td>
+    </tr>
+  </table>
+
+  <p>
+    <br /><br />
+    <%= link_to "Edit", edit_tournament_path(@tournament) %>
+    <%= link_to "Delete", @tournament, method: :delete,
+                confirm: "You sure?" %>
+  </p>
+
+  <p>Add new stream</p>
+  <%= render 'form', :fields => "event_fields" %>
+
+</div>
