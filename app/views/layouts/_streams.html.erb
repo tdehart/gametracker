@@ -1,8 +1,8 @@
 <div class="streams">
   <span class="sidebar_header">Streams</span>
   <ul class="sidebar_list">
-    <li>Dendi</li>
-    <li>Reginald</li>
-    <li>-orb-</li>
+    <% @sidebar_streams.each do |s| %>
+      <li><%= s.link %></li>
+    <% end %>
   </ul>
 </div>

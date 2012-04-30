@@ -43,4 +43,5 @@ class Tournament < ActiveRecord::Base
                               :presence     => true
 
   scope :soon, lambda { where { {date => Date.today-7..Date.today+7} }.order{ date.asc } }
+
 end

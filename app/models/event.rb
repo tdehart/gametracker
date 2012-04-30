@@ -23,6 +23,8 @@ class Event < ActiveRecord::Base
   validates :event_time, :presence => true
   #validates :max_concurrent_viewers, :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true }
 
+  default_scope { order { event_time.asc } }
   scope :soon, lambda { where { {event_time => Time.now-2.hours..Date.today+2} }.order { event_time.asc } }
+
 
 end

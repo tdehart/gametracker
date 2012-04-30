@@ -86,7 +86,9 @@ div#tournament_show_stats {
   font-size: 2em;
   margin-top: 20px;
 
-  img { vertical-align: middle;}
+  img {
+    vertical-align: middle;
+  }
 }
 
 div#tournament_left {
@@ -117,8 +119,6 @@ div#tournament_show_date, div#tournament_show_prize, div#tournament_show_competi
   margin: 0px auto;
 }
 
-
-
 table#tournament_show_stats {
   margin-top: 20px;
   width: 100%;
@@ -129,4 +129,28 @@ table#tournament_show_stats {
 img.tournament_show_stat {
   float: none;
   vertical-align: middle;
+
+}
+
+h2#tournament_event_heading {
+  font-size: 1.65em;
+  margin-bottom: 5px;
+}
+
+div#tournament_events {
+  font-size: 1.25em;
+  img {
+    vertical-align: text-top;
+    padding-right: 3px;
+  }
+  ul {
+    display: block;
+    margin: 0px 0px 30px 0px;
+    padding: 0;
+
+    li {
+      padding: 0px 0px 5px 0px;
+      list-style-type: none;
+    }
+  }
 }
