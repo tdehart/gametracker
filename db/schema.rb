@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120418182649) do
+ActiveRecord::Schema.define(:version => 20120430032308) do
 
   create_table "developers", :force => true do |t|
     t.string   "name"
@@ -87,9 +87,15 @@ ActiveRecord::Schema.define(:version => 20120418182649) do
   create_table "streams", :force => true do |t|
     t.string   "link"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.string   "channel_id"
+    t.string   "platform"
+    t.integer  "viewer_count", :default => 0
+    t.boolean  "live",         :default => false
   end
+
+  add_index "streams", ["live"], :name => "index_streams_on_live"
 
   create_table "tournaments", :force => true do |t|
     t.string   "name"

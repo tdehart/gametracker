@@ -1,9 +1,10 @@
 <% @streams.each do |s| %>
     <p>
       <%= s.link %> -
-      <%= s.games %>
-      <%= s.streamers %>
-      <%= s.description unless !s.description %>
+      <%= s.description unless !s.description %><br />
+      <%= s.platform %>: <%= s.channel_id %><br />
+      viewers: <%= s.viewer_count %><br />
+      live: <%= s.live %><br />
       <%= link_to "Show", stream_path(s) %>
       <%= link_to "Edit", edit_stream_path(s) %>
       <%= link_to "Delete", s, method:  :delete,

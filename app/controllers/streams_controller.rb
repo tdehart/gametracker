@@ -41,6 +41,6 @@ class StreamsController < ApplicationController
 
   def destroy
     Stream.find(params[:id]).destroy
-    redirect_to stream_path
+    redirect_to streams_path
   end
 end

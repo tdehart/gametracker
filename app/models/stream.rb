@@ -10,24 +10,32 @@
 #
 
 class Stream < ActiveRecord::Base
-  attr_accessible :description, :link, :streamers, :games, :game_ids, :streamer_ids
+  attr_accessible :description, :link, :streamers, :games, :game_ids, :streamer_ids, :live, :viewer_count, :channel_id
 
   has_and_belongs_to_many :streamers
   has_and_belongs_to_many :games
   has_many :events
   has_many :tournaments, :through => :events
 
-  validates :link,      :presence => true
-  validates :streamers, :presence => true
-  validates :games,     :presence => true
+  before_create :find_channel_id
 
-  def to_s
-    link
+  validates :link, :presence => true
+  validates :streamers, :presence => true
+  validates :games, :presence => true
+
+  #default_scope { where { live == true } }
+
+  private
+  def find_channel_id
+    if link.index("twitch.tv") || link.index("justin.tv")
+      self.channel_id = link.split("/")[3]
+      self.platform = "justin"
+    elsif link.index("own3d.tv")
+      self.channel_id = link.split("/")[4]
+      self.platform = "own3d"
+    else
+      raise "Streaming service not supported"
+    end
   end
 
-  #own3d.tv (XML)
-  #http://api.own3d.tv/liveCheck.php?live_id=123456
-
-  #Justin.tv/Twitch.tv (JSON) - http://apiwiki.justin.tv/mediawiki/index.php/Stream/list
-  #http://api.justin.tv/api/stream/list.json?channel=example_streamer
 end
