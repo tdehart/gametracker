@@ -195,3 +195,17 @@ abbr[title] {
   border-bottom: none;
 }
 
+.game_image {
+  float: left;
+  padding-right: 3px;
+}
+
+.flag_image {
+  vertical-align: text-top;
+}
+
+.player_thumb {
+  float: left;
+  padding-right: 4px;
+  @include border-radius(10px 5px 3px 3px);
+}

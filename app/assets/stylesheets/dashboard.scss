@@ -34,7 +34,7 @@ ul.sidebar_list {
   list-style-type: none;
 
   li {
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
     -webkit-text-overflow: ellipsis;
@@ -52,6 +52,6 @@ span.sidebar_event_name {
     left: 35px;
 }
 
-span.sidebar_event_time {
+span.sidebar_right_float {
   float: right;
 }

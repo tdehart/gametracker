@@ -8,9 +8,6 @@ class ApplicationController < ActionController::Base
   end
 
   def get_streams
-
-    #TODO: Move to delayed job and update the model
-    @streams = Stream.where { live == true }
-    @sidebar_streams = @streams
+    @sidebar_streams = Stream.where { live == true }
   end
 end

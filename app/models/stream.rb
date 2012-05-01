@@ -23,8 +23,6 @@ class Stream < ActiveRecord::Base
   validates :streamers, :presence => true
   validates :games, :presence => true
 
-  #default_scope { where { live == true } }
-
   private
   def find_channel_id
     if link.index("twitch.tv") || link.index("justin.tv")
@@ -34,7 +32,7 @@ class Stream < ActiveRecord::Base
       self.channel_id = link.split("/")[4]
       self.platform = "own3d"
     else
-      raise "Streaming service not supported"
+      raise "Streaming platform not supported. Please provide a justin.tv, twitch.tv, or own3d.tv link"
     end
   end
 
