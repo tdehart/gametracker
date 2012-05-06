@@ -2,6 +2,43 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+div#top_active_games {
+  display: block;
+  overflow: hidden;
+}
+
+div#top_active_games > *:nth-child(even) {
+  margin-left: 72px;
+}
+
+div.top_active_game {
+  float: left;
+  padding-bottom: 20px;
+  width: 285px;
+}
+
+span#active_game_label {
+  float: left;
+  font-size: 1.5em;
+
+  img {
+    position: relative;
+    vertical-align: text-bottom;
+    top: 3px;
+  }
+}
+
+#active_game_stat_left {
+  display: block;
+  clear: both;
+  padding-top: 5px;
+}
+
+#active_game_stat_right {
+  float: right;
+  display: inline;
+}
+
 .game_show {
   clear: both;
 }

@@ -1,17 +1,21 @@
-<% @games.each do |g| %>
-    <p>
-      <%= g.name %> -
-      <%= g.website %> -
-      <%= g.genre %> -
-      <%= g.developer.name %> -
-      <%= g.num_players unless !g.num_players %>
-      <%= link_to "Show", game_path(g) %>
-      <%= link_to "Edit", edit_game_path(g) %>
-      <%= link_to "Delete", g, method:  :delete,
-                  confirm: "You sure?" %>
-      <br />Tournaments: <%= g.tournaments.map { |f| f.name }.join ', '%>
-    </p>
+<h2>Top Active Games <span class="heading_sublink"><%= link_to "browse all games", "#" %></span></h2>
+<div id="top_active_games">
+  <% @games.each do |g| %>
+    <div class="top_active_game">
+      <span id="active_game_label">
+        <%= "#{@games.index(g)+1}. " %>
+        <%= link_to g do %>
+          <%= image_tag g.image_url.to_s, :size => "32x32", :class => "active_game_image" %> <%= g.name %>
+        <% end %>
+      </span>
+      <br/>
 
-<% end %>
+      <div id="active_game_stat_left">45/200 tournaments
+        <span id="active_game_stat_right">$500k/$1.5m</span>
+      </div>
+
+    </div>
+  <% end %>
+</div>
 
 <p><%= link_to "New game", new_game_path %></p>

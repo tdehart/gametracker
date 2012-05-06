@@ -37,6 +37,7 @@ div.upcoming_tournaments > *:nth-child(even) {
 div.upcoming_tournament {
   float: left;
   padding-bottom: 20px;
+  width: 285px;
 }
 
 div.tournament_info {
@@ -118,13 +119,11 @@ table#tournament_show_stats {
   margin-top: 20px;
   width: 100%;
   font-size: 1.5em;
-
 }
 
 img.tournament_show_stat {
   float: none;
   vertical-align: middle;
-
 }
 
 h2#tournament_event_heading {
