@@ -26,14 +26,17 @@ class Stream < ActiveRecord::Base
   private
   def find_channel_id
     if link.index("twitch.tv") || link.index("justin.tv")
-      self.channel_id = link.split("/")[3]
+      id = link.split("/")[3].split("?")[0]
+      self.channel_id = id
       self.platform = "justin"
+      self.link = "http://www.twitch.tv/#{id}"
     elsif link.index("own3d.tv")
-      self.channel_id = link.split("/")[4]
+      id = link.split("/")[4]
+      self.channel_id = id
       self.platform = "own3d"
+      self.link = "http://www.own3d.tv/live/#{id}"
     else
       raise "Streaming platform not supported. Please provide a justin.tv, twitch.tv, or own3d.tv link"
     end
   end
-
 end

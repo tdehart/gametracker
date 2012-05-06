@@ -43,15 +43,12 @@ ul.sidebar_list {
   }
 }
 
-.sidebar_event {
-  clear: both;
-}
-
 span.sidebar_event_name {
     position: relative;
     left: 35px;
 }
 
 span.sidebar_right_float {
+  display: inline;
   float: right;
 }

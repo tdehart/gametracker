@@ -1,3 +1,52 @@
 // Place all the styles related to the Game controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.game_show {
+  clear: both;
+}
+
+#game_show_info {
+  margin-bottom: 30px;
+}
+
+#game_label {
+  font-size: 2em;
+}
+
+#game_show_stats, #game_show_tournaments_label {
+  width: 80%;
+  margin-bottom: 30px;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    
+    li {
+      padding-right: 10px;
+      list-style-type: none;
+    }
+  }
+}
+
+#game_show_stats_label {
+  border-bottom: 1px solid black;
+  margin-bottom: 5px;
+}
+
+#game_show_stats_label_left {
+  font-size: 2em;
+}
+
+#game_show_stats_label_right {
+  position: relative;
+  top: 9px;
+  float: right;
+}
+
+#game_show_tournaments_label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 2em;
+  border-bottom: 1px solid black;
+}

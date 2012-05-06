@@ -16,15 +16,15 @@ namespace :db do
 
     @tournament.events.create(name: "Ro64",
                               event_time: Chronic.parse("in 1 hour").to_datetime,
-                              stream_id: Stream.all.sample)
+                              stream_id: Stream.all.sample.id)
 
     @tournament.events.create(name: "Ro32",
                               event_time: Chronic.parse("in 3 hours").to_datetime,
-                              stream_id: Stream.all.sample)
+                              stream_id: Stream.all.sample.id)
 
     @tournament.events.create(name: "Quarter Finals",
                               event_time: Chronic.parse("in 8 hours").to_datetime,
-                              stream_id: Stream.all.sample)
+                              stream_id: Stream.all.sample.id)
 
     99.times do
       name = Faker::Lorem.words(rand(3..5)).join(" ").capitalize
@@ -51,7 +51,7 @@ namespace :db do
         day = [@tournament.date, @tournament.date+1, @tournament.date+2].sample
         time = Chronic.parse(%w[1pm 1:30pm 2pm 2:30pm 3pm 3:30pm 4pm 4:30pm 5pm 5:30pm 6pm 6:30pm 7pm 7:30pm 8pm].sample, :now => day).to_datetime
 
-        stream = Stream.all.sample
+        stream = Stream.all.sample.id
         @tournament.events.create(name: name,
                                   event_time: time,
                                   stream_id: stream)

@@ -13,6 +13,7 @@ class TournamentsController < ApplicationController
   def show
     @tournament = Tournament.find(params[:id])
     @events = @tournament.events.collect { |e| e if e.valid? }
+    #Create a 2-element list that contains all of the event's stream's streamers in the format of [online_name, object]
     @events.each {|e| e["streamers"] = e.stream.streamers.collect { |s| [s.online_name, s] } }
     @tournament.events.build
 

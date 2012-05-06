@@ -1,13 +1,39 @@
 <span class="back_link"><%= link_to "<< back", :back %></span>
-<%= @game.name %><br />
-<%= @game.website %><br />
-<%= @game.developer.name %><br />
-<%= @game.genre %><br />
-<%= @game.num_players unless !@game.num_players %>
-<p>Tournaments: <br /><%= @game.tournaments.map { |f| f.name }.join ', '%></p>
+<div id="game_show">
+  <div id="game_show_info">
+    <%= image_tag @game.image_url.to_s, :size => "32x32", :class => "game_image" %>
+    <span id="game_label"><%= @game.name %></span><br/>
+    Genre: <%= @game.genre %>
+    <br/>
+    Developer: <%= link_to @game.developer.name, @game.developer %>
+    <br/>
+  </div>
 
-<%= link_to "Edit", edit_game_path(@game) %>
-<%= link_to "Delete", @game, method:  :delete,
-            confirm: "You sure?" %> <br />
+  <div id="game_show_stats">
+    <p id="game_show_stats_label">
+      <span id="game_show_stats_label_left">Competitive Statistics</span>
+      <!--<span id="game_show_stats_label_right">6 months | 1 year | all time</span>-->
+    </p>
+    <ul>
+      <li>Tournaments: <%= @tournaments.count %></li>
+      <li>Total Prizes: <%= number_to_currency(@prize_total, precision: 0) %></li>
+      <li>Average prize pool per tournament: <%= number_to_currency(@prize_average, precision: 0) %></li>
+    </ul>
+  </div>
 
-<%= image_tag @game.image_url.to_s %>
+  <div id="game_show_tournaments">
+    <span id="game_show_tournaments_label">
+      Recent & Upcoming Tournaments
+    </span>
+    <% @tournaments.soon.each do |t| %>
+      <%= link_to t.name, t %><br />
+    <% end %>
+  </div>
+
+
+</div>
+<p>
+  <%= link_to "Edit", edit_game_path(@game) %>
+  <%= link_to "Delete", @game, method: :delete,
+              confirm: "You sure?" %> <br/>
+</p>

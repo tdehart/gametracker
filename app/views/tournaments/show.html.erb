@@ -31,7 +31,7 @@
           <li><%= image_tag image_path("match32.png"), :size => "24x24" %>Event: <%= e.name %></li>
           <li><%= image_tag image_path("time.png"), :size => "24x24" %>Time: <%= e.event_time %></li>
           <li> <%= image_tag image_path("stream.png"), :size => "24x24" %>Stream
-            link: <%= link_to e.stream, e.stream.link %> </li>
+            link: <%= link_to e.stream.link, e.stream.link %> </li>
           <li><%= image_tag image_path("microphone24.png"), :size => "24x24" %>Casters:
             <% e["streamers"].each do |s| %>
               <%= link_to s[0], s[1] %><%= "," if s != e["streamers"].last %>
