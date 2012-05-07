@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
   end
 
   def get_streams
-    @sidebar_streams = Stream.where { live == true }
+    @sidebar_streams = Stream.live
   end
 end

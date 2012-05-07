@@ -24,7 +24,7 @@ class TournamentsDatatable
           h(tournament.region),
           number_to_currency(tournament.prize_pool, :precision => 0),
           h(tournament.num_competitors) + " competitors",
-          h(tournament.date.strftime("%B %e, %Y"))
+          h(tournament.date.strftime("%m/%d/%Y"))
       ]
     end
   end

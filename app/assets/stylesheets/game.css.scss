@@ -47,27 +47,27 @@ span#active_game_label {
   margin-bottom: 30px;
 }
 
-#game_label {
-  font-size: 2em;
-}
+  #game_label {
+    font-size: 2em;
+  }
 
-#game_show_stats, #game_show_tournaments_label {
-  width: 80%;
-  margin-bottom: 30px;
+  #game_show_stats, #game_show_tournaments_label {
+    width: 80%;
+    margin-bottom: 30px;
 
-  ul {
-    margin: 0;
-    padding: 0;
-    
-    li {
-      padding-right: 10px;
-      list-style-type: none;
+    ul {
+      margin: 0;
+      padding: 0;
+
+      li {
+        padding-right: 10px;
+        list-style-type: none;
+      }
     }
   }
-}
 
-#game_show_stats_label {
-  border-bottom: 1px solid black;
+  #game_show_stats_label {
+    border-bottom: 1px solid black;
   margin-bottom: 5px;
 }
 

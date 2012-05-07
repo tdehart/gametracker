@@ -1,16 +1,22 @@
-<% @streams.each do |s| %>
-    <p>
-      <%= s.link %> -
-      <%= s.description unless !s.description %><br />
-      <%= s.platform %>: <%= s.channel_id %><br />
-      viewers: <%= s.viewer_count %><br />
-      live: <%= s.live %><br />
-      <%= link_to "Show", stream_path(s) %>
-      <%= link_to "Edit", edit_stream_path(s) %>
-      <%= link_to "Delete", s, method:  :delete,
-                  confirm: "You sure?" %>
-    </p>
+<h2>Popular Streams</h2>
+<div id="popular_streams">
+  <% @streams.each do |s| %>
+    <div class="popular_stream">
+      <%= link_to s.streamers[0] do %>
+        <%= image_tag s.streamers[0].image_url.to_s, :size => "32x32", :class => "game_image" %>
+        <%= s.streamers[0].online_name %>
+        <%= image_tag image_path('us-flag.png'), :size => "16x16", :class => "flag_image" %>
+      <% end %>
+      <span id="popular_stream_viewers"><%= link_to "#{s.viewer_count} viewers", s.link, :target => "_blank" %></span>
+      <br/>
+      <%= link_to s.games[0] do %>
+        <%= image_tag s.games[0].image_url.to_s, :size => "16x16", :class => "game_image" %>
+        <%= s.games[0].name %>
+      <% end %>
 
-<% end %>
+    </div>
+
+  <% end %>
+</div>
 
 <p><%= link_to "New stream", new_stream_path %></p>

@@ -35,12 +35,17 @@ ul.sidebar_list {
 
   li {
     padding-bottom: 20px;
-    text-overflow: ellipsis;
-    -o-text-overflow: ellipsis;
-    -webkit-text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
   }
+}
+
+.sidebar_tournament_name {
+  display: block;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  -webkit-text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0px auto;
 }
 
 span.sidebar_event_name {
@@ -49,6 +54,5 @@ span.sidebar_event_name {
 }
 
 span.sidebar_right_float {
-  display: inline;
   float: right;
 }

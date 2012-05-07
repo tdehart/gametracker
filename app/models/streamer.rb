@@ -28,8 +28,4 @@ class Streamer < ActiveRecord::Base
   validates :website,            :format   => { :with => VALID_LINK_REGEX, :allow_blank => true }
 
   mount_uploader :image, ImageUploader
-
-  def to_s
-    online_name
-  end
 end

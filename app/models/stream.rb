@@ -2,11 +2,15 @@
 #
 # Table name: streams
 #
-#  id          :integer         not null, primary key
-#  link        :string(255)
-#  description :text
-#  created_at  :datetime        not null
-#  updated_at  :datetime        not null
+#  id           :integer         not null, primary key
+#  link         :string(255)
+#  description  :text
+#  created_at   :datetime        not null
+#  updated_at   :datetime        not null
+#  channel_id   :string(255)
+#  platform     :string(255)
+#  viewer_count :integer         default(0)
+#  live         :boolean         default(FALSE)
 #
 
 class Stream < ActiveRecord::Base
@@ -22,6 +26,8 @@ class Stream < ActiveRecord::Base
   validates :link, :presence => true
   validates :streamers, :presence => true
   validates :games, :presence => true
+
+  scope :live, lambda { where { {live => true } } }
 
   private
   def find_channel_id
