@@ -13,6 +13,14 @@ module ApplicationHelper
     else
       "#{pluralize(days, "day")}"
     end
+  end
+
+  def get_image(object)
+    if !object.image_url.nil?
+      object.image_url.to_s
+    else
+      image_path('placeholder.png')
+    end
 
   end
 end

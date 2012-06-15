@@ -4,7 +4,7 @@
     <% @sidebar_streams.each do |s| %>
       <li class="sidebar_item">
         <%= link_to s.streamers[0] do %>
-          <%= image_tag s.streamers[0].image_url.to_s, :size => "32x32", :class => "player_thumb" %>
+          <%= image_tag get_image(s.streamers[0]), :size => "32x32", :class => "player_thumb" %>
           <%= s.streamers[0].online_name %>
           <%= image_tag image_path('us-flag.png'), :size => "16x16", :class => "flag_image" %>
         <% end %>
@@ -12,7 +12,7 @@
         <br/>
 
         <%= link_to s.games[0] do %>
-          <%= image_tag s.games[0].image_url.to_s, :size => "16x16", :class => "game_image" %>
+          <%= image_tag get_image(s.games[0]), :size => "16x16", :class => "game_image" %>
           <%= s.games[0].name %>
           <br/>
         <% end %>

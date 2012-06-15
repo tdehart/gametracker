@@ -2,14 +2,59 @@ namespace :db do
   require 'chronic'
   desc "Fill database with sample data"
   task populate: :environment do
-    Tournament.delete_all
+    Game.delete_all
+    Developer.delete_all
     Event.delete_all
+    Tournament.delete_all
+    Streamer.delete_all
+    Stream.delete_all
+
+    developers = ["Blizzard Entertainment", "Valve", "Riot Games", "S2 Games", "id Software"]
+    genres = ["RTS", "FPS", "ARTS"]
+    games = ["Starcraft II", "League of Legends", "Starcraft: Brood War", "Dota 2", "Team Fortress 2", "Counter-Strike Source", "Quake Live", "Call of Duty 4", "Heroes of Newerth"]
+
+    #Create some developers
+    developers.each do |d|
+      Developer.create!(name: d,
+                        website: "http://www.google.com")
+    end
+
+    #Create some games -- choose random developer
+    games.each do |g|
+      Game.create!(name: g,
+                   website: "http://www.google.com",
+                   genre: genres.sample,
+                   developer_id: Developer.all.sample.id)
+    end
+
+    #Create some fake streamers
+    99.times do
+      online_name = Faker::Name.first_name
+      real_name = Faker::Name.name
+      website = "http://#{Faker::Internet.domain_name}"
+      birthday = rand(30.years).ago
+      Streamer.create!(online_name: online_name,
+                       real_name: real_name,
+                       website: website,
+                       birthday: birthday)
+    end
+
+    streams = ["http://www.twitch.tv/desrowfighting", "http://www.twitch.tv/aphromoo", "http://www.own3d.tv/TheRainMan/live/38853", "http://www.twitch.tv/tslpolt", "http://www.twitch.tv/sing_sing"]
+    #Create some streams -- use random streamers
+    streams.each do |s|
+      link = s
+      game = Game.all.sample
+      streamer = Streamer.all.sample
+      Stream.create!(link: link,
+                     games: [game],
+                     streamers: [streamer])
+    end
 
     @tournament = Tournament.create!(name: "ESL Major Series X",
                                      link: "http://www.twitch.tv/esltv_studio1",
                                      region: "US",
                                      num_competitors: 24,
-                                     game_id: Game.find_by_name("League of Legends"),
+                                     game_id: Game.first.id,
                                      prize_pool: 12000,
                                      date: Date.today,
                                      description: "The ESL Major Series is a series of prize winning eSports tournaments hosted by Electronic Sports League.")

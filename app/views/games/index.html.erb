@@ -5,7 +5,7 @@
       <span id="active_game_label">
         <%= "#{@games.index(g)+1}. " %>
         <%= link_to g do %>
-          <%= image_tag g.image_url.to_s, :size => "32x32", :class => "active_game_image" %> <%= g.name %>
+          <%= image_tag get_image(g), :size => "32x32", :class => "active_game_image" %> <%= g.name %>
         <% end %>
       </span>
       <br/>

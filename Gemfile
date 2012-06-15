@@ -4,7 +4,6 @@ gem 'rails', '3.2.3'
 gem 'jquery-rails'
 gem 'carrierwave'
 gem 'simple_form'
-gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-ui-rails'
 gem 'will_paginate'
 gem 'friendly_id', '~> 4.0.1'
@@ -17,6 +16,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'bourbon'
+  gem 'jquery-datatables-rails'
 end
 
 group :development, :test do
@@ -29,7 +29,7 @@ group :development, :test do
   gem 'capybara'
   gem 'spork-rails'
   gem 'factory_girl_rails'
-  gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+  gem 'annotate'
   gem 'faker', '1.0.1'
 end
 

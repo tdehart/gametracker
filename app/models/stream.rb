@@ -21,7 +21,7 @@ class Stream < ActiveRecord::Base
   has_many :events
   has_many :tournaments, :through => :events
 
-  before_create :find_channel_id
+  before_create :sanitize_website, :find_channel_id
 
   validates :link, :presence => true
   validates :streamers, :presence => true
@@ -30,6 +30,12 @@ class Stream < ActiveRecord::Base
   scope :live, lambda { where { {live => true } } }
 
   private
+  def sanitize_website
+    unless self.link.include?("http://") || self.website.include?("https://")
+      self.website = "http://" + self.website
+    end
+  end
+
   def find_channel_id
     if link.index("twitch.tv") || link.index("justin.tv")
       id = link.split("/")[3].split("?")[0]
@@ -37,7 +43,7 @@ class Stream < ActiveRecord::Base
       self.platform = "justin"
       self.link = "http://www.twitch.tv/#{id}"
     elsif link.index("own3d.tv")
-      id = link.split("/")[4]
+      id = link.split("/")[5]
       self.channel_id = id
       self.platform = "own3d"
       self.link = "http://www.own3d.tv/live/#{id}"

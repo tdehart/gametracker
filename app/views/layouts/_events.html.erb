@@ -3,7 +3,7 @@
   <ul class="sidebar_list">
     <% @sidebar_events.each do |e| %>
       <li class="sidebar_item">
-        <%= image_tag e.tournament.game.image_url.to_s, :size => "32x32", :class => "game_image" %>
+        <%= image_tag get_image(e.tournament.game), :size => "32x32", :class => "game_image" %>
         <span class="sidebar_right_float"><%= event_time_format(e.event_time) %></span>
         <%= link_to e.tournament.game.name, game_path(e.tournament.game) %>
         <br/>
