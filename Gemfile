@@ -10,6 +10,7 @@ gem 'friendly_id', '~> 4.0.1'
 gem 'squeel'
 gem 'chronic'
 gem 'dotiw'
+gem 'bcrypt-ruby', '~> 3.0.1'
 
 group :assets do
   gem 'sass-rails', '~> 3.2.3'
@@ -29,7 +30,7 @@ group :development, :test do
   gem 'capybara'
   gem 'spork-rails'
   gem 'factory_girl_rails'
-  gem 'annotate'
+  gem 'annotate', '~> 2.4.1.beta'
   gem 'faker', '1.0.1'
 end
 
