@@ -36,4 +36,11 @@ FactoryGirl.define do
     description "Example Description"
   end
 
+  factory :user do
+    name "Tomed"
+    email "tdehart@gmail.com"
+    password "foobar"
+    password_confirmation "foobar"
+  end
+
 end

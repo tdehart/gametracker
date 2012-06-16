@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
+gem 'bcrypt-ruby', '~> 3.0.1'
 gem 'jquery-rails'
 gem 'carrierwave'
 gem 'simple_form'
@@ -10,7 +11,7 @@ gem 'friendly_id', '~> 4.0.1'
 gem 'squeel'
 gem 'chronic'
 gem 'dotiw'
-gem 'bcrypt-ruby', '~> 3.0.1'
+
 
 group :assets do
   gem 'sass-rails', '~> 3.2.3'

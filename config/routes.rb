@@ -1,7 +1,5 @@
 Gametracker::Application.routes.draw do
 
-  get "users/new"
-
   match '/landing', :to => 'static_pages#landing'
   match '/about', :to => 'static_pages#about'
 
@@ -12,6 +10,7 @@ Gametracker::Application.routes.draw do
   resources :games
   resources :streamers
   resources :streams
+  resources :users
 
   root :to => 'tournaments#index'
   # The priority is based upon order of creation:
