@@ -1,1 +1,11 @@
-<h1>Users#index</h1>
+<% @users.each do |u| %>
+    <p>
+      <%= u.name %> -
+      <%= u.email %>
+      <%= u.admin %>
+      <% if current_user.admin? && !current_user?(u) %>
+          <%= link_to "Delete", u, method: :delete,
+                      confirm: "You sure?" %><br/>
+      <% end %>
+    </p>
+<% end %>
