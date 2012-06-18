@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
   has_secure_password
 
-
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
@@ -24,6 +23,10 @@ class User < ActiveRecord::Base
             uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
+
+  has_and_belongs_to_many :games, uniq: true
+  has_many :tournaments, through: :followed_tournaments
+  has_many :followed_tournaments, dependent: :destroy
 
   private
   def create_remember_token

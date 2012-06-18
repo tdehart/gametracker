@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120617182156) do
+ActiveRecord::Schema.define(:version => 20120618173848) do
 
   create_table "developers", :force => true do |t|
     t.string   "name"
@@ -39,6 +39,18 @@ ActiveRecord::Schema.define(:version => 20120617182156) do
   add_index "events", ["stream_id"], :name => "index_events_on_stream_id"
   add_index "events", ["tournament_id"], :name => "index_events_on_tournament_id"
 
+  create_table "followed_tournaments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "tournament_id"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.boolean  "hidden",        :default => false
+  end
+
+  add_index "followed_tournaments", ["tournament_id"], :name => "index_followed_tournaments_on_tournament_id"
+  add_index "followed_tournaments", ["user_id", "tournament_id"], :name => "index_followed_tournaments_on_user_id_and_tournament_id", :unique => true
+  add_index "followed_tournaments", ["user_id"], :name => "index_followed_tournaments_on_user_id"
+
   create_table "games", :force => true do |t|
     t.string   "name"
     t.string   "website"
@@ -63,6 +75,13 @@ ActiveRecord::Schema.define(:version => 20120617182156) do
 
   add_index "games_streams", ["game_id", "stream_id"], :name => "index_games_streams_on_game_id_and_stream_id"
   add_index "games_streams", ["stream_id", "game_id"], :name => "index_games_streams_on_stream_id_and_game_id"
+
+  create_table "games_users", :id => false, :force => true do |t|
+    t.integer "game_id"
+    t.integer "user_id"
+  end
+
+  add_index "games_users", ["game_id", "user_id"], :name => "index_games_users_on_game_id_and_user_id", :unique => true
 
   create_table "streamers", :force => true do |t|
     t.string   "online_name"
