@@ -16,7 +16,7 @@
 #
 
 class Tournament < ActiveRecord::Base
-  attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :date, :description, :events_attributes
+  attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :date, :description, :image, :remote_image_url, :events_attributes
 
   belongs_to :game
   has_many :users, through: :followed_tournaments
@@ -45,5 +45,7 @@ class Tournament < ActiveRecord::Base
                               :presence     => true
 
   scope :soon, lambda { where { {date => Date.today-7..Date.today+7} }.order{ date.asc } }
+
+  mount_uploader :image, ImageUploader
 
 end
