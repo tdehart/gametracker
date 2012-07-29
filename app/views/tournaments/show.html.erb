@@ -1,9 +1,9 @@
-<span class="back_link"><%= link_to "<< back", :back %></span>
+<%= link_to "<< back", :back %>
 <div id="tournament_show">
   <div id="tournament_left">
     <!-- TODO: Make submitter dynamic -->
     <%= image_tag image_path("us-flag.png"), :size => "32x32", :class => "game_image" %>
-    <span id="tournament_name"><%= @tournament.name %></span><br/>
+    <span id="tournament_name"><%= @tournament.name %></span> <%= render 'follow_form' %><br/>
     <span id="submitter_subtext">submitted by Tomed</span>
   </div>
   <div id="tournament_right">

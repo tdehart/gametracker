@@ -13,6 +13,7 @@ Gametracker::Application.routes.draw do
   resources :streams
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :followed_tournaments, only: [:create, :destroy]
 
   root :to => 'tournaments#index'
 

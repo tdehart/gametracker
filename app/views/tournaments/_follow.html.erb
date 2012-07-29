@@ -1,0 +1,4 @@
+<%= form_for(current_user.followed_tournaments.build(tournament_id: @tournament.id), remote: true) do |f| %>
+    <div><%= f.hidden_field :tournament_id %></div>
+    <%= f.submit "Follow", class: "btn btn-large btn-primary" %>
+<% end %>

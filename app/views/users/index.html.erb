@@ -2,7 +2,8 @@
     <p>
       <%= u.name %> -
       <%= u.email %>
-      <%= u.admin %>
+      Admin: <%= u.admin %>
+      <p>Followed tournaments: <%= u.followed_tournaments.size %></p>
       <% if current_user.admin? && !current_user?(u) %>
           <%= link_to "Delete", u, method: :delete,
                       confirm: "You sure?" %><br/>
