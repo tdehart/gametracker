@@ -18,6 +18,7 @@
 class Tournament < ActiveRecord::Base
   attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :date, :description, :events_attributes
 
+  belongs_to :game
   has_many :users, through: :followed_tournaments
   has_many :followed_tournaments
   has_many :events, dependent: :destroy

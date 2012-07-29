@@ -25,6 +25,4 @@ class Event < ActiveRecord::Base
 
   default_scope { order { event_time.asc } }
   scope :soon, lambda { where { {event_time => Time.now-2.hours..Date.today+2} }.order { event_time.asc } }
-
-
 end

@@ -1,0 +1,11 @@
+@import "bootstrap";
+@import "dataTables/jquery.dataTables";
+
+.navbar-inner .container {width:940px;}
+
+.header-subtext
+{
+  position: relative;
+  bottom: 4px;
+  font-size: 0.5em;
+}

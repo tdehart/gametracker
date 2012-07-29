@@ -1,4 +1,6 @@
 class TournamentsController < ApplicationController
+  layout 'single_column', only: [:table, :new]
+
   def index
     @tournaments = Tournament.soon
   end
@@ -16,8 +18,6 @@ class TournamentsController < ApplicationController
     #Create a 2-element list that contains all of the event's stream's streamers in the format of [online_name, object]
     @events.each {|e| e["streamers"] = e.stream.streamers.collect { |s| [s.online_name, s] } }
     @tournament.events.build
-
-
   end
 
   def new

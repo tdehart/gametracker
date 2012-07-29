@@ -11,7 +11,7 @@ gem 'friendly_id', '~> 4.0.1'
 gem 'squeel'
 gem 'chronic'
 gem 'dotiw'
-
+gem 'thin'
 
 group :assets do
   gem 'sass-rails', '~> 3.2.3'
@@ -19,6 +19,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'bourbon'
   gem 'jquery-datatables-rails'
+  gem 'bootstrap-sass'
 end
 
 group :development, :test do

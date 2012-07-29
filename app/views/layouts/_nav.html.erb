@@ -1,0 +1,5 @@
+<ul class="nav nav-pills">
+  <li class="<%= 'active' if params[:controller] == 'feed' %>"> <%= link_to "Feed", "feed" %></li>
+  <li class="<%= 'active' if params[:controller] == 'tournaments' %>"> <%= link_to "Tournaments", "tournaments" %></li>
+  <li class="<%= 'active' if params[:controller] == 'streams' %>"> <%= link_to "Streams", "streams" %></li>
+</ul>

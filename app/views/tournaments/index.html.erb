@@ -1,8 +1,6 @@
-<h2>Recent & Upcoming Tournaments<span class="heading_sublink"> <%= link_to "browse all tournaments", table_tournaments_path %></span></h2>
-<div class="upcoming_tournaments">
-  <% @tournaments.each do |t| %>
-    <%= render 'compact', :t => t %>
-  <% end %>
-</div>
+<h1 class="content-header">Live & Upcoming Tournaments <span class="header-subtext"><%= link_to "browse all", table_tournaments_path %></span></h1>
+<% @tournaments.each do |t| %>
+    <%= render 'normal', :t => t %>
+<% end %>
 
 <p><%= link_to "New tournament", new_tournament_path %></p>
