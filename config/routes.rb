@@ -12,10 +12,14 @@ Gametracker::Application.routes.draw do
   resources :streamers
   resources :streams
   resources :users
+  match '/feed', to: 'users#feed'
   resources :sessions, only: [:new, :create, :destroy]
   resources :followed_tournaments, only: [:create, :destroy]
+  resources :followed_games, only: [:create, :destroy]
 
   root :to => 'tournaments#index'
+
+
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'

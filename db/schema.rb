@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120729185745) do
+ActiveRecord::Schema.define(:version => 20120730214749) do
 
   create_table "developers", :force => true do |t|
     t.string   "name"
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(:version => 20120729185745) do
   add_index "events", ["event_time"], :name => "index_events_on_event_time"
   add_index "events", ["stream_id"], :name => "index_events_on_stream_id"
   add_index "events", ["tournament_id"], :name => "index_events_on_tournament_id"
+
+  create_table "followed_games", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "game_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "followed_games", ["game_id"], :name => "index_followed_games_on_game_id"
+  add_index "followed_games", ["user_id", "game_id"], :name => "index_followed_games_on_user_id_and_game_id", :unique => true
+  add_index "followed_games", ["user_id"], :name => "index_followed_games_on_user_id"
 
   create_table "followed_tournaments", :force => true do |t|
     t.integer  "user_id"

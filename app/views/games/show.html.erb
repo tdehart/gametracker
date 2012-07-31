@@ -2,7 +2,7 @@
 <div id="game_show">
   <div id="game_show_info">
     <%= image_tag get_image(@game), :size => "32x32", :class => "game_image" %>
-    <span id="game_label"><%= @game.name %></span><br/>
+    <span id="game_label"><%= @game.name %></span>  <%= render 'follow_form' %><br/>
     Genre: <%= @game.genre %>
     <br/>
     Developer: <%= @game.developer.name %>

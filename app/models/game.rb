@@ -21,9 +21,10 @@ class Game < ActiveRecord::Base
   attr_accessible :genre, :name, :num_players, :website, :developer_id, :streams, :tournaments, :image, :remote_image_url
 
   belongs_to :developer
-  has_and_belongs_to_many :users, uniq: true
   has_many :tournaments, :dependent => :destroy
   has_and_belongs_to_many :streams
+  has_many :users, through: :followed_games
+  has_many :followed_games
 
   validates :name,         :presence     => true,
                            :length       => { :maximum => 50 }

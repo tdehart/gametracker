@@ -1,0 +1,6 @@
+<h1>Most Recent</h1>
+<% if @feed_items.any? %>
+    <ol class="feed">
+      <%= render partial: 'feed_item', collection: @feed_items %>
+    </ol>
+<% end %>

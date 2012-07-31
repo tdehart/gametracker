@@ -24,15 +24,27 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
-  has_and_belongs_to_many :games, uniq: true
   has_many :tournaments, through: :followed_tournaments
   has_many :followed_tournaments, dependent: :destroy
+  has_many :games, through: :followed_games
+  has_many :followed_games, dependent: :destroy
+
+  def feed
+    tournaments = []
+    games.each do |g|
+      g.tournaments.each do |t|
+        tournaments.append(t)
+      end
+    end
+
+    tournaments.sort {|a,b| b.created_at <=> a.created_at}
+  end
 
   def following?(object)
     if object.is_a?(Tournament)
       followed_tournaments.find_by_tournament_id(object.id)
     elsif object.is_a?(Game)
-
+      followed_games.find_by_game_id(object.id)
     end
   end
 
@@ -40,7 +52,7 @@ class User < ActiveRecord::Base
     if object.is_a?(Tournament)
       followed_tournaments.create!(tournament_id: object.id)
     elsif object.is_a?(Game)
-
+      followed_games.create!(game_id: object.id)
     end
   end
 
@@ -48,7 +60,7 @@ class User < ActiveRecord::Base
     if object.is_a?(Tournament)
       followed_tournaments.find_by_tournament_id(object.id).destroy
     elsif object.is_a?(Game)
-
+      followed_games.find_by_game_id(object.id).destroy
     end
   end
 

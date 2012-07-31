@@ -3,6 +3,7 @@ class CreateFollowedTournaments < ActiveRecord::Migration
     create_table :followed_tournaments do |t|
       t.integer :user_id
       t.integer :tournament_id
+      t.boolean :hidden
 
       t.timestamps
     end

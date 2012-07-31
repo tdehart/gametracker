@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def feed
+    @feed_items = current_user.feed
+  end
+
   def show
     @user = User.find(params[:id])
   end
