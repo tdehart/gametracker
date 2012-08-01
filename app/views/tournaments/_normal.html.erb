@@ -1,8 +1,8 @@
-<%= image_tag get_image(t.game), :size => "32x32", :class => "game_image" %>
+<%= image_tag get_image(t.game), :size => "32x32", :class => "mini-image" %>
 <%= link_to t.game.name, game_path(t.game) %>
 <br/>
 <!--TODO: make region flag dynamic -->
-<%= image_tag image_path('us-flag.png'), :size => "16x16", :class => "game_image" %>
+<%= image_tag image_path('us-flag.png'), :size => "16x16", :class => "mini-image" %>
 <%= link_to t.name, tournament_path(t) %>
 <br/>
 <!--TODO: make submitter dynamic -->
