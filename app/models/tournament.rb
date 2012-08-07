@@ -16,33 +16,33 @@
 #
 
 class Tournament < ActiveRecord::Base
-  attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :date, :description, :image, :remote_image_url, :events_attributes
+  attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :date, :description, :image, :remote_image_url #, :events_attributes
 
   belongs_to :game
   has_many :users, through: :followed_tournaments
   has_many :followed_tournaments
   has_many :events, dependent: :destroy
   has_many :streams, through: :events
-  accepts_nested_attributes_for :events#, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
+  #accepts_nested_attributes_for :events#, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 
-  validates :link,            :format   =>     { :with => VALID_LINK_REGEX },
+  validates :link,            :format   =>     { with: VALID_LINK_REGEX },
                               :presence =>     true
 
   validates :name,            :presence =>     true
 
   #TODO: Write validator for region correctness
-  validates :region,          :presence =>     true
+  #validates :region,          :presence =>     true
 
-  validates :prize_pool,      :numericality => { :greater_than_or_equal_to => 0 }
+  validates :prize_pool,      :numericality => { greater_than_or_equal_to: 0, allow_nil: true }
 
   validates :game_id,         :presence =>     true
 
   validates :date,            :presence =>     true
 
-  validates :prize_pool,      :presence =>     true
+  #validates :prize_pool,      :presence =>     true
 
-  validates :num_competitors, :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true },
-                              :presence     => true
+  #validates :num_competitors, :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true },
+  #                            :presence     => true
 
   #scope :soon, lambda { where { {date => Date.today-7..Date.today+7} }.order{ date.asc } }
 

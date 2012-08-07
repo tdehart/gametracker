@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120730214749) do
+ActiveRecord::Schema.define(:version => 20120807013157) do
 
   create_table "developers", :force => true do |t|
     t.string   "name"
@@ -135,10 +135,11 @@ ActiveRecord::Schema.define(:version => 20120730214749) do
     t.integer  "prize_pool"
     t.integer  "num_competitors"
     t.integer  "game_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "description"
     t.string   "image"
+    t.boolean  "approved",        :default => false
   end
 
   add_index "tournaments", ["game_id"], :name => "index_tournaments_on_game_id"

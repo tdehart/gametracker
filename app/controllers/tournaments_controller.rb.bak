@@ -14,6 +14,10 @@ class TournamentsController < ApplicationController
 
   def show
     @tournament = Tournament.find(params[:id])
+    @events = @tournament.events.collect { |e| e if e.valid? }
+    #Create a 2-element list that contains all of the event's stream's streamers in the format of [online_name, object]
+    @events.each {|e| e["streamers"] = e.stream.streamers.collect { |s| [s.online_name, s] } }
+    @tournament.events.build
   end
 
   def new
@@ -23,7 +27,8 @@ class TournamentsController < ApplicationController
   def create
     @tournament = Tournament.new(params[:tournament])
     if @tournament.save
-      redirect_to @tournament
+      @tournament.events.build
+      render 'events'
     else
       render 'new'
     end
@@ -36,10 +41,18 @@ class TournamentsController < ApplicationController
 
   def update
     @tournament = Tournament.find(params[:id])
-    if @tournament.update_attributes(params[:tournament])
+    if params[:tournament][:events_attributes] && @tournament.update_attributes(params[:tournament])
+      @tournament.events.build
+      render 'events'
+    elsif @tournament.update_attributes(params[:tournament])
       redirect_to @tournament
-    else
-      render 'edit'
+    else #no update
+      if params[:tournament][:events_attributes]
+        @tournament.events.build
+        render 'events'
+      else
+        render 'edit'
+      end
     end
   end
 

@@ -6,8 +6,8 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
     @tournaments = @game.tournaments
-    @prize_total = @game.tournaments.collect { |t| t.prize_pool }.inject(:+)
-    @prize_average = @prize_total / @game.tournaments.count
+    #@prize_total = @game.tournaments.collect { |t| t.prize_pool }.inject(:+)
+    #@prize_average = @prize_total / @game.tournaments.count
   end
 
   def new

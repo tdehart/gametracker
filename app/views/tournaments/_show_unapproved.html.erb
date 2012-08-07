@@ -1,0 +1,13 @@
+<div class="alert">This tournament needs more information before it can be published.</div>
+<h1><%= @tournament.name %> <span class="h1-subtext">submitted by </span></h1>
+<ul id="tournament-show-info">
+  <li>Game: <%= image_tag get_image(@tournament.game), :size => "16x16", :class => "mini-image" %> <%= @tournament.game.name %></li>
+  <li>Start date: <%= @tournament.date %></li>
+</ul>
+<% if current_user.admin? %>
+    <p>
+      <%= link_to "Edit", edit_tournament_path(@tournament) %>
+      <%= link_to "Delete", @tournament, method: :delete,
+                  confirm: "You sure?" %>
+    </p>
+<% end %>

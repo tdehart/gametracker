@@ -1,0 +1,18 @@
+<!-- TODO: Make submitter dynamic -->
+<%= image_tag image_path("us-flag.png"), :size => "32x32", :class => "game_image" %>
+<%= @tournament.name %> <%= render 'follow_form' %>
+submitted by Tomed
+<%= image_tag get_image(@tournament.game), :size => "32x32", :class => "game_image" %> <%= @tournament.game.name %>
+
+<%= image_tag image_path("date32.png"), :class => "tournament_show_stat" %> <%= @tournament.date %>
+<%= image_tag image_path("coins32.png"), :class => "tournament_show_stat" %> <%= number_to_currency(@tournament.prize_pool, :precision => 0) %>
+<%= image_tag image_path("people32.png"), :class => "tournament_show_stat" %> <%= @tournament.num_competitors %>
+players
+
+Streams for this tournament
+
+<p>
+  <%= link_to "Edit", edit_tournament_path(@tournament) %>
+  <%= link_to "Delete", @tournament, method: :delete,
+              confirm: "You sure?" %>
+</p>
