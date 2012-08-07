@@ -12,6 +12,7 @@ gem 'squeel'
 gem 'chronic'
 gem 'dotiw'
 gem 'thin'
+gem 'rmagick'
 
 group :assets do
   gem 'sass-rails', '~> 3.2.3'

@@ -5,15 +5,16 @@
 
   <div class="row">
     <% if feed_item.image_url %>
-        <div class="span4"><%= image_tag feed_item.image_url.to_s %></div>
+        <div class="feed-img"><%= image_tag feed_item.image_url(:thumb) if feed_item.image? %></div>
     <% end %>
     <div class="span3">
       <ul class="feed-item-information">
         <li>Start Date: <%= feed_item.date %></li>
-        <li>Location: <%= image_tag image_path('us-flag.png'), :size => "16x16", :class => "mini-image" %> <%= feed_item.region %> </li>
-        <li>Prize Pool: <%= number_to_currency(feed_item.prize_pool, :precision => 0) %></li>
+        <li>Location: <%= image_tag image_path('us-flag.png'), size: "16x16", class: "mini-image" %> <%= feed_item.region %> </li>
+        <li>Prize Pool: <%= number_to_currency(feed_item.prize_pool, precision: 0) %></li>
         <li>Format: <%= feed_item.num_competitors %></li>
         <li>Sponsor:</li>
+        <li>Source: <%= link_to feed_item.link, feed_item.link %></li>
       </ul>
     </div>
   </div>

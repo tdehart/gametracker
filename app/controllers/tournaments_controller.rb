@@ -2,7 +2,7 @@ class TournamentsController < ApplicationController
   layout 'single_column', only: [:table, :new]
 
   def index
-    @tournaments = Tournament.soon
+    @upcoming = Tournament.upcoming
   end
 
   def table

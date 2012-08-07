@@ -15,7 +15,7 @@
   list-style: none;
   margin: 10px 0 0 0;
 
-  li {
+  .feed-item {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
     &:first-child { border: none; }
@@ -53,4 +53,11 @@
 
 .mini-image {
   vertical-align: text-top;
+}
+
+.feed-img {
+  display: block;
+  float: left;
+  max-width: 300px;
+  margin-left: 20px;
 }

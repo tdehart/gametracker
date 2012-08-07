@@ -1,0 +1,29 @@
+<li class="feed-item">
+  <span class="feed-item-name"><%= link_to t.name, t %></span>
+  <div class="row">
+    <% if t.image_url %>
+        <div class="feed-img"><%= image_tag t.image_url(:thumb) if t.image? %></div>
+    <% end %>
+    <div class="span3">
+      <ul class="feed-item-information">
+        <li>Game: <%= image_tag get_image(t.game), size: "16x16", class: "mini-image" %> <%= t.game.name %></li>
+        <li>Location: <%= image_tag image_path('us-flag.png'), size: "16x16", class: "mini-image" %> <%= t.region %> </li>
+        <li>Prize Pool: <%= number_to_currency(t.prize_pool, precision: 0) %></li>
+        <li>Format: <%= t.num_competitors %></li>
+        <li>Source: <%= link_to t.link, t.link %></li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span7">
+      <h2>Upcoming events for this tournament</h2>
+      <ol class="event-listing">
+        <% e.each do |e| %>
+            <li>
+              <%= e.name %> starting <%= distance_of_time_in_words(Time.now, e.event_time) %> from now
+            </li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+</li>

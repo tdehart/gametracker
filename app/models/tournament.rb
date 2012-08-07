@@ -44,8 +44,32 @@ class Tournament < ActiveRecord::Base
   validates :num_competitors, :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true },
                               :presence     => true
 
-  scope :soon, lambda { where { {date => Date.today-7..Date.today+7} }.order{ date.asc } }
+  #scope :soon, lambda { where { {date => Date.today-7..Date.today+7} }.order{ date.asc } }
 
   mount_uploader :image, ImageUploader
+
+  class << self
+    def upcoming(h=24)
+      events = Event.all(conditions: { event_time: h.hours.ago...Time.now }, order: "event_time DESC")
+
+      tournaments = Hash.new
+      #build list of tournaments and their upcoming events
+      #events.map {|e| (tournaments[e.tournament] ||= [e]) << e}
+
+      events.each do |e|
+        if tournaments[e.tournament]
+          tournaments[e.tournament] << e
+        else
+          tournaments[e.tournament] = [e]
+        end
+      end
+
+      tournaments
+    end
+
+    def notable
+
+    end
+  end
 
 end
