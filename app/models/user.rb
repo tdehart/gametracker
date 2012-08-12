@@ -28,7 +28,10 @@ class User < ActiveRecord::Base
   has_many :followed_tournaments, dependent: :destroy
   has_many :games, through: :followed_games
   has_many :followed_games, dependent: :destroy
-
+  
+  has_many :contributions, :class_name => "Contribution", :foreign_key => :contributor_id, :dependent => :destroy
+  has_many :contributed_tournaments, :source => :tournament, :through => :contributions, :uniq => true
+  
   def feed
     tournaments = []
     games.each do |g|

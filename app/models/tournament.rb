@@ -19,8 +19,13 @@ class Tournament < ActiveRecord::Base
   attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :date, :description, :image, :remote_image_url #, :events_attributes
 
   belongs_to :game
+
   has_many :users, through: :followed_tournaments
   has_many :followed_tournaments
+
+  has_many :contributions, :dependent => :destroy
+  has_many :contributors, :through => :contributions, :source => :contributor, :uniq => true, :class_name => "User"
+    
   has_many :events, dependent: :destroy
   has_many :streams, through: :events
   #accepts_nested_attributes_for :events#, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true

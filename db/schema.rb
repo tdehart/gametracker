@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120807013157) do
+ActiveRecord::Schema.define(:version => 20120812232421) do
+
+  create_table "contributions", :force => true do |t|
+    t.integer  "tournament_id"
+    t.integer  "contributor_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "contributions", ["contributor_id"], :name => "index_contributions_on_contributor_id"
+  add_index "contributions", ["tournament_id", "contributor_id"], :name => "index_contributions_on_tournament_id_and_contributor_id", :unique => true
+  add_index "contributions", ["tournament_id"], :name => "index_contributions_on_tournament_id"
 
   create_table "developers", :force => true do |t|
     t.string   "name"
@@ -53,9 +64,9 @@ ActiveRecord::Schema.define(:version => 20120807013157) do
   create_table "followed_tournaments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "tournament_id"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.boolean  "hidden",        :default => false
+    t.boolean  "hidden"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "followed_tournaments", ["tournament_id"], :name => "index_followed_tournaments_on_tournament_id"

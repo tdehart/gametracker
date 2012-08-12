@@ -10,8 +10,9 @@ class FollowedTournamentsController < ApplicationController
   end
 
   def destroy
-    @tournament = FollowedTournament.find(params[:id]).tournament
-    current_user.unfollow!(@tournament)
-    respond_with @tournament
+      @tournament = FollowedTournament.find(params[:id]).tournament
+      current_user.unfollow!(@tournament)
+      respond_with @tournament
   end
+
 end

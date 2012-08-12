@@ -25,7 +25,6 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '~> 2.6'
-  gem 'win32console'
   gem 'guard'
   gem 'guard-rspec'
   #gem 'rb-notifu'
