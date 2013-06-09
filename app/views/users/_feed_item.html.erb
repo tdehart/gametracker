@@ -1,21 +1,32 @@
-<li class="feed-item">
-  <span class="feed-item-title">New <%= link_to feed_item.game.name, feed_item.game %>
-    tournament <span class="feed-item-title-subtext"> <%= time_ago_from_now(feed_item.created_at) %> ago</span></span>
-  <span class="feed-item-name"><%= link_to feed_item.name, feed_item %></span>
-
+<div class="listing">
   <div class="row">
-    <% if feed_item.image_url %>
-        <div class="feed-img"><%= image_tag feed_item.image_url(:thumb) if feed_item.image? %></div>
-    <% end %>
-    <div class="span3">
-      <ul class="feed-item-information">
-        <li>Start Date: <%= feed_item.date %></li>
-        <li>Location: <%= image_tag image_path('us-flag.png'), size: "16x16", class: "mini-image" %> <%= feed_item.region %> </li>
-        <li>Prize Pool: <%= number_to_currency(feed_item.prize_pool, precision: 0) %></li>
-        <li>Format: <%= feed_item.num_competitors %></li>
-        <li>Sponsor:</li>
-        <li>Source: <%= link_to feed_item.link, feed_item.link %></li>
-      </ul>
+    <div class="span9">
+      <span class="feed-item-title">
+        New <%= link_to feed_item.game.name, feed_item.game %> tournament 
+        <span class="feed-item-title-subtext"> <%= time_ago_from_now(feed_item.created_at) %> ago</span>
+      </span>
+
+      <h1><%= image_tag feed_item.game.image_url(:large_thumb) %> <%= link_to feed_item.name, feed_item %>
     </div>
   </div>
-</li>
+  <div class="row">
+    <div class="span3">
+      <h2><%= feed_item.date %></h2>
+    </div>
+    <div class="span3">
+      <h2><%= number_to_currency(feed_item.prize_pool, precision: 0) %></h2>
+    </div>
+    <div class="span3">
+      <h2><%= feed_item.num_competitors %></h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span9">
+      <p>
+        Location: <%= image_tag image_path('us-flag.png'), size: "16x16", class: "mini-image" %> <%= feed_item.region %> 
+        Source: <%= link_to feed_item.link, feed_item.link %>
+        <%= feed_item.game.image_url(:med_thumb) %>
+      </p>
+    </div>
+  </div>
+</div>

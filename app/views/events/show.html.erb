@@ -1,0 +1,6 @@
+<%= link_to "<< back", :back %>
+<% @event.attributes.each do |attr_name, attr_value| %>
+  <div>
+    <%= attr_name %>: <%= attr_value %>
+  </div>
+<% end %>

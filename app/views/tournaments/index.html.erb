@@ -1,8 +1,10 @@
 <h1 class="content-header">Live & Upcoming Tournaments
   <span class="header-subtext"><%= link_to "browse all", table_tournaments_path %></span></h1>
 <ol class="feed">
-  <% @upcoming.each do |tournament, events| %>
-      <%= render 'upcoming', {t: tournament, e: events} %>
+  <% @tournaments.each do |t| %>
+    <li>
+      <%= t.name %>, <%= link_to "show", tournament_path(t) %>, <%= link_to "edit", edit_tournament_path(t) %>
+    </li>
   <% end %>
 </ol>
 

@@ -8,6 +8,9 @@
 /log/*.log
 /tmp
 
+# Ignore temp image uploads
+/public/uploads/tmp
+
 # Ignore other unneeded files.
 doc/
 *.swp

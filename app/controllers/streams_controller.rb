@@ -1,6 +1,7 @@
 class StreamsController < ApplicationController
   def index
-    @streams = Stream.live
+    # @streams = Stream.live
+    @streams = Stream.all
   end
 
   def show

@@ -1,68 +1,81 @@
-@import "bootstrap";
-@import "dataTables/jquery.dataTables";
-
-.navbar-inner .container {
-  width: 940px;
+body { 
+  padding-top: 60px;
 }
 
-.header-subtext {
-  position: relative;
-  bottom: 4px;
-  font-size: 0.5em;
+img.listing-game-icon {
+  vertical-align: middle;
 }
 
-.h1-subtext {
-  color: $grayLight;
-  font-size: 0.5em;
+.listing {
+  padding-bottom: 20px;
 }
 
-.feed {
-  list-style: none;
-  margin: 10px 0 0 0;
 
-  .feed-item {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
-    &:first-child { border: none; }
-  }
-}
 
-.feed-item-title {
-  color: $grayLight;
 
-  a {
-    font-weight: bold;
-    color: $grayLight
-  }
-}
 
-.feed-item-title-subtext {
-  font-size: 0.75em;
+// .navbar-inner .container {
+//   width: 940px;
+// }
 
-}
+// .header-subtext {
+//   position: relative;
+//   bottom: 4px;
+//   font-size: 0.5em;
+// }
 
-.feed-item-name {
-  display: block;
-  font-size: 1.1em;
-}
+// .h1-subtext {
+//   color: $grayLight;
+//   font-size: 0.5em;
+// }
 
-.feed-item-information {
-  list-style: none;
-  margin: 0 0;
+// .feed {
+//   list-style: none;
+//   margin: 10px 0 0 0;
 
-  li {
-    padding: 0px 0;
-    border: none;
-  }
-}
+//   .feed-item {
+//     padding: 10px 0;
+//     border-top: 1px solid #e8e8e8;
+//     &:first-child { border: none; }
+//   }
+// }
 
-.mini-image {
-  vertical-align: text-top;
-}
+// .feed-item-title {
+//   color: $grayLight;
 
-.feed-img {
-  display: block;
-  float: left;
-  max-width: 300px;
-  margin-left: 20px;
-}
+//   a {
+//     font-weight: bold;
+//     color: $grayLight
+//   }
+// }
+
+// .feed-item-title-subtext {
+//   font-size: 0.75em;
+
+// }
+
+// .feed-item-name {
+//   display: block;
+//   font-size: 1.1em;
+// }
+
+// .feed-item-information {
+//   list-style: none;
+//   margin: 0 0;
+
+//   li {
+//     padding: 0px 0;
+//     border: none;
+//   }
+// }
+
+// .mini-image {
+//   vertical-align: text-top;
+// }
+
+// .feed-img {
+//   display: block;
+//   float: left;
+//   max-width: 300px;
+//   margin-left: 20px;
+// }

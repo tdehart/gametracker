@@ -2,11 +2,11 @@
   <span class="feed-item-name"><%= link_to t.name, t %></span>
   <div class="row">
     <% if t.image_url %>
-        <div class="feed-img"><%= image_tag t.image_url(:thumb) if t.image? %></div>
+        <div class="feed-img"><%= image_tag t.image_url(:med_thumb) if t.image? %></div>
     <% end %>
     <div class="span3">
       <ul class="feed-item-information">
-        <li>Game: <%= image_tag get_image(t.game), size: "16x16", class: "mini-image" %> <%= t.game.name %></li>
+        <li>Game: <%= image_tag t.game.image_url(:small_thumb) %> <%= t.game.name %></li>
         <li>Location: <%= image_tag image_path('us-flag.png'), size: "16x16", class: "mini-image" %> <%= t.region %> </li>
         <li>Prize Pool: <%= number_to_currency(t.prize_pool, precision: 0) %></li>
         <li>Format: <%= t.num_competitors %></li>

@@ -20,6 +20,7 @@ class GamesController < ApplicationController
     if @game.save
       redirect_to @game
     else
+      @developers = Developer.all
       render 'new'
     end
   end

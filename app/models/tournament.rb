@@ -16,7 +16,7 @@
 #
 
 class Tournament < ActiveRecord::Base
-  attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :date, :description, :image, :remote_image_url #, :events_attributes
+  attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :date, :description, :image, :remote_image_url, :approved
 
   belongs_to :game
 
@@ -30,7 +30,7 @@ class Tournament < ActiveRecord::Base
   has_many :streams, through: :events
   #accepts_nested_attributes_for :events#, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
 
-  validates :link,            :format   =>     { with: VALID_LINK_REGEX },
+  validates :link,            :format => URI::regexp(%w(http https)),
                               :presence =>     true
 
   validates :name,            :presence =>     true
@@ -43,6 +43,8 @@ class Tournament < ActiveRecord::Base
   validates :game_id,         :presence =>     true
 
   validates :date,            :presence =>     true
+
+
 
   #validates :prize_pool,      :presence =>     true
 

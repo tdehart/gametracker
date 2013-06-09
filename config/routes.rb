@@ -7,6 +7,7 @@ Gametracker::Application.routes.draw do
     get 'table',  :on => :collection
   end
 
+  resources :events
   resources :developers
   resources :games
   resources :streamers
@@ -17,9 +18,7 @@ Gametracker::Application.routes.draw do
   resources :followed_tournaments, only: [:create, :destroy]
   resources :followed_games, only: [:create, :destroy]
 
-  root :to => 'tournaments#index'
-
-
+  root :to => 'users#feed'
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'

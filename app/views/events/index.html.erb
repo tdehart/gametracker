@@ -1,0 +1,10 @@
+<% @events.each do |e| %>
+  <% e.attributes.each do |attr_name, attr_value| %>
+    <div>
+      <%= attr_name %>: <%= attr_value %>
+    </div>
+  <% end %>
+  <%= link_to "Show", event_path(e) %>, <%= link_to "Edit", edit_event_path(e) %>
+<% end %>
+
+<p><%= link_to "New event", new_event_path %></p>

@@ -1,5 +1,6 @@
 <%= link_to "<< back", :back %>
-    <%= image_tag get_image(@game), :size => "32x32", :class => "game_image" %>
+    <%= image_tag @game.image_url(:med_thumb) %>
+    <%= image_path('placeholder.png').to_s %>
    <%= @game.name %></span>  <%= render 'follow_form' %>
     Genre: <%= @game.genre %>
     Developer: <%= @game.developer.name %>

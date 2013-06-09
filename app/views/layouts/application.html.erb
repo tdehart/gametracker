@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Gametracker</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
 </head>
 <body>
+  <%= render 'layouts/header' %>
+  <div class="container">
+    <div class="row">
+      
+      <div class="span9">
+        <%= yield %>
+      </div>
 
-<%= render 'layouts/header' %>
+      <div class="span3">
+        <h1 class="events-header">Events</h1>
+      </div>
 
-<div class="container">
-  <%= render 'layouts/nav' %>
-  <div class="row">
-    <div class="span7">
-      <%= yield %>
     </div>
-    <div class="span4 offset1">
-      <h1 class="events-header">Events</h1>
-    </div>
+
+    <%= debug(params) if Rails.env.development? %>
+    <%= Time.now if Rails.env.development? %>
   </div>
-  <%= debug(params) if Rails.env.development? %>
-  <%= Time.now %>
-</div>
-
-
+  <%= javascript_include_tag "application" %>
 </body>
 </html>

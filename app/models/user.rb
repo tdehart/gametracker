@@ -14,10 +14,10 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation
   has_secure_password
 
-  before_save { |user| user.email = email.downcase }
+  before_save { email.downcase! }
   before_save :create_remember_token
 
-  validates :name, presence: true, length: { maximum: 20 }
+  validates :name, presence: true, length: { maximum: 30 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
@@ -32,15 +32,11 @@ class User < ActiveRecord::Base
   has_many :contributions, :class_name => "Contribution", :foreign_key => :contributor_id, :dependent => :destroy
   has_many :contributed_tournaments, :source => :tournament, :through => :contributions, :uniq => true
   
+  #Get all tournaments of followed games and any followed tournaments
+  #Remove duplicates and sort by created_at
   def feed
-    tournaments = []
-    games.each do |g|
-      g.tournaments.each do |t|
-        tournaments.append(t)
-      end
-    end
-
-    tournaments.sort {|a,b| b.created_at <=> a.created_at}
+    feed = (games.collect { |g| g.tournaments }.flatten + tournaments).uniq
+    feed.sort {|a,b| b.created_at <=> a.created_at}
   end
 
   def following?(object)
