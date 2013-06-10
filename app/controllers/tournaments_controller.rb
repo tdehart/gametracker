@@ -22,7 +22,9 @@ class TournamentsController < ApplicationController
 
   def create
     @tournament = Tournament.new(params[:tournament])
+
     if @tournament.save
+      current_user.submit!(@tournament)
       redirect_to @tournament
     else
       render 'new'
@@ -37,6 +39,7 @@ class TournamentsController < ApplicationController
   def update
     @tournament = Tournament.find(params[:id])
     if @tournament.update_attributes(params[:tournament])
+      current_user.contribute!(@tournament)
       redirect_to @tournament
     else
       render 'edit'

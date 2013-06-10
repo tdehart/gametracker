@@ -8,10 +8,12 @@ namespace :db do
     Tournament.delete_all
     Streamer.delete_all
     Stream.delete_all
+    TournamentContribution.delete_all
 
     developers = ["Blizzard Entertainment", "Valve", "Riot Games", "S2 Games", "id Software"]
     genres = ["RTS", "FPS", "ARTS"]
     games = ["Starcraft II", "League of Legends", "Starcraft: Brood War", "Dota 2", "Team Fortress 2", "Counter-Strike Source", "Quake Live", "Call of Duty 4", "Heroes of Newerth"]
+    user = User.first
 
     #Create some developers
     developers.each do |d|
@@ -56,8 +58,9 @@ namespace :db do
                                      num_competitors: 24,
                                      game_id: Game.first.id,
                                      prize_pool: 12000,
-                                     date: Date.today,
+                                     start_date: Date.today,
                                      description: "The ESL Major Series is a series of prize winning eSports tournaments hosted by Electronic Sports League.")
+    user.submit!(@tournament)
 
     @tournament.events.create(name: "Ro64",
                               event_time: Chronic.parse("in 1 hour").to_datetime,
@@ -80,7 +83,7 @@ namespace :db do
       prize_pool = [2000, 4000, 8000, 12000, 24000, 48000, 64000, 80000, 100000, 200000, 500000, 1000000].sample
       date1 = 100.days.ago
       date2 = 100.days.ago+200.days
-      date = Time.at((date2.to_f - date1.to_f)*rand + date1.to_f).to_date
+      start_date = Time.at((date2.to_f - date1.to_f)*rand + date1.to_f).to_date
       description = Faker::Lorem.paragraph
       @tournament = Tournament.create!(name: name,
                                        link: link,
@@ -88,12 +91,14 @@ namespace :db do
                                        num_competitors: num_competitors,
                                        game_id: game,
                                        prize_pool: prize_pool,
-                                       date: date,
+                                       start_date: start_date,
                                        description: description)
+
+      user.submit!(@tournament)
 
       (rand(4)+1).times do
         name = ["Ro256", "Ro128", "Ro64", "Ro32", "Ro16", "Ro8", "Quarter Finals", "Semi Finals", "Grand Finals"].sample
-        day = [@tournament.date, @tournament.date+1, @tournament.date+2].sample
+        day = [@tournament.start_date, @tournament.start_date+1, @tournament.start_date+2].sample
         time = Chronic.parse(%w[1pm 1:30pm 2pm 2:30pm 3pm 3:30pm 4pm 4:30pm 5pm 5:30pm 6pm 6:30pm 7pm 7:30pm 8pm].sample, :now => day).to_datetime
 
         stream = Stream.all.sample.id

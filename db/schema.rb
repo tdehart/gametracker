@@ -11,18 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120812232421) do
-
-  create_table "contributions", :force => true do |t|
-    t.integer  "tournament_id"
-    t.integer  "contributor_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
-  add_index "contributions", ["contributor_id"], :name => "index_contributions_on_contributor_id"
-  add_index "contributions", ["tournament_id", "contributor_id"], :name => "index_contributions_on_tournament_id_and_contributor_id", :unique => true
-  add_index "contributions", ["tournament_id"], :name => "index_contributions_on_tournament_id"
+ActiveRecord::Schema.define(:version => 20130609222708) do
 
   create_table "developers", :force => true do |t|
     t.string   "name"
@@ -138,19 +127,30 @@ ActiveRecord::Schema.define(:version => 20120812232421) do
 
   add_index "streams", ["live"], :name => "index_streams_on_live"
 
+  create_table "tournament_contributions", :force => true do |t|
+    t.integer  "tournament_id"
+    t.integer  "contributor_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.boolean  "submitter"
+  end
+
+  add_index "tournament_contributions", ["contributor_id"], :name => "index_contributions_on_contributor_id"
+  add_index "tournament_contributions", ["tournament_id", "contributor_id"], :name => "index_contributions_on_tournament_id_and_contributor_id", :unique => true
+  add_index "tournament_contributions", ["tournament_id"], :name => "index_contributions_on_tournament_id"
+
   create_table "tournaments", :force => true do |t|
     t.string   "name"
     t.string   "link"
     t.string   "region"
-    t.date     "date"
+    t.date     "start_date"
     t.integer  "prize_pool"
     t.integer  "num_competitors"
     t.integer  "game_id"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "description"
     t.string   "image"
-    t.boolean  "approved",        :default => false
   end
 
   add_index "tournaments", ["game_id"], :name => "index_tournaments_on_game_id"

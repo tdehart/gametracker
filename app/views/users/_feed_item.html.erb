@@ -1,32 +1,34 @@
+<span class="listing-submit-info">
+  <%= link_to submitter(feed_item).name, submitter(feed_item) %> submitted a new <%= feed_item.class.name.downcase %>
+  <span> <%= time_ago_from_now(feed_item.created_at) %> ago</span>
+</span>
 <div class="listing">
-  <div class="row">
+  <div class="row listing-header">
     <div class="span9">
-      <span class="feed-item-title">
-        New <%= link_to feed_item.game.name, feed_item.game %> tournament 
-        <span class="feed-item-title-subtext"> <%= time_ago_from_now(feed_item.created_at) %> ago</span>
-      </span>
-
-      <h1><%= image_tag feed_item.game.image_url(:large_thumb) %> <%= link_to feed_item.name, feed_item %>
+      <h1><%= link_to image_tag(feed_item.game.image_url(:large_thumb)), feed_item.game %> <%= link_to feed_item.name, feed_item %>
     </div>
   </div>
-  <div class="row">
+  <div class="row listing-stats">
     <div class="span3">
-      <h2><%= feed_item.date %></h2>
+      <h2><%= image_tag image_path("date32.png") %> <%= feed_item.start_date %></h2>
     </div>
     <div class="span3">
-      <h2><%= number_to_currency(feed_item.prize_pool, precision: 0) %></h2>
+      <h2><%= image_tag image_path("coins32.png") %> <%= number_to_currency(feed_item.prize_pool, :precision => 0) %></h2>
     </div>
-    <div class="span3">
-      <h2><%= feed_item.num_competitors %></h2>
+    <div class="span">
+      <h2><%= image_tag image_path("people32.png") %> <%= feed_item.num_competitors %> players</h2>
     </div>
   </div>
   <div class="row">
     <div class="span9">
-      <p>
-        Location: <%= image_tag image_path('us-flag.png'), size: "16x16", class: "mini-image" %> <%= feed_item.region %> 
-        Source: <%= link_to feed_item.link, feed_item.link %>
-        <%= feed_item.game.image_url(:med_thumb) %>
+      <p class="listing-description">
+        <%= feed_item.description %>
       </p>
     </div>
   </div>
 </div>
+
+
+<!-- Location: <%= image_tag image_path('us-flag.png'), size: "16x16", class: "mini-image" %> <%= feed_item.region %> 
+Source: <%= link_to feed_item.link, feed_item.link %>
+<%= feed_item.game.image_url(:med_thumb) %> -->

@@ -35,4 +35,15 @@ module ApplicationHelper
         "a long time"
     end
   end
+
+  def submitter(object)
+    if !object.contributors.empty?
+      if object.is_a?(Tournament)
+        @contribution = object.tournament_contributions.where(:submitter => true)[0]
+        @contribution ? @contribution.contributor : User.first
+      end
+    else
+      return User.first
+    end
+  end
 end

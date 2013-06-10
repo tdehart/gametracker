@@ -29,8 +29,8 @@ class User < ActiveRecord::Base
   has_many :games, through: :followed_games
   has_many :followed_games, dependent: :destroy
   
-  has_many :contributions, :class_name => "Contribution", :foreign_key => :contributor_id, :dependent => :destroy
-  has_many :contributed_tournaments, :source => :tournament, :through => :contributions, :uniq => true
+  has_many :tournament_contributions, :foreign_key => :contributor_id, :dependent => :destroy
+  has_many :contributed_tournaments, :source => :tournament, :through => :tournament_contributions, :uniq => true
   
   #Get all tournaments of followed games and any followed tournaments
   #Remove duplicates and sort by created_at
@@ -60,6 +60,18 @@ class User < ActiveRecord::Base
       followed_tournaments.find_by_tournament_id(object.id).destroy
     elsif object.is_a?(Game)
       followed_games.find_by_game_id(object.id).destroy
+    end
+  end
+
+  def submit!(object)
+    if object.is_a?(Tournament)
+      tournament_contributions.create!(tournament_id: object.id, submitter: true)
+    end
+  end
+
+  def contribute!(object)
+    if object.is_a?(Tournament)
+      tournament_contributions.create!(tournament_id: object.id, submitter: false)
     end
   end
 

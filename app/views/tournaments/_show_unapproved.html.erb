@@ -2,7 +2,7 @@
 <h1><%= @tournament.name %> <span class="h1-subtext">submitted by </span></h1>
 <ul id="tournament-show-info">
   <li>Game: <%= image_tag @tournament.game.image_url(:small_thumb) %> <%= @tournament.game.name %></li>
-  <li>Start date: <%= @tournament.date %></li>
+  <li>Start date: <%= @tournament.start_date %></li>
 </ul>
 <% if current_user.admin? %>
     <p>

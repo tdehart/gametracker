@@ -2,4 +2,5 @@
 <p><%= @user.name %></p>
 <p>Followed tournaments: <%= @user.followed_tournaments.size %></p>
 <p>Followed games: <%= @user.followed_games.size %></p>
-<p>Contributions: <%= @user.contributions.size %></p>
+<p>Contributions: <%= @user.tournament_contributions.size %></p>
+<p><%= @user.tournament_contributions %></p>

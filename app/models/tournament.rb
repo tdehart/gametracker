@@ -6,7 +6,7 @@
 #  name            :string(255)
 #  link            :string(255)
 #  region          :string(255)
-#  date            :date
+#  start_date      :date
 #  prize_pool      :integer
 #  num_competitors :integer
 #  game_id         :integer
@@ -16,15 +16,15 @@
 #
 
 class Tournament < ActiveRecord::Base
-  attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :date, :description, :image, :remote_image_url, :approved
+  attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :start_date, :description, :image, :remote_image_url
 
   belongs_to :game
 
   has_many :users, through: :followed_tournaments
   has_many :followed_tournaments
 
-  has_many :contributions, :dependent => :destroy
-  has_many :contributors, :through => :contributions, :source => :contributor, :uniq => true, :class_name => "User"
+  has_many :tournament_contributions, :dependent => :destroy
+  has_many :contributors, :through => :tournament_contributions, :source => :contributor, :uniq => true, :class_name => "User"
     
   has_many :events, dependent: :destroy
   has_many :streams, through: :events
@@ -42,7 +42,7 @@ class Tournament < ActiveRecord::Base
 
   validates :game_id,         :presence =>     true
 
-  validates :date,            :presence =>     true
+  validates :start_date,            :presence =>     true
 
 
 
@@ -51,7 +51,7 @@ class Tournament < ActiveRecord::Base
   #validates :num_competitors, :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true },
   #                            :presence     => true
 
-  #scope :soon, lambda { where { {date => Date.today-7..Date.today+7} }.order{ date.asc } }
+  #scope :soon, lambda { where { {start_date => Date.today-7..Date.today+7} }.order{ date.asc } }
 
   mount_uploader :image, ImageUploader
 
@@ -78,5 +78,4 @@ class Tournament < ActiveRecord::Base
 
     end
   end
-
 end

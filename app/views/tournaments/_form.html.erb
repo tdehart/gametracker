@@ -1,4 +1,5 @@
 <%= semantic_form_for @tournament do |f| %>
+  <%= current_user %>
   <%= render 'shared/error_messages', :object => f.object %>
   <%= f.inputs %>
   <%= f.actions %>

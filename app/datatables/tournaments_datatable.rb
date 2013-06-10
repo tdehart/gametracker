@@ -24,7 +24,7 @@ class TournamentsDatatable
           h(tournament.region),
           number_to_currency(tournament.prize_pool, :precision => 0),
           h(tournament.num_competitors) + " competitors",
-          h(tournament.date.strftime("%m/%d/%Y"))
+          h(tournament.start_date.strftime("%m/%d/%Y"))
       ]
     end
   end
@@ -51,7 +51,7 @@ class TournamentsDatatable
   end
 
   def sort_column
-    columns = %w[name game_id region prize_pool num_competitors date]
+    columns = %w[name game_id region prize_pool num_competitors start_date]
     columns[params[:iSortCol_0].to_i]
   end
 
