@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Url:</b>
+  <%= @web_resource.url %>
+</p>
+
+<p>
+  <b>Resourceable:</b>
+  <%= @web_resource.resourceable_id %>
+</p>
+
+<p>
+  <b>Resourceable type:</b>
+  <%= @web_resource.resourceable_type %>
+</p>
+
+<p>
+  <b>Resource type:</b>
+  <%= @web_resource.resource_type %>
+</p>
+
+
+<%= link_to 'Edit', edit_web_resource_path(@web_resource) %> |
+<%= link_to 'Back', web_resources_path %>

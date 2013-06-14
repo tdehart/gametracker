@@ -2,7 +2,7 @@
 #
 # Table name: tournaments
 #
-#  id              :integer         not null, primary key
+#  id              :integer          not null, primary key
 #  name            :string(255)
 #  link            :string(255)
 #  region          :string(255)
@@ -10,9 +10,10 @@
 #  prize_pool      :integer
 #  num_competitors :integer
 #  game_id         :integer
-#  created_at      :datetime        not null
-#  updated_at      :datetime        not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #  description     :string(255)
+#  image           :string(255)
 #
 
 class Tournament < ActiveRecord::Base

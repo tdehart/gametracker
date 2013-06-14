@@ -15,6 +15,15 @@ img.listing-game-icon {
   padding: 9px;
 }
 
+.streams {
+  background-image: linear-gradient(to bottom, white, #f2f2f2);
+  background-repeat: repeat-x;
+  margin-bottom: 20px;
+  border: 1px solid #d4d4d4;
+  border-radius: 6px;
+  padding: 9px;
+}
+
 .listing-description {
   width: 97%;
 }
@@ -23,6 +32,26 @@ img.listing-game-icon {
   font-size: 11px;
   color: #CACACA;
 }
+
+
+  ul.sidebar-list {
+    list-style: none;
+    margin: 0;
+    font-size: 15px;
+    li {
+      margin: 5px 5px 10px 5px;
+      border-bottom: 1px solid #ddd;
+      &:last-child {
+        border-bottom-style: none;
+      }
+    }
+  }
+
+
+  .sidebar-list-item-text {
+    padding-left: 5px;
+  }
+
 
 // .navbar-inner .container {
 //   width: 940px;

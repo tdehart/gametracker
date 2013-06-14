@@ -2,15 +2,15 @@
 #
 # Table name: streams
 #
-#  id           :integer         not null, primary key
+#  id           :integer          not null, primary key
 #  link         :string(255)
 #  description  :text
-#  created_at   :datetime        not null
-#  updated_at   :datetime        not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #  channel_id   :string(255)
 #  platform     :string(255)
-#  viewer_count :integer         default(0)
-#  live         :boolean         default(FALSE)
+#  viewer_count :integer          default(0)
+#  live         :boolean          default(FALSE)
 #
 
 class Stream < ActiveRecord::Base
@@ -37,18 +37,13 @@ class Stream < ActiveRecord::Base
   end
 
   def find_channel_id
-    if link.index("twitch.tv") || link.index("justin.tv")
+    if link.index("twitch.tv")
       id = link.split("/")[3].split("?")[0]
       self.channel_id = id
-      self.platform = "justin"
+      self.platform = "twitch"
       self.link = "http://www.twitch.tv/#{id}"
-    elsif link.index("own3d.tv")
-      id = link.split("/")[5]
-      self.channel_id = id
-      self.platform = "own3d"
-      self.link = "http://www.own3d.tv/live/#{id}"
     else
-      raise "Streaming platform not supported. Please provide a justin.tv, twitch.tv, or own3d.tv link"
+      raise "Streaming platform not supported. Please provide a justin.tv or twitch.tv link."    
     end
   end
 end

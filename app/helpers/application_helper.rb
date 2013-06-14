@@ -24,9 +24,9 @@ module ApplicationHelper
       when 60...1440
         return "#{distance_in_minutes/60}h"
       when 1440...2520
-        return "1d"
+        return "yesterday"
       when 2520...43200
-        return "#{(distance_in_minutes.to_f / 1440.0).round}d"
+        return "#{(distance_in_minutes.to_f / 1440.0).round} days"
       when 43200...86400
         return "about #{(distance_in_mintes.to_f / 43200.0).round} months"
       when 86400...525600

@@ -1,21 +1,23 @@
+<h1>Streams</h1>
 <div class="streams">
-  <span class="sidebar_header">Streams</span>
-  <ul class="sidebar_list">
+  <ul class="sidebar-list">
     <% @sidebar_streams.each do |s| %>
-      <li class="sidebar_item">
+      <li>
         <%= link_to s.streamers[0] do %>
-          <%= image_tag s.streamers[0].image_url(:med_thumb) %>
-          <%= s.streamers[0].online_name %>
-          <%= image_tag image_path('us-flag.png'), :size => "16x16", :class => "flag_image" %>
+        <%= image_tag image_path('us-flag.png'), :size => "16x16", :class => "flag-image" %>
+        <%= s.streamers[0].online_name %>
         <% end %>
-        <span class="sidebar_right_float"><%= s.viewer_count %> viewers</span>
-        <br/>
-
-        <%= link_to s.games[0] do %>
-          <%= image_tag s.games[0].image_url(:small_thumb) %>
-          <%= s.games[0].name %>
-          <br/>
-        <% end %>
+        is playing
+        <span style="padding-left: 2px">
+          <%= link_to s.games[0] do %>
+            <%= image_tag s.games[0].image_url(:small_thumb) %>
+            <%= s.games[0].abbreviation ? s.games[0].abbreviation : s.games[0].name %>
+          <% end %>
+        </span>
+        <p>
+          <%= s.viewer_count %> viewers
+          <%= link_to "Watch Now", "#" %>
+        </p>
       </li>
     <% end %>
   </ul>

@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_streams
-    @sidebar_streams = Stream.live
+    @sidebar_streams = Stream.all
   end
 
 

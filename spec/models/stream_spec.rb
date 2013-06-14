@@ -2,15 +2,15 @@
 #
 # Table name: streams
 #
-#  id           :integer         not null, primary key
+#  id           :integer          not null, primary key
 #  link         :string(255)
 #  description  :text
-#  created_at   :datetime        not null
-#  updated_at   :datetime        not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #  channel_id   :string(255)
 #  platform     :string(255)
-#  viewer_count :integer         default(0)
-#  live         :boolean         default(FALSE)
+#  viewer_count :integer          default(0)
+#  live         :boolean          default(FALSE)
 #
 
 require 'spec_helper'

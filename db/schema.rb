@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130609222708) do
+ActiveRecord::Schema.define(:version => 20130613224306) do
 
   create_table "developers", :force => true do |t|
     t.string   "name"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20130609222708) do
     t.datetime "updated_at",   :null => false
     t.string   "image"
     t.string   "slug"
+    t.string   "abbreviation"
   end
 
   add_index "games", ["developer_id"], :name => "index_games_on_developer_id"
@@ -167,5 +168,14 @@ ActiveRecord::Schema.define(:version => 20130609222708) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
+  create_table "web_resources", :force => true do |t|
+    t.string   "url"
+    t.integer  "resourceable_id"
+    t.string   "resourceable_type"
+    t.string   "resource_type"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
 
 end

@@ -1,15 +1,15 @@
 <%= link_to "<< back", :back %>
-    <%= image_tag @game.image_url(:med_thumb) %>
-    <%= image_path('placeholder.png').to_s %>
-   <%= @game.name %></span>  <%= render 'follow_form' %>
-    Genre: <%= @game.genre %>
-    Developer: <%= @game.developer.name %>
-Competitive Statistics
-      Tournaments: <%= @tournaments.count %>
-      Total Prizes: <%= number_to_currency(@prize_total, precision: 0) %>
-      Average prize pool per tournament:
+  <%= image_tag @game.image_url(:med_thumb) %>
+  <%= @game.name %></span>  <%= render 'follow_form' %>
+  <p>Genre: <%= @game.genre %></p>
+  <p>Developer: <%= @game.developer.name %></p>
+  <p>Competitive Statistics</p>
+  <p>Tournaments: <%= @tournaments.count %></p>
+  <p>Total Prizes: <%= number_to_currency(@prize_total, precision: 0) %></p>
+  <p>Web Resources: <%= @game.web_resources ? @game.web_resources.size : 0 %></p>
+  Average prize pool per tournament:
 
-      Recent & Upcoming Tournaments
+  Recent & Upcoming Tournaments
 <p>
   <%= link_to "Edit", edit_game_path(@game) %>
   <%= link_to "Delete", @game, method: :delete,
