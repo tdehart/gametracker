@@ -13,6 +13,7 @@ gem 'squeel'
 gem 'chronic'
 gem 'dotiw'
 gem 'thin'
+gem 'httparty'
 
 group :assets do
   gem 'sass-rails', '~> 3.2'

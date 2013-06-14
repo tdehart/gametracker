@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130613224306) do
+ActiveRecord::Schema.define(:version => 20130614234036) do
 
   create_table "developers", :force => true do |t|
     t.string   "name"
@@ -73,12 +73,14 @@ ActiveRecord::Schema.define(:version => 20130613224306) do
     t.string   "image"
     t.string   "slug"
     t.string   "abbreviation"
+    t.integer  "stream_id"
   end
 
   add_index "games", ["developer_id"], :name => "index_games_on_developer_id"
   add_index "games", ["genre"], :name => "index_games_on_genre"
   add_index "games", ["name"], :name => "index_games_on_name"
   add_index "games", ["slug"], :name => "index_games_on_slug"
+  add_index "games", ["stream_id"], :name => "index_games_on_stream_id"
 
   create_table "games_streams", :id => false, :force => true do |t|
     t.integer "game_id"
