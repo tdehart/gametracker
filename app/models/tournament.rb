@@ -20,17 +20,17 @@ class Tournament < ActiveRecord::Base
   attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :start_date, :description, :image, :remote_image_url
 
   belongs_to :game
+  has_many :web_resources, :as => :resourceable
 
   has_many :users, through: :followed_tournaments
   has_many :followed_tournaments
 
   has_many :tournament_contributions, :dependent => :destroy
   has_many :contributors, :through => :tournament_contributions, :source => :contributor, :uniq => true, :class_name => "User"
-    
+
   has_many :events, dependent: :destroy
   has_many :streams, through: :events
-  #accepts_nested_attributes_for :events#, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
-
+  
   validates :link,            :format => URI::regexp(%w(http https)),
                               :presence =>     true
 

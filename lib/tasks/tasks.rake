@@ -12,18 +12,19 @@ namespace :streams do
             #If stream is not null then it's live
             if result["stream"]
                 viewers = result["stream"]["viewers"]
-                s.update_attributes(live: true, viewer_count: viewers)
-                puts "Stream #{s.link} is live with #{viewers} viewers"
+                gameName = result["stream"]["game"]
+                #Find the current game by name, if nil then use first game that stream already has
+                game = Game.find_by_name(gameName) || s.games[0]
+                s.update_attributes(live: true, viewer_count: viewers, current_game: game)
+                puts "#{s.link} is live with #{viewers} viewers. Current game is #{game.name}."
             else
                 s.update_attribute(:live, false)
-                puts "Stream #{s.link} is not live"
+                puts "#{s.link} is not live"
             end
         else
-          puts "Stream #{s.link} could not be found. Status: #{status}"
+          puts "#{s.link} could not be found. Status: #{status}"
         end
       end
     end
-
-    puts "done."
   end
 end

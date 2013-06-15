@@ -9,14 +9,14 @@
         <% end %>
         is playing
         <span style="padding-left: 2px">
-          <%= link_to s.games[0] do %>
-            <%= image_tag s.games[0].image_url(:small_thumb) %>
-            <%= s.games[0].abbreviation ? s.games[0].abbreviation : s.games[0].name %>
+          <%= link_to s.current_game do %>
+            <%= image_tag s.current_game.image_url(:small_thumb) %>
+            <%= s.current_game.abbreviation ? s.current_game.abbreviation : s.current_game.name %>
           <% end %>
         </span>
         <p>
           <%= s.viewer_count %> viewers
-          <%= link_to "Watch Now", "#" %>
+          <%= link_to "Watch Now", s.link %>
         </p>
       </li>
     <% end %>

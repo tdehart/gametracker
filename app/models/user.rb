@@ -33,6 +33,9 @@ class User < ActiveRecord::Base
   
   has_many :tournament_contributions, :foreign_key => :contributor_id, :dependent => :destroy
   has_many :contributed_tournaments, :source => :tournament, :through => :tournament_contributions, :uniq => true
+
+  has_many :event_contributions, :foreign_key => :contributor_id, :dependent => :destroy
+  has_many :contributed_events, :source => :event, :through => :event_contributions, :uniq => true
   
   #Get all tournaments of followed games and any followed tournaments
   #Remove duplicates and sort by created_at

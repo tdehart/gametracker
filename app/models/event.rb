@@ -13,11 +13,14 @@
 #
 
 class Event < ActiveRecord::Base
-  attr_accessible :max_concurrent_viewers, :stream_id, :event_time, :tournament_id, :name
+  attr_accessible :max_concurrent_viewers, :stream_id, :event_time, :tournament_id, :name, :web_resources
 
   belongs_to :tournament
   belongs_to :stream
   has_many :web_resources, :as => :resourceable
+
+  has_many :event_contributions, :dependent => :destroy
+  has_many :contributors, :through => :event_contributions, :source => :contributor, :uniq => true, :class_name => "User"
 
   validates :name,       :presence => {:message => "can't be blank"}
   validates :stream_id,  :presence => {:message => "can't be blank"}

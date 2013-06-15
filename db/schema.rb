@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130614234036) do
+ActiveRecord::Schema.define(:version => 20130615143015) do
 
   create_table "developers", :force => true do |t|
     t.string   "name"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(:version => 20130614234036) do
 
   add_index "developers", ["name"], :name => "index_developers_on_name", :unique => true
   add_index "developers", ["slug"], :name => "index_developers_on_slug"
+
+  create_table "event_contributions", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "contributor_id"
+    t.boolean  "submitter"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "event_contributions", ["contributor_id"], :name => "index_event_contributions_on_contributor_id"
+  add_index "event_contributions", ["event_id", "contributor_id"], :name => "index_event_contributions_on_event_id_and_contributor_id", :unique => true
+  add_index "event_contributions", ["event_id"], :name => "index_event_contributions_on_event_id"
 
   create_table "events", :force => true do |t|
     t.integer  "tournament_id"
@@ -179,5 +191,7 @@ ActiveRecord::Schema.define(:version => 20130614234036) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
+
+  add_index "web_resources", ["resourceable_id", "resourceable_type"], :name => "index_web_resources_on_resourceable_id_and_resourceable_type"
 
 end
