@@ -8,8 +8,9 @@ namespace :db do
     Tournament.delete_all
     Streamer.delete_all
     Stream.delete_all
-    TournamentContribution.delete_all
-    EventContribution.delete_all
+    FollowedTournament.delete_all
+    FollowedGame.delete_all
+    FeedItem.delete_all
 
     developers = ["Blizzard Entertainment", "Valve", "Riot Games", "S2 Games", "id Software"]
     genres = ["RTS", "FPS", "ARTS"]
@@ -62,7 +63,8 @@ namespace :db do
                                      prize_pool: 12000,
                                      start_date: Date.today,
                                      description: "The ESL Major Series is a series of prize winning eSports tournaments hosted by Electronic Sports League.")
-    user.submit!(@tournament)
+
+    FeedItem.create!(feedable: @tournament, owner: user, key: "Tournament.create")
 
     @event1 = @tournament.events.create(name: "Ro64",
                                         event_time: Chronic.parse("in 1 hour").to_datetime,
@@ -79,9 +81,9 @@ namespace :db do
                                        stream_id: Stream.all.sample.id,
                                        description: "This is the event for Quarter Finals")
 
-    user.submit!(@event1)
-    user.submit!(@event2)
-    user.submit!(@event3)
+    FeedItem.create!(feedable: @event1, owner: user, key: "Event.create")
+    FeedItem.create!(feedable: @event2, owner: user, key: "Event.create")
+    FeedItem.create!(feedable: @event3, owner: user, key: "Event.create")
 
     99.times do
       name = Faker::Lorem.words(rand(3..5)).join(" ").capitalize
@@ -103,7 +105,7 @@ namespace :db do
                                        start_date: start_date,
                                        description: description)
 
-      user.submit!(@tournament)
+      FeedItem.create!(feedable: @tournament, owner: user, key: "Tournament.create")
 
       (rand(4)+1).times do
         name = ["Ro256", "Ro128", "Ro64", "Ro32", "Ro16", "Ro8", "Quarter Finals", "Semi Finals", "Grand Finals"].sample
@@ -116,7 +118,8 @@ namespace :db do
                                            event_time: time,
                                            stream_id: stream,
                                            description: description)
-        user.submit!(@event)
+
+        FeedItem.create!(feedable: @event, owner: user, key: "Event.create")
       end
     end
   end

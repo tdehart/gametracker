@@ -40,18 +40,20 @@ module ApplicationHelper
     distance_in_minutes = ((Time.now - from_time)/60.0).round
 
     case distance_in_minutes
-      when 0..59
-        return "#{distance_in_minutes}m"
+      when 0..1
+        return "just now"
+      when 1..59
+        return "#{distance_in_minutes}m ago"
       when 60...1440
-        return "#{distance_in_minutes/60}h"
+        return "#{distance_in_minutes/60}h ago"
       when 1440...2520
         return "yesterday"
       when 2520...43200
-        return "#{(distance_in_minutes.to_f / 1440.0).round} days"
+        return "#{(distance_in_minutes.to_f / 1440.0).round} days ago"
       when 43200...86400
-        return "about #{(distance_in_mintes.to_f / 43200.0).round} months"
+        return "about #{(distance_in_mintes.to_f / 43200.0).round} months ago"
       when 86400...525600
-        return "#{(distance_in_mintes.to_f / 43200.0).round} months"
+        return "#{(distance_in_mintes.to_f / 43200.0).round} months ago"
       else
         "a long time"
     end
@@ -67,20 +69,6 @@ module ApplicationHelper
       "#{event.tournament.name}: #{event.name}"
     else
       event.name
-    end
-  end
-
-  def submitter(object)
-    if !object.contributors.empty?
-      if object.is_a?(Tournament)
-        @contribution = object.tournament_contributions.where(:submitter => true)[0]
-      elsif object.is_a?(Event)
-        @contribution = object.event_contributions.where(:submitter => true)[0]
-      end
-
-      @contribution ? @contribution.contributor : User.first
-    else
-      User.first
     end
   end
 end

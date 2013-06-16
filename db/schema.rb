@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130616011810) do
+ActiveRecord::Schema.define(:version => 20130616155718) do
 
   create_table "developers", :force => true do |t|
     t.string   "name"
@@ -24,18 +24,6 @@ ActiveRecord::Schema.define(:version => 20130616011810) do
 
   add_index "developers", ["name"], :name => "index_developers_on_name", :unique => true
   add_index "developers", ["slug"], :name => "index_developers_on_slug"
-
-  create_table "event_contributions", :force => true do |t|
-    t.integer  "event_id"
-    t.integer  "contributor_id"
-    t.boolean  "submitter"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
-  add_index "event_contributions", ["contributor_id"], :name => "index_event_contributions_on_contributor_id"
-  add_index "event_contributions", ["event_id", "contributor_id"], :name => "index_event_contributions_on_event_id_and_contributor_id", :unique => true
-  add_index "event_contributions", ["event_id"], :name => "index_event_contributions_on_event_id"
 
   create_table "events", :force => true do |t|
     t.integer  "tournament_id"
@@ -51,6 +39,22 @@ ActiveRecord::Schema.define(:version => 20130616011810) do
   add_index "events", ["event_time"], :name => "index_events_on_event_time"
   add_index "events", ["stream_id"], :name => "index_events_on_stream_id"
   add_index "events", ["tournament_id"], :name => "index_events_on_tournament_id"
+
+  create_table "feed_items", :force => true do |t|
+    t.integer  "feedable_id"
+    t.string   "feedable_type"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.integer  "recipient_id"
+    t.string   "recipient_type"
+    t.string   "key"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "feed_items", ["feedable_id", "feedable_type"], :name => "index_feed_items_on_feedable_id_and_feedable_type"
+  add_index "feed_items", ["owner_id", "owner_type"], :name => "index_feed_items_on_owner_id_and_owner_type"
+  add_index "feed_items", ["recipient_id", "recipient_type"], :name => "index_feed_items_on_recipient_id_and_recipient_type"
 
   create_table "followed_games", :force => true do |t|
     t.integer  "user_id"
@@ -142,18 +146,6 @@ ActiveRecord::Schema.define(:version => 20130616011810) do
 
   add_index "streams", ["current_game_id"], :name => "index_streams_on_current_game_id"
   add_index "streams", ["live"], :name => "index_streams_on_live"
-
-  create_table "tournament_contributions", :force => true do |t|
-    t.integer  "tournament_id"
-    t.integer  "contributor_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-    t.boolean  "submitter"
-  end
-
-  add_index "tournament_contributions", ["contributor_id"], :name => "index_contributions_on_contributor_id"
-  add_index "tournament_contributions", ["tournament_id", "contributor_id"], :name => "index_contributions_on_tournament_id_and_contributor_id", :unique => true
-  add_index "tournament_contributions", ["tournament_id"], :name => "index_contributions_on_tournament_id"
 
   create_table "tournaments", :force => true do |t|
     t.string   "name"

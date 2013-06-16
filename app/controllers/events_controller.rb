@@ -14,7 +14,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
     if @event.save
-      current_user.submit!(@event)
+      FeedItem.create!(feedable: @event, owner: current_user, key: "Event.create")
       redirect_to @event
     else
       render 'new'
@@ -28,7 +28,7 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update_attributes(params[:event])
-      current_user.contribute!(@event)
+      FeedItem.create!(feedable: @event, owner: current_user, key: "Event.update")
       redirect_to @event
     else
       render 'edit'
@@ -36,7 +36,9 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    Event.find(params[:id]).destroy
+    @event = Event.find(params[:id])
+    FeedItem.create!(feedable: @event, owner: current_user, key: "Event.delete")
+    @event.destroy
     redirect_to events_path
   end
 end

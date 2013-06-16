@@ -2,6 +2,4 @@
 <p><%= @user.name %></p>
 <p>Followed tournaments: <%= @user.followed_tournaments.size %></p>
 <p>Followed games: <%= @user.followed_games.size %></p>
-<p>Tournament Contributions: <%= @user.tournament_contributions.size %></p>
-<p>Event Contributions: <%= @user.event_contributions.size %></p>
-<p><%= @user.tournament_contributions %></p>
+<p>Contributions: <%= @user.feed_items_as_owner.size %></p>

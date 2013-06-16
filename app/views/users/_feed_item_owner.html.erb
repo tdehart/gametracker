@@ -1,0 +1,10 @@
+<span class="listing-submit-info">
+    <%= link_to feed_item.owner.name, feed_item.owner %> 
+    <% if feed_item.key.include?('create')  %>
+      submitted a new <%= feed_item.feedable.class.name.downcase %>
+    <!-- If we display update/destroy/etc in feed this is where you put it in elsif blocks -->
+    <% end %>
+
+    <span> <%= time_ago_from_now(feed_item.created_at) %></span>
+</span>
+

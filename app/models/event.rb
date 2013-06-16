@@ -18,9 +18,7 @@ class Event < ActiveRecord::Base
   belongs_to :tournament
   belongs_to :stream
   has_many :web_resources, :as => :resourceable
-
-  has_many :event_contributions, :dependent => :destroy
-  has_many :contributors, :through => :event_contributions, :source => :contributor, :uniq => true, :class_name => "User"
+  has_many :feed_items, :as => :feedable
 
   validates :name,       :presence => {:message => "can't be blank"}
   validates :stream_id,  :presence => {:message => "can't be blank"}

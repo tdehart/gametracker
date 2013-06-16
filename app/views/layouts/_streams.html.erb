@@ -8,7 +8,7 @@
         <%= s.streamers[0].online_name %>
         <% end %>
         is playing
-
+        <%= link_to s.current_game.name, s.current_game %>
         <p>
           <%= s.viewer_count %> viewers
           <%= link_to "Watch Now", s.link %>

@@ -1,7 +1,7 @@
 <!-- TODO: Make submitter dynamic -->
 <%= image_tag image_path("us-flag.png"), :size => "32x32", :class => "game_image" %>
 <%= @tournament.name %> <%= render 'follow_form' %>
-submitted by <%= link_to submitter(@tournament).name, submitter(@tournament) %>
+submitted by <%= link_to @submitter.name, @submitter %>
 <%= image_tag @tournament.game.image_url(:med_thumb) %> <%= @tournament.game.name %>
 
 <%= image_tag image_path("date32.png"), :class => "tournament_show_stat" %> <%= @tournament.start_date %>

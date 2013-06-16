@@ -26,24 +26,31 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
+  has_many :feed_items_as_owner, :class_name => "FeedItem", :as => :owner
+  has_many :feed_items_as_recipient, :class_name => "FeedItem", :as => :recipient
+
   has_many :tournaments, through: :followed_tournaments
   has_many :followed_tournaments, dependent: :destroy
   has_many :games, through: :followed_games
   has_many :followed_games, dependent: :destroy
   
-  has_many :tournament_contributions, :foreign_key => :contributor_id, :dependent => :destroy
-  has_many :contributed_tournaments, :source => :tournament, :through => :tournament_contributions, :uniq => true
-
-  has_many :event_contributions, :foreign_key => :contributor_id, :dependent => :destroy
-  has_many :contributed_events, :source => :event, :through => :event_contributions, :uniq => true
-  
   #Get all tournaments of followed games and any followed tournaments
   #Remove duplicates and sort by created_at
   def feed
-    @tournaments = (games.collect { |g| g.tournaments }.flatten + tournaments).uniq
-    @events = (@tournaments.collect { |t| t.events }.flatten).uniq
-    @feed = @tournaments + @events
-    @feed.sort {|a,b| b.created_at <=> a.created_at}
+    #Get all ids of followed tournaments
+    # @tournaments = (games.collect { |g| g.tournaments }.flatten + tournaments).uniq
+    # @events = (@tournaments.collect { |t| t.events }.flatten).uniq
+    # @feed = @tournaments + @events
+    # @feed.sort { |a,b| b.created_at <=> a.created_at }
+    @tournaments = games.collect { |g| g.tournaments }.flatten if !games.nil?
+    @tournaments = (@tournaments + tournaments).uniq
+    @tournament_ids = @tournaments.collect { |t| t.id }
+    @event_ids = (@tournaments.collect { |t| t.events.collect { |e| e.id } }.flatten)
+
+    #Get all tournament and event feed_items
+    #Hint: Use my{} to interpolate instance variables with squeel
+    FeedItem.where{ (feedable_id.in(my{@tournament_ids}) & feedable_type.eq('Tournament')) | 
+                    (feedable_id.in(my{@event_ids}) & feedable_type.eq('Event')) }.order { created_at.desc }
   end
 
   def following?(object)
@@ -67,22 +74,6 @@ class User < ActiveRecord::Base
       followed_tournaments.find_by_tournament_id(object.id).destroy
     elsif object.is_a?(Game)
       followed_games.find_by_game_id(object.id).destroy
-    end
-  end
-
-  def submit!(object)
-    if object.is_a?(Tournament)
-      tournament_contributions.create!(tournament_id: object.id, submitter: true)
-    elsif object.is_a?(Event)
-      event_contributions.create!(event_id: object.id, submitter: true)
-    end
-  end
-
-  def contribute!(object)
-    if object.is_a?(Tournament)
-      tournament_contributions.create!(tournament_id: object.id, submitter: false)
-    elsif object.is_a?(Event)
-      event_contributions.create!(event_id: object.id, submitter: false)
     end
   end
 

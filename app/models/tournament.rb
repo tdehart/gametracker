@@ -25,11 +25,10 @@ class Tournament < ActiveRecord::Base
   has_many :users, through: :followed_tournaments
   has_many :followed_tournaments
 
-  has_many :tournament_contributions, :dependent => :destroy
-  has_many :contributors, :through => :tournament_contributions, :source => :contributor, :uniq => true, :class_name => "User"
-
   has_many :events, dependent: :destroy
   has_many :streams, through: :events
+
+  has_many :feed_items, :as => :feedable
   
   validates :link,            :format => URI::regexp(%w(http https)),
                               :presence =>     true

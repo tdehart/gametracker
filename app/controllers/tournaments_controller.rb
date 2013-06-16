@@ -14,6 +14,7 @@ class TournamentsController < ApplicationController
 
   def show
     @tournament = Tournament.find(params[:id])
+    @submitter = @tournament.feed_items.where { key == "Tournament.create" }[0].owner
   end
 
   def new
@@ -24,7 +25,7 @@ class TournamentsController < ApplicationController
     @tournament = Tournament.new(params[:tournament])
 
     if @tournament.save
-      current_user.submit!(@tournament)
+      FeedItem.create!(feedable: @tournament, owner: current_user, key: "Tournament.create")
       redirect_to @tournament
     else
       render 'new'
@@ -39,7 +40,7 @@ class TournamentsController < ApplicationController
   def update
     @tournament = Tournament.find(params[:id])
     if @tournament.update_attributes(params[:tournament])
-      current_user.contribute!(@tournament)
+      FeedItem.create!(feedable: @tournament, owner: current_user, key: "Tournament.update")
       redirect_to @tournament
     else
       render 'edit'
@@ -47,7 +48,9 @@ class TournamentsController < ApplicationController
   end
 
   def destroy
-    Tournament.find(params[:id]).destroy
+    @tournament = Tournament.find(params[:id])
+    FeedItem.create!(feedable: @tournament, owner: current_user, key: "Tournament.delete")
+    @tournament.destroy
     redirect_to tournaments_path
   end
 end
