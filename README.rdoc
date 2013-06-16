@@ -1,34 +1,33 @@
-= Game Tracker
-* How much money was won in Starcraft II in the past 3 months?
-* Has the amount of prize money gone up or down since the launch of Starcraft II?
-* Is there more prize money in League of Legends or Dota 2?
-* How many people, on average, are watching Counter-Strike streams?
-* How can I quickly see the upcoming tournaments for my favorite game?
+= GameTracker (working title)
+* eSports gaming hub, one stop shop for eSports news, tournament tracking, and statistics
+* Follow your favorite games/players/teams and GameTracker will create a custom activity feed just for you.
+* Submit content and gain reputation/points
+* Track the health of eSports through statistics
 
-These are just a small sample of the types of questions I'd love to know the answer to but can't easily find out. This application aims to create a central repository for eSports tournament information. With the help of users, Game Tracker will collect information about eSports and their events -- information like tournament dates and their prize pools, the number of competitors in each tournament, and concurrent viewers on streams. Not only can people use this site as a resource for learning about upcoming events but they can also view the historical health of their favorite competitive games.
+== Phase 1
+* User authentication system (done)
+* Users can follow games/tournaments (done)
+* Users can view their feed of followed games/tournaments (back-end done)
+* Users can view all Tournaments/Events (index, show pages) (back-end done)
+* Users can view streams and the site will update streams to keep a current list of live streams (mostly done)
+* Admins can submit new content (done)
+* Track contributions (done)
 
-I will use this README (for now) to document major design choices as they come up.
+== Phase 2
+* Automatic timezone adjustments
+* Users can submit new content that will somehow be approved (probably simple admin approval at first)
+* Users can submit taggable news articles which will be pushed to feeds based on tags and followed games
+* Improve the contribution system with game-like features, rewards, rankings, etc
+* Users can submit data like brackets/results/VODs to existing tournaments
 
-==4/7/2012
-I reorganized the database schema today since I realized there were some severe limitations to my current implementation. For example, tournaments can have many streams (think MLG with Red and Blue streams). I also wanted to track data like maximum concurrent viewers on particular streams which seemed a bit impractical with the current models.  Take a look at my current (now defunct) database schema:
+== Phase 3
+* Streamline new content submission so that the site works by itself (submission voting?)
+* Allow users to add comments to submissions
+* Reorganize streams/streams into players/teams and their respective streams
+* Users can add new players/teams and update their information like winnings, roster, etc
+* Users can link up their account with the Player model through Twitch API and keep their data up to date
 
-http://images.tomed.org/gt/old.png
-
-This design is simple but puts a lot of pressure on the Tournaments table. I wanted more freedom with the management of streams so I figured it would be easy enough to add the respective table. Easy enough, I thought, I'd move the stream link and time to the Streams table and I'd be set. However, upon further inspection, I found that what I really wanted to record was an <b>event</b>.
-
-The problem with simply creating a Streams table is that a Stream (i.e., the hyperlink to the stream) is often a static entity (e.g., TobiWan uses the same stream to cast all of the Dota 2 tournaments). An <b>event</b> is a <em>relationship</em> between a Tournament and a Stream. And in this Events table we can not only reference the corresponding tournament but can also track the date and time of the stream (along with a reference to the actual stream), and the maximum concurrent viewers for that event. Take a look at the new schema:
-
-http://images.tomed.org/gt/new.png
-
-The basic structure remains from the old design however we now have aforementioned Events table along with a few other minor changes. Due to how stream sites (e.g., Justin.tv and own3d.tv) currently work, a stream can be used for any game. So to say that a stream references a single game would be incorrect thus we have another relationship: this time between Streams and Games. In other words, a stream (potentially) has many games and a game has many streams.
-
-Finally, we can also observe that a stream doesn't necessarily have a single "streamer". In fact, many tournaments are co-casted. This means that a streamer can have many streams and vice-versa: every stream can potentially have many streamers. This observation also motivated me to create a Streamers table so that the site can track information about eSports casters. In the end, we can say that a stream has many streamers and a streamer has many streams.
-
-Database design is not a forte of mine however I feel that what I have now is much more robust than what I started with. I now have the ability to track multiple streams for a particular tournament and have opened up the potential for maintaining a central index for eSports streamers (which wasn't even an original goal of this project).
-
-In short, this database redesign allows me to do things like:
-* Provide all streams for a particular tournament
-* A feed to all upcoming tournament events (e.g., when does the next Starcraft II tournament start?)
-* Calculate the sum of maximum concurrent viewers for every stream of a tournament (e.g., how many people watched MLG Anaheim between all of the streams?)
-* Display all games that a particular caster streams (e.g., what are all of the games that Day[9] streams?)
-* Links to every stream that has been known to stream a particular game (e.g., give me all the streams that broadcast Dota 2 tournaments)
+== Phase 4
+* Allow users to start submitting statistics about streams/tournaments (e.g., prize pools, viewer counts, etc)
+* Start automatically tracking and recording stream counts
+* Aggregate various data to start showing cool statistics like "Games sorted by most prize money" or "Most money earned by nation"
