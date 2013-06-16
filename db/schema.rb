@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130615143015) do
+ActiveRecord::Schema.define(:version => 20130616011810) do
 
   create_table "developers", :force => true do |t|
     t.string   "name"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20130615143015) do
     t.datetime "updated_at",             :null => false
     t.string   "name"
     t.datetime "event_time"
+    t.text     "description"
   end
 
   add_index "events", ["event_time"], :name => "index_events_on_event_time"
@@ -85,14 +86,12 @@ ActiveRecord::Schema.define(:version => 20130615143015) do
     t.string   "image"
     t.string   "slug"
     t.string   "abbreviation"
-    t.integer  "stream_id"
   end
 
   add_index "games", ["developer_id"], :name => "index_games_on_developer_id"
   add_index "games", ["genre"], :name => "index_games_on_genre"
   add_index "games", ["name"], :name => "index_games_on_name"
   add_index "games", ["slug"], :name => "index_games_on_slug"
-  add_index "games", ["stream_id"], :name => "index_games_on_stream_id"
 
   create_table "games_streams", :id => false, :force => true do |t|
     t.integer "game_id"
@@ -132,14 +131,16 @@ ActiveRecord::Schema.define(:version => 20130615143015) do
   create_table "streams", :force => true do |t|
     t.string   "link"
     t.text     "description"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "channel_id"
     t.string   "platform"
-    t.integer  "viewer_count", :default => 0
-    t.boolean  "live",         :default => false
+    t.integer  "viewer_count",    :default => 0
+    t.boolean  "live",            :default => false
+    t.integer  "current_game_id"
   end
 
+  add_index "streams", ["current_game_id"], :name => "index_streams_on_current_game_id"
   add_index "streams", ["live"], :name => "index_streams_on_live"
 
   create_table "tournament_contributions", :force => true do |t|
@@ -162,9 +163,9 @@ ActiveRecord::Schema.define(:version => 20130615143015) do
     t.integer  "prize_pool"
     t.integer  "num_competitors"
     t.integer  "game_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.string   "description"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.text     "description",     :limit => 255
     t.string   "image"
   end
 

@@ -1,3 +1,11 @@
-<% if @feed_items.any? %>
-    <%= render partial: 'feed_item', collection: @feed_items %>
+<% @feed_items.each do |feed_item| %>
+  <span class="listing-submit-info">
+    <%= link_to submitter(feed_item).name, submitter(feed_item) %> submitted a new <%= feed_item.class.name.downcase %>
+    <span> <%= time_ago_from_now(feed_item.created_at) %> ago</span>
+  </span>
+  <% if feed_item.is_a?(Tournament) %>
+    <%= render partial: 'tournament_feed_item', :locals => { :feed_item => feed_item } %>  
+  <% elsif feed_item.is_a?(Event) %>
+    <%= render partial: 'event_feed_item', :locals => { :feed_item => feed_item } %>  
+  <% end %>
 <% end %>

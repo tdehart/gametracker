@@ -7,12 +7,14 @@
         <%= s.streamers[0].online_name %>
         <%= image_tag image_path('us-flag.png'), :size => "16x16", :class => "flag_image" %>
       <% end %>
-      <span id="popular_stream_viewers"><%= link_to "#{s.viewer_count} viewers", s.link, :target => "_blank" %></span>
+      <span id="popular_stream_viewers"><%= s.live ? "LIVE" : "Not Live" %> <%= link_to "#{s.viewer_count} viewers", s.link, :target => "_blank" %></span>
       <br/>
       <%= link_to s.games[0] do %>
         <%= image_tag s.games[0].image_url(:small_thumb) %>
         <%= s.games[0].name %>
       <% end %>
+
+      Current game: <%= s.current_game == nil ? "nil" : s.current_game.name %>
 
     </div>
     <%= link_to "Show", stream_path(s) %>

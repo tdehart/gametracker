@@ -15,10 +15,11 @@ namespace :streams do
                 gameName = result["stream"]["game"]
                 #Find the current game by name, if nil then use first game that stream already has
                 game = Game.find_by_name(gameName) || s.games[0]
+                puts "game:" + game.id.to_s
                 s.update_attributes(live: true, viewer_count: viewers, current_game: game)
-                puts "#{s.link} is live with #{viewers} viewers. Current game is #{game.name}."
+                puts "#{s.channel_id} (#{s.link}) is live with #{viewers} viewers. Stream game is #{gameName}, current game set to #{game.name}."
             else
-                s.update_attribute(:live, false)
+                s.update_attributes(live: false, viewer_count: 0)
                 puts "#{s.link} is not live"
             end
         else

@@ -13,7 +13,7 @@
 #
 
 class Event < ActiveRecord::Base
-  attr_accessible :max_concurrent_viewers, :stream_id, :event_time, :tournament_id, :name, :web_resources
+  attr_accessible :max_concurrent_viewers, :stream_id, :event_time, :tournament_id, :name, :web_resources, :description
 
   belongs_to :tournament
   belongs_to :stream

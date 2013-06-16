@@ -40,8 +40,10 @@ class User < ActiveRecord::Base
   #Get all tournaments of followed games and any followed tournaments
   #Remove duplicates and sort by created_at
   def feed
-    feed = (games.collect { |g| g.tournaments }.flatten + tournaments).uniq
-    feed.sort {|a,b| b.created_at <=> a.created_at}
+    @tournaments = (games.collect { |g| g.tournaments }.flatten + tournaments).uniq
+    @events = (@tournaments.collect { |t| t.events }.flatten).uniq
+    @feed = @tournaments + @events
+    @feed.sort {|a,b| b.created_at <=> a.created_at}
   end
 
   def following?(object)
@@ -71,12 +73,16 @@ class User < ActiveRecord::Base
   def submit!(object)
     if object.is_a?(Tournament)
       tournament_contributions.create!(tournament_id: object.id, submitter: true)
+    elsif object.is_a?(Event)
+      event_contributions.create!(event_id: object.id, submitter: true)
     end
   end
 
   def contribute!(object)
     if object.is_a?(Tournament)
       tournament_contributions.create!(tournament_id: object.id, submitter: false)
+    elsif object.is_a?(Event)
+      event_contributions.create!(event_id: object.id, submitter: false)
     end
   end
 

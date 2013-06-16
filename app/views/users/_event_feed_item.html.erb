@@ -1,0 +1,27 @@
+<div class="listing">
+  <div class="row listing-header">
+    <div class="span9">
+      <h1><%= link_to image_tag(feed_item.tournament.game.image_url(:large_thumb)), feed_item.tournament.game %> <%= link_to get_event_name(feed_item), feed_item %></h1>
+    </div>
+  </div>
+  <div class="row listing-stats">
+    <div class="span6">
+      <h2><%= image_tag image_path("clock32.png") %> <%= event_time_format feed_item.event_time %></h2>
+    </div>
+    <div class="span">
+      <h2>
+        <%= link_to feed_item.stream.link do %>
+          <%= image_tag image_path "twitch-logo32.png" %>
+          Stream Link
+        <% end %>
+      </h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span9">
+      <p class="listing-description">
+        <%= feed_item.description %>
+      </p>
+    </div>
+  </div>
+</div>

@@ -8,12 +8,7 @@
         <%= s.streamers[0].online_name %>
         <% end %>
         is playing
-        <span style="padding-left: 2px">
-          <%= link_to s.current_game do %>
-            <%= image_tag s.current_game.image_url(:small_thumb) %>
-            <%= s.current_game.abbreviation ? s.current_game.abbreviation : s.current_game.name %>
-          <% end %>
-        </span>
+
         <p>
           <%= s.viewer_count %> viewers
           <%= link_to "Watch Now", s.link %>

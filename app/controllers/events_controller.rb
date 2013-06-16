@@ -14,6 +14,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
     if @event.save
+      current_user.submit!(@event)
       redirect_to @event
     else
       render 'new'
@@ -27,6 +28,7 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     if @event.update_attributes(params[:event])
+      current_user.contribute!(@event)
       redirect_to @event
     else
       render 'edit'

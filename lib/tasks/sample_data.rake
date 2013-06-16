@@ -9,6 +9,7 @@ namespace :db do
     Streamer.delete_all
     Stream.delete_all
     TournamentContribution.delete_all
+    EventContribution.delete_all
 
     developers = ["Blizzard Entertainment", "Valve", "Riot Games", "S2 Games", "id Software"]
     genres = ["RTS", "FPS", "ARTS"]
@@ -41,7 +42,7 @@ namespace :db do
                        birthday: birthday)
     end
 
-    streams = ["http://www.twitch.tv/desrowfighting", "http://www.twitch.tv/aphromoo", "http://www.own3d.tv/TheRainMan/live/38853", "http://www.twitch.tv/tslpolt", "http://www.twitch.tv/sing_sing"]
+    streams = ["http://www.twitch.tv/tsm_theoddone", "http://www.twitch.tv/tsm_reginald", "http://www.twitch.tv/crs_saintvicious", "http://www.twitch.tv/mylonzete", "http://www.twitch.tv/dreamhacksc2", "http://www.twitch.tv/idrajit", "http://www.twitch.tv/towelliee"]
     #Create some streams -- use random streamers
     streams.each do |s|
       link = s
@@ -49,7 +50,8 @@ namespace :db do
       streamer = Streamer.all.sample
       Stream.create!(link: link,
                      games: [game],
-                     streamers: [streamer])
+                     streamers: [streamer],
+                     current_game: game)
     end
 
     @tournament = Tournament.create!(name: "ESL Major Series X",
@@ -62,17 +64,24 @@ namespace :db do
                                      description: "The ESL Major Series is a series of prize winning eSports tournaments hosted by Electronic Sports League.")
     user.submit!(@tournament)
 
-    @tournament.events.create(name: "Ro64",
-                              event_time: Chronic.parse("in 1 hour").to_datetime,
-                              stream_id: Stream.all.sample.id)
+    @event1 = @tournament.events.create(name: "Ro64",
+                                        event_time: Chronic.parse("in 1 hour").to_datetime,
+                                        stream_id: Stream.all.sample.id,
+                                        description: "This is the event for Ro64")
 
-    @tournament.events.create(name: "Ro32",
-                              event_time: Chronic.parse("in 3 hours").to_datetime,
-                              stream_id: Stream.all.sample.id)
+    @event2 = @tournament.events.create(name: "Ro32",
+                                        event_time: Chronic.parse("in 3 hours").to_datetime,
+                                        stream_id: Stream.all.sample.id,
+                                        description: "This is the event for Ro32")
 
-    @tournament.events.create(name: "Quarter Finals",
-                              event_time: Chronic.parse("in 8 hours").to_datetime,
-                              stream_id: Stream.all.sample.id)
+    @event3 =@tournament.events.create(name: "Quarter Finals",
+                                       event_time: Chronic.parse("in 8 hours").to_datetime,
+                                       stream_id: Stream.all.sample.id,
+                                       description: "This is the event for Quarter Finals")
+
+    user.submit!(@event1)
+    user.submit!(@event2)
+    user.submit!(@event3)
 
     99.times do
       name = Faker::Lorem.words(rand(3..5)).join(" ").capitalize
@@ -84,7 +93,7 @@ namespace :db do
       date1 = 100.days.ago
       date2 = 100.days.ago+200.days
       start_date = Time.at((date2.to_f - date1.to_f)*rand + date1.to_f).to_date
-      description = Faker::Lorem.paragraph
+      description = Faker::Lorem.paragraphs(3).join()
       @tournament = Tournament.create!(name: name,
                                        link: link,
                                        region: region,
@@ -100,11 +109,14 @@ namespace :db do
         name = ["Ro256", "Ro128", "Ro64", "Ro32", "Ro16", "Ro8", "Quarter Finals", "Semi Finals", "Grand Finals"].sample
         day = [@tournament.start_date, @tournament.start_date+1, @tournament.start_date+2].sample
         time = Chronic.parse(%w[1pm 1:30pm 2pm 2:30pm 3pm 3:30pm 4pm 4:30pm 5pm 5:30pm 6pm 6:30pm 7pm 7:30pm 8pm].sample, :now => day).to_datetime
+        description = Faker::Lorem.paragraphs(3).join()
 
         stream = Stream.all.sample.id
-        @tournament.events.create(name: name,
-                                  event_time: time,
-                                  stream_id: stream)
+        @event = @tournament.events.create(name: name,
+                                           event_time: time,
+                                           stream_id: stream,
+                                           description: description)
+        user.submit!(@event)
       end
     end
   end

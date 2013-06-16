@@ -1,17 +1,38 @@
 module ApplicationHelper
-  def event_time_format(event_time)
-    time = distance_of_time_in_words_hash(Time.now.utc, event_time)
+  def event_time_format(event_time, raw=false)
+    time = distance_of_time_in_words_hash(Time.now, event_time)
 
+    years = time["years"] ||= 0
+    months = time["months"] ||= 0
     days = time["days"] ||= 0
+    total_days = Time.days_in_month(event_time.month, event_time.year) + days
     hours = time["hours"] ||= 0
     mins = time["minutes"] ||= 0
 
-    if event_time < Time.now.utc
-      "#{hours}h #{mins}m ago"
-    elsif days < 1
-      "in #{hours}h #{mins}m"
+    if raw
+      return "y:#{years}, m:#{months}, d:#{days}, h:#{hours} | " + time_ago_in_words(event_time)
+    end
+
+    if event_time < Time.now
+      if days < 1
+        event_time.strftime("Today at %l:%m%p") +  " (live #{hours}h #{mins}m ago)"
+      elsif months <= 1
+        event_time.strftime("%m/%d") + " (#{pluralize(total_days, "day")} ago)"
+      elsif years < 1
+        event_time.strftime("%m/%d/%Y") + " (#{pluralize(months, "month")} ago)"
+      else
+        event_time.strftime("%m/%Y") + " (over #{pluralize(years, "year")} ago)"
+      end
     else
-      "#{pluralize(days, "day")}"
+      if days < 1
+        event_time.strftime("Today at %l:%m%p") + " (in #{hours}h #{mins}m)"
+      elsif months <= 1
+        event_time.strftime("%m/%d") + " (in #{pluralize(total_days, "day")})"
+      elsif years < 1
+        event_time.strftime("%m/%d/%Y") + " (in #{pluralize(months, "month")})"
+      else
+        event_time.strftime("%m/%Y") + " (in #{pluralize(years, "year")})"
+      end
     end
   end
 
@@ -36,14 +57,30 @@ module ApplicationHelper
     end
   end
 
+  def get_event_time(event_time)
+    #feed_item.event_time.strftime("%m/%d at %l:%m%p") %> (<%= event_time_format(feed_item.event_time)")
+  end
+
+
+  def get_event_name(event)
+    if event.name.length < 10
+      "#{event.tournament.name}: #{event.name}"
+    else
+      event.name
+    end
+  end
+
   def submitter(object)
     if !object.contributors.empty?
       if object.is_a?(Tournament)
         @contribution = object.tournament_contributions.where(:submitter => true)[0]
-        @contribution ? @contribution.contributor : User.first
+      elsif object.is_a?(Event)
+        @contribution = object.event_contributions.where(:submitter => true)[0]
       end
+
+      @contribution ? @contribution.contributor : User.first
     else
-      return User.first
+      User.first
     end
   end
 end
