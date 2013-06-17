@@ -8,6 +8,10 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def admin_user?
+    redirect_to root_path unless current_user.admin?
+  end
+
   def current_user=(user)
     @current_user = user
   end

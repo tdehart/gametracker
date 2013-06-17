@@ -1,4 +1,6 @@
 class DevelopersController < ApplicationController
+  before_filter :admin_user?, except: [:index, :show]
+  
   def index
     @developers = Developer.all
   end

@@ -1,18 +1,56 @@
-<!-- TODO: Make submitter dynamic -->
-<%= image_tag image_path("us-flag.png"), :size => "32x32", :class => "game_image" %>
-<%= @tournament.name %> <%= render 'follow_form' %>
-submitted by <%= link_to @submitter.name, @submitter %>
-<%= image_tag @tournament.game.image_url(:med_thumb) %> <%= @tournament.game.name %>
+<div class="row">
+  <div class="span9">
+    <span class="listing-submit-info">
+      Submitted by <%= link_to @submitter.name, @submitter %> 
+      <%= time_ago_from_now(@tournament.created_at) %>
+    </span>
+    
+    <h1>
+      <%= link_to image_tag(@tournament.game.image_url(:large_thumb)), @tournament.game %> 
+      <%= link_to @tournament.name, @tournament %> 
+      <%= render 'follow_form' %>
+    </h1>
+  </div>
+  
+</div>
 
-<%= image_tag image_path("date32.png"), :class => "tournament_show_stat" %> <%= @tournament.start_date %>
-<%= image_tag image_path("coins32.png"), :class => "tournament_show_stat" %> <%= number_to_currency(@tournament.prize_pool, :precision => 0) %>
-<%= image_tag image_path("people32.png"), :class => "tournament_show_stat" %> <%= @tournament.num_competitors %>
-players
+<div class="row">
+  <div class="span3">
+    <h2><%= image_tag image_path("date32.png") %> <%= @tournament.start_date.strftime("%m-%d-%Y") %></h2>
+  </div>
+  <div class="span3">
+    <h2><%= image_tag image_path("coins32.png") %> <%= number_to_currency(@tournament.prize_pool, :precision => 0) %></h2>
+  </div>
+  <div class="span">
+    <h2><%= image_tag image_path("people32.png") %> <%= @tournament.num_competitors %> players</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="span9">
+    <p><%= @tournament.description %></p>
+  </div>
+</div>
 
-Streams for this tournament
+<div class="row">
+  <div class="span6">
+    <h2>Events for this tournament</h2>
+    <ul class="tournament-event-list">
+      <% @events.each do |e| %>
+      <li>
+        <h3><%= e.name %></h3>
+        <h4>Event Date: <em><%= event_time_format e.event_time %></em></h4>
+        <h4>Stream Link: <%= link_to e.stream.link, e.stream.link %></h4>
+        <p><%= e.description %></p>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
-<p>
-  <%= link_to "Edit", edit_tournament_path(@tournament) %>
-  <%= link_to "Delete", @tournament, method: :delete,
-              confirm: "You sure?" %>
-</p>
+<% if current_user.admin? %>
+  <p>
+    <%= link_to "Edit", edit_tournament_path(@tournament) %>
+    <%= link_to "Delete", @tournament, method: :delete,
+                confirm: "You sure?" %>
+  </p>
+<% end %>

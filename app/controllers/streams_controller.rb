@@ -1,4 +1,6 @@
 class StreamsController < ApplicationController
+  before_filter :admin_user?, except: [:index, :show]
+  
   def index
     # @streams = Stream.live
     @streams = Stream.all

@@ -20,7 +20,7 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.3.1.3'
   gem 'coffee-rails'
   gem 'uglifier'
-  gem 'jquery-datatables-rails'
+  gem 'font-awesome-rails'
 end
 
 group :development, :test do

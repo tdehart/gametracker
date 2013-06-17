@@ -15,6 +15,15 @@ img.listing-game-icon {
   padding: 9px;
 }
 
+.listing-description {
+  width: 97%;
+}
+
+.listing-submit-info {
+  font-size: 12px;
+  color: #7F7F7F;
+}
+
 .streams {
   background-image: linear-gradient(to bottom, white, #f2f2f2);
   background-repeat: repeat-x;
@@ -24,97 +33,41 @@ img.listing-game-icon {
   padding: 9px;
 }
 
-.listing-description {
-  width: 97%;
-}
-
-.listing-submit-info {
-  font-size: 12px;
-  color: #CACACA;
-}
-
-
-  ul.sidebar-list {
-    list-style: none;
-    margin: 0;
-    font-size: 15px;
-    li {
-      margin: 5px 5px 10px 5px;
-      border-bottom: 1px solid #ddd;
-      &:last-child {
-        border-bottom-style: none;
-      }
+ul.sidebar-list {
+  list-style: none;
+  margin: 0;
+  font-size: 15px;
+  li {
+    margin: 5px 5px 10px 5px;
+    border-bottom: 1px solid #ddd;
+    &:last-child {
+      border-bottom-style: none;
     }
   }
-
-
   .sidebar-list-item-text {
     padding-left: 5px;
   }
+}
 
+ul.tournament-event-list {
+  list-style: none;
+  margin: 0;
+  li {
+    padding-bottom: 8px;
+    margin: 5px 5px 10px 0;
+    border-bottom: 1px solid #ddd;
+    &:last-child {
+      border-bottom-style: none;
+    }
+  }
+}
 
-// .navbar-inner .container {
-//   width: 940px;
-// }
+#follow_form {
+  display: inline;
 
-// .header-subtext {
-//   position: relative;
-//   bottom: 4px;
-//   font-size: 0.5em;
-// }
+  .new_followed_tournament, .edit_followed_tournament, .new_followed_game, .edit_followed_game {
+      display: inline;
+      vertical-align: text-top;
+  }
+}
 
-// .h1-subtext {
-//   color: $grayLight;
-//   font-size: 0.5em;
-// }
-
-// .feed {
-//   list-style: none;
-//   margin: 10px 0 0 0;
-
-//   .feed-item {
-//     padding: 10px 0;
-//     border-top: 1px solid #e8e8e8;
-//     &:first-child { border: none; }
-//   }
-// }
-
-// .feed-item-title {
-//   color: $grayLight;
-
-//   a {
-//     font-weight: bold;
-//     color: $grayLight
-//   }
-// }
-
-// .feed-item-title-subtext {
-//   font-size: 0.75em;
-
-// }
-
-// .feed-item-name {
-//   display: block;
-//   font-size: 1.1em;
-// }
-
-// .feed-item-information {
-//   list-style: none;
-//   margin: 0 0;
-
-//   li {
-//     padding: 0px 0;
-//     border: none;
-//   }
-// }
-
-// .mini-image {
-//   vertical-align: text-top;
-// }
-
-// .feed-img {
-//   display: block;
-//   float: left;
-//   max-width: 300px;
-//   margin-left: 20px;
-// }

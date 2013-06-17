@@ -1,5 +1,5 @@
 <%= form_for(current_user.followed_games.find_by_game_id(@game),
              html: { method: :delete },
              remote: true) do |f| %>
-    <%= f.submit "Unfollow", class: "btn btn-large" %>
+    <%= f.submit "Unfollow", class: "btn" %>
 <% end %>

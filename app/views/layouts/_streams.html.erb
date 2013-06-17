@@ -3,15 +3,16 @@
   <ul class="sidebar-list">
     <% @sidebar_streams.each do |s| %>
       <li>
-        <%= link_to s.streamers[0] do %>
-        <%= image_tag image_path('us-flag.png'), :size => "16x16", :class => "flag-image" %>
-        <%= s.streamers[0].online_name %>
+        <i class="icon-user"></i>
+        <%= link_to s.streamers[0].online_name, s.streamers[0] %>
+        is streaming
+        <%= link_to s.current_game do %>
+          <%= image_tag s.current_game.image_url(:small_thumb) %> 
+          <%= s.current_game.abbreviation ? s.current_game.abbreviation : s.current_game.name %>
         <% end %>
-        is playing
-        <%= link_to s.current_game.name, s.current_game %>
         <p>
-          <%= s.viewer_count %> viewers
-          <%= link_to "Watch Now", s.link %>
+          <span class="text-success"><%= s.viewer_count %> viewers</span>
+          <i class="icon-play-circle"></i> <%= link_to "Watch Now", s.link %>
         </p>
       </li>
     <% end %>

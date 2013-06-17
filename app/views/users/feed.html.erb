@@ -1,12 +1,19 @@
-<%= paginate @feed_items %>
-<% @feed_items.each do |feed_item| %>
-  <% if feed_item.key.include?('create') %>
-    <%= render partial: 'feed_item_owner', locals: { feed_item: feed_item } %>
-    <% if feed_item.feedable.is_a?(Tournament) %>
-      <%= render partial: 'tournament_feed_item', :locals => { :feed_item => feed_item.feedable } %>  
-    <% elsif feed_item.feedable.is_a?(Event) %>
-      <%= render partial: 'event_feed_item', :locals => { :feed_item => feed_item.feedable } %>  
+<% if @feed_items.empty? %>
+  <h1>Your feed is empty! Follow a game:</h1>
+  <% Game.all.each do |g| %>
+    <p><%= link_to g.name, g %></p>
+  <% end %>
+<% else %>
+  <%= paginate @feed_items %>
+  <% @feed_items.each do |feed_item| %>
+    <% if feed_item.key.include?('create') %>
+      <%= render partial: 'feed_item_owner', locals: { feed_item: feed_item } %>
+      <% if feed_item.feedable.is_a?(Tournament) %>
+        <%= render partial: 'tournament_feed_item', :locals => { :feed_item => feed_item.feedable } %>  
+      <% elsif feed_item.feedable.is_a?(Event) %>
+        <%= render partial: 'event_feed_item', :locals => { :feed_item => feed_item.feedable } %>  
+      <% end %>
     <% end %>
   <% end %>
+  <%= paginate @feed_items %>
 <% end %>
-<%= paginate @feed_items %>

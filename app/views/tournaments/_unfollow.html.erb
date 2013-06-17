@@ -1,5 +1,7 @@
 <%= form_for(current_user.followed_tournaments.find_by_tournament_id(@tournament),
              html: { method: :delete },
              remote: true) do |f| %>
-    <%= f.submit "Unfollow", class: "btn btn-large" %>
+    <%= button_tag(:type => 'submit', :class => 'btn btn-danger') do %>
+      <i class="icon-white icon-eye-close"></i> Unfollow
+    <% end %>
 <% end %>

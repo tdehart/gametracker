@@ -37,11 +37,6 @@ class User < ActiveRecord::Base
   #Get all tournaments of followed games and any followed tournaments
   #Remove duplicates and sort by created_at
   def feed
-    #Get all ids of followed tournaments
-    # @tournaments = (games.collect { |g| g.tournaments }.flatten + tournaments).uniq
-    # @events = (@tournaments.collect { |t| t.events }.flatten).uniq
-    # @feed = @tournaments + @events
-    # @feed.sort { |a,b| b.created_at <=> a.created_at }
     @tournaments = games.collect { |g| g.tournaments }.flatten if !games.nil?
     @tournaments = (@tournaments + tournaments).uniq
     @tournament_ids = @tournaments.collect { |t| t.id }

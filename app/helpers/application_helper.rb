@@ -17,21 +17,23 @@ module ApplicationHelper
       if days < 1
         event_time.strftime("Today at %l:%m%p") +  " (live #{hours}h #{mins}m ago)"
       elsif months <= 1
-        event_time.strftime("%m/%d") + " (#{pluralize(total_days, "day")} ago)"
+        event_time.strftime("%m-%d-%Y") + " (#{pluralize(total_days, "day")} ago)"
       elsif years < 1
-        event_time.strftime("%m/%d/%Y") + " (#{pluralize(months, "month")} ago)"
+        event_time.strftime("%m-%d-%Y") + " (#{pluralize(months, "month")} ago)"
       else
-        event_time.strftime("%m/%Y") + " (over #{pluralize(years, "year")} ago)"
+        event_time.strftime("%m-%Y") + " (over #{pluralize(years, "year")} ago)"
       end
     else
-      if days < 1
+      if hours < 1
+        event_time.strftime("Today at %l:%m%p") + " (in #{mins} minutes)"
+      elsif days < 1
         event_time.strftime("Today at %l:%m%p") + " (in #{hours}h #{mins}m)"
       elsif months <= 1
-        event_time.strftime("%m/%d") + " (in #{pluralize(total_days, "day")})"
+        event_time.strftime("%m-%d") + " (in #{pluralize(total_days, "day")})"
       elsif years < 1
-        event_time.strftime("%m/%d/%Y") + " (in #{pluralize(months, "month")})"
+        event_time.strftime("%m-%d-%Y") + " (in #{pluralize(months, "month")})"
       else
-        event_time.strftime("%m/%Y") + " (in #{pluralize(years, "year")})"
+        event_time.strftime("%m-%Y") + " (in #{pluralize(years, "year")})"
       end
     end
   end

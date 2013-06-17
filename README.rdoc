@@ -14,20 +14,23 @@
 * Track contributions (done)
 
 == Phase 2
+* Update/paginate feed with JavaScript, add JS tooltips, add other JS features to make site more asynchronous
 * Automatic timezone adjustments
-* Users can submit new content that will somehow be approved (probably simple admin approval at first)
-* Users can submit taggable news articles which will be pushed to feeds based on tags and followed games
-* Improve the contribution system with game-like features, rewards, rankings, etc
 * Users can submit data like brackets/results/VODs to existing tournaments
 
 == Phase 3
+* Users can submit new content that will somehow be approved (probably simple admin approval at first)
+* Users can submit taggable news articles which will be pushed to feeds based on tags and followed games
+* Improve the contribution system with game-like features, rewards, rankings, etc
+
+== Phase 4
 * Streamline new content submission so that the site works by itself (submission voting?)
-* Allow users to add comments to submissions
 * Reorganize streams/streams into players/teams and their respective streams
 * Users can add new players/teams and update their information like winnings, roster, etc
 * Users can link up their account with the Player model through Twitch API and keep their data up to date
 
-== Phase 4
+== Phase 5
 * Allow users to start submitting statistics about streams/tournaments (e.g., prize pools, viewer counts, etc)
 * Start automatically tracking and recording stream counts
 * Aggregate various data to start showing cool statistics like "Games sorted by most prize money" or "Most money earned by nation"
+* Allow users to add comments to submissions

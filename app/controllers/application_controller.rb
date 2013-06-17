@@ -5,11 +5,11 @@ class ApplicationController < ActionController::Base
   before_filter :get_events, :get_streams
 
   def get_events
-    @sidebar_events = Event.soon
+    #@sidebar_events = Event.soon
   end
 
   def get_streams
-    @sidebar_streams = Stream.live
+    @sidebar_streams = Stream.live.order { viewer_count.desc }
   end
 
 

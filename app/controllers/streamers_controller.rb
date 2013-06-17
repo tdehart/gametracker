@@ -1,4 +1,6 @@
 class StreamersController < ApplicationController
+  before_filter :admin_user?, except: [:index, :show]
+  
   def index
     @streamers = Streamer.all
   end

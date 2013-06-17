@@ -1,20 +1,15 @@
 class TournamentsController < ApplicationController
+  before_filter :admin_user?, except: [:index, :table, :show]
   layout 'single_column', only: [:table, :new]
 
   def index
     @tournaments = Tournament.all
   end
 
-  def table
-    respond_to do |format|
-      format.html
-      format.json { render json: TournamentsDatatable.new(view_context) }
-    end
-  end
-
   def show
     @tournament = Tournament.find(params[:id])
     @submitter = @tournament.feed_items.where { key == "Tournament.create" }[0].owner
+    @events = @tournament.events.order { event_time.asc }
   end
 
   def new

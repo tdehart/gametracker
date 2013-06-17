@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_filter :admin_user?, except: [:index, :show]
+  
   def index
     @events = Event.all
   end
