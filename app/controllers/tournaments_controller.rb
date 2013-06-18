@@ -3,7 +3,7 @@ class TournamentsController < ApplicationController
   layout 'single_column', only: [:table, :new]
 
   def index
-    @tournaments = Tournament.all
+    @tournaments = Tournament.where { start_date >= Date.today }.order { start_date.asc }.page(params[:page]).per(10)
   end
 
   def show

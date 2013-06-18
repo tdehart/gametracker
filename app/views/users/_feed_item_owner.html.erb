@@ -1,16 +1,17 @@
 <span class="listing-submit-info">
 
-    <%= link_to feed_item.owner.name, feed_item.owner %> 
+    <%= link_to feed_item.owner.name, feed_item.owner %>
+    
     <% if feed_item.key.include?('create')  %>
       <% if feed_item.feedable.is_a?(Tournament) %>
         submitted a new <i class="icon-trophy"></i>  Tournament
       <% elsif feed_item.feedable.is_a?(Event) %>
         submitted a new <i class="icon-flag-checkered"></i> Event
-      <% end %>
+    <% end %>
       
     <!-- If we display update/destroy/etc in feed this is where you put it in elsif blocks -->
     <% end %>
 
-    <span> <%= time_ago_from_now(feed_item.created_at) %></span>
+    <span class="submit-info-time"> <%= time_ago_from_now(feed_item.created_at) %></span>
 </span>
 

@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_streams
-    @sidebar_streams = Stream.live.order { viewer_count.desc }
+    @sidebar_streams = Stream.order { viewer_count.desc }
   end
 
 

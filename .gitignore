@@ -7,10 +7,10 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-/public/uploads
 
-# Ignore temp image uploads
+# Ignore image uploads
 /public/uploads/tmp
+/public/uploads
 
 # Ignore other unneeded files.
 doc/
