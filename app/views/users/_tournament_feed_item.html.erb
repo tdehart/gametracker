@@ -1,17 +1,18 @@
 <div class="row">
   <div class="span9">
-    <h1><%= link_to image_tag(feed_item.game.image_url(:large_thumb), :tooltip => feed_item.game.name), feed_item.game %> <%= link_to feed_item.name, feed_item %></h1>
+    <h2><%= link_to image_tag(feed_item.game.image_url(:large_thumb), :tooltip => feed_item.game.name), feed_item.game %> <%= link_to feed_item.name, feed_item %>
+    </h2>
   </div>
 </div>
 <div class="row">
   <div class="span3">
-    <h2><%= image_tag image_path("date32.png") %> <%= feed_item.start_date.strftime("%m-%d-%Y") %></h2>
+    <h3><i class="icon-calendar icon-large"></i> <%= feed_item.start_date.strftime("%m-%d-%Y") %></h3>
   </div>
   <div class="span3">
-    <h2><%= image_tag image_path("coins32.png") %> <%= number_to_currency(feed_item.prize_pool, :precision => 0) %></h2>
+    <h3><i class="icon-money icon-large"></i> <%= number_to_currency(feed_item.prize_pool, :precision => 0) %></h3>
   </div>
   <div class="span">
-    <h2><%= image_tag image_path("people32.png") %> <%= feed_item.num_competitors %> players</h2>
+    <h3><i class="icon-group icon-large"></i>  <%= feed_item.num_competitors %> players</h3>
   </div>
 </div>
 <div class="row">

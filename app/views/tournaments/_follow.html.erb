@@ -1,7 +1,7 @@
 <%= form_for(current_user.followed_tournaments.build(tournament_id: @tournament.id), remote: true) do |f| %>
     <%= f.hidden_field :tournament_id %>
     <%= button_tag(:type => 'submit', :class => 'btn btn-success') do %>
-     <i class="icon-white icon-eye-open"></i> Follow
+      <i class="icon-white icon-eye-open"></i> Follow
     <% end %>
 <% end %>
 

@@ -1,4 +1,6 @@
 <%= form_for(current_user.followed_games.build(game_id: @game.id), remote: true) do |f| %>
     <%= f.hidden_field :game_id %>
-    <%= f.submit "Follow", class: "btn btn-primary" %>
+    <%= button_tag(:type => 'submit', :class => 'btn btn-success follow-game') do %>
+      <i class="icon-white icon-eye-open"></i> Follow
+    <% end %>
 <% end %>

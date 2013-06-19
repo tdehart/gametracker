@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def feed
-    @feed_items = current_user.feed.page(params[:page]).per(5)
+    @feed_items = current_user.feed.page(params[:page]).per(6)
   end
 
   def show

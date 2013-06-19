@@ -7,14 +7,16 @@
 == Phase 1
 * User authentication system (done)
 * Users can follow games/tournaments (done)
-* Users can view their feed of followed games/tournaments (back-end done)
-* Users can view all Tournaments/Events (index, show pages) (back-end done)
+* Users can view their feed of followed games/tournaments (done)
+* Users can view all Tournaments (index, show pages) (done)
 * Users can view streams and the site will update streams to keep a current list of live streams (mostly done)
 * Admins can submit new content (done)
 * Track contributions (done)
+* Region support throughout various models including tournaments, events, players, and teams
 
 == Phase 2
 * Update/paginate feed with JavaScript, add JS tooltips, add other JS features to make site more asynchronous
+* More options to view tournaments/events by game/date/etc (maybe a sortable table?)
 * Automatic timezone adjustments
 * Users can submit data like brackets/results/VODs to existing tournaments
 
@@ -34,3 +36,5 @@
 * Start automatically tracking and recording stream counts
 * Aggregate various data to start showing cool statistics like "Games sorted by most prize money" or "Most money earned by nation"
 * Allow users to add comments to submissions
+* Allow users to follow more things like players/teams/streams
+* Push more things to the feed like VODs for followed tournaments, youtube videos for followed players/teams, etc

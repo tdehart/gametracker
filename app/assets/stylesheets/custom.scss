@@ -32,6 +32,7 @@ img.listing-game-icon {
 }
 
 .listing-submit-info {
+  font-weight: normal;
   font-size: 12px;
   color: #949494;
 
@@ -60,7 +61,7 @@ ul.sidebar-list {
   }
 }
 
-ul.tournament-event-list {
+ul.tournament-event-list, .game-tournament-list {
   list-style: none;
   margin: 0;
   li {
@@ -71,6 +72,36 @@ ul.tournament-event-list {
       border-bottom-style: none;
     }
   }
+}
+
+ul.tournament-show-stats, .game-show-stats, .user-show-stats {
+  list-style: none;
+  margin: 0;
+
+  li {
+    padding-bottom: 10px;
+    font-size: 24.5px;
+    font-weight: bold;
+  }
+}
+
+.game-show-stats-header {
+  border-bottom: 1px solid #ddd;
+  margin-top: 20px;
+}
+
+.game-index-item {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 15px;  
+  margin-bottom: 10px;
+}
+
+.game-index-stats {
+  font-size: 18px;
+}
+
+.game-index-stat {
+  margin-right: 30px;
 }
 
 #follow_form {

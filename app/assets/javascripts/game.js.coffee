@@ -7,3 +7,14 @@ $("[tooltip]").each ->
   $(this).tooltip({
     title: $(this).attr('tooltip')
   })
+
+$(".follow-game").tooltip({
+  title: "You just followed a game! Check your feed for new activity."
+  trigger: "click"
+  container: 'body'
+})
+
+$(document).click ->
+  setTimeout ( ->
+    $(".tooltip").fadeOut()
+  ), 7000

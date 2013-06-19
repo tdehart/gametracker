@@ -1,5 +1,7 @@
 <%= form_for(current_user.followed_games.find_by_game_id(@game),
              html: { method: :delete },
              remote: true) do |f| %>
-    <%= f.submit "Unfollow", class: "btn" %>
+    <%= button_tag(:type => 'submit', :class => 'btn btn-danger') do %>
+      <i class="icon-white icon-eye-close"></i> Unfollow
+    <% end %>
 <% end %>

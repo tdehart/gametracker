@@ -17,19 +17,19 @@
 
     <div class="row">
       <div class="span">
-        <%= image_tag image_path("date32.png") %> <%= t.start_date.strftime("%m-%d-%Y") %>
+        <i class="icon-calendar icon-2x icon-align"></i> <%= t.start_date.strftime("%m-%d-%Y") %>
       </div>
 
       <div class="span">
-        <%= image_tag image_path("coins32.png") %> <%= number_to_currency(t.prize_pool, :precision => 0) %>
+        <i class="icon-money icon-2x icon-align"></i> <%= number_to_currency(t.prize_pool, :precision => 0) %>
       </div>
 
       <div class="span">
-        <%= image_tag image_path("people32.png") %> <%= t.num_competitors %> players
+        <i class="icon-group icon-2x icon-align"></i> <%= t.num_competitors %> players
       </div>
 
       <div class="span">
-        <i class="icon-flag-checkered icon-2x icon-align"></i> <%= pluralize(t.events.length, "event") %>
+        <i class="icon-flag-checkered icon-2x icon-align"> </i> <%= pluralize(t.events.length, "event") %>
       </div>
     </div>
       

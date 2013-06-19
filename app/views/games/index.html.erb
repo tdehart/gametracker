@@ -1,21 +1,21 @@
-<h2>Top Active Games <span class="heading_sublink"><%= link_to "browse all games", "#" %></span></h2>
-<div id="top_active_games">
-  <% @games.each do |g| %>
-    <div class="top_active_game">
-      <span id="active_game_label">
-        <%= "#{@games.index(g)+1}. " %>
-        <%= link_to g do %>
-          <%= image_tag g.image_url(:med_thumb) %> <%= g.name %>
-        <% end %>
-      </span>
-      <br/>
+<% @games.each do |g| %>
+  <div class="row">
+      <div class="span6 game-index-item">
+      <%= link_to g do %>
+      <h4>
+        <%= image_tag g.image_url(:med_thumb) %> <%= g.name %>
 
-      <div id="active_game_stat_left">45/200 tournaments
-        <span id="active_game_stat_right">$500k/$1.5m</span>
+      <% end %>
+      developed by <%= image_tag g.developer.image_url(:med_thumb) %> <%= g.developer.name %>
+    </h4> 
+      <div class="row">
+        <div class="span6 game-index-stats">
+          <span style="margin-right: 20px">
+            <i class="icon-trophy"></i> Total Tournaments: <%= g.tournaments.length %>
+          </span>
+          <i class="icon-money"></i> Total Prizes: <%= number_to_currency(g.tournaments.collect { |t| t.prize_pool }.inject(:+), :precision => 0)  %>
+        </div>
       </div>
-
     </div>
-  <% end %>
-</div>
-
-<p><%= link_to "New game", new_game_path %></p>
+  </div>
+<% end %>

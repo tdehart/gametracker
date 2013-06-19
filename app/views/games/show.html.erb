@@ -1,17 +1,57 @@
-<%= link_to "<< back", :back %>
-  <%= image_tag @game.image_url(:med_thumb) %>
-  <%= @game.name %></span>  <%= render 'follow_form' %>
-  <p>Genre: <%= @game.genre %></p>
-  <p>Developer: <%= @game.developer.name %></p>
-  <p>Competitive Statistics</p>
-  <p>Tournaments: <%= @tournaments.count %></p>
-  <p>Total Prizes: <%= number_to_currency(@prize_total, precision: 0) %></p>
-  <p>Web Resources: <%= @game.web_resources ? @game.web_resources.size : 0 %></p>
-  Average prize pool per tournament:
+<div class="row">
+  <div class="span9">
+    <h1>
+      <%= image_tag @game.image_url(:large_thumb) %> <%= @game.name %>
+      <%= render 'follow_form' %>
+    </h1>
+  </div>
+  
+</div>
 
-  Recent & Upcoming Tournaments
-<p>
-  <%= link_to "Edit", edit_game_path(@game) %>
-  <%= link_to "Delete", @game, method: :delete,
-              confirm: "You sure?" %> <br/>
-</p>
+<div class="row">
+  <div class="span9">
+    <ul class="game-show-stats">
+      <li>Developer: <%= image_tag @game.developer.image_url(:med_thumb) %> <%= @game.developer.name %></li>
+      <li>Genre: <em><%= @game.genre %></em></li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span8">
+    <h2 class="game-show-stats-header">Competitive Statistics</h2>
+    <ul class="game-show-stats">
+      <li><i class="icon-trophy"></i> Total Tournaments: <em><%= @game.tournaments.length %></em></li>
+      <li><i class="icon-money"></i> Total Prizes: <em><%= number_to_currency(@game.tournaments.collect { |t| t.prize_pool }.inject(:+), :precision => 0)  %></em>  </li>    
+    </ul>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="span8">
+    <h2 class="game-show-stats-header">Upcoming Tournaments</h2>
+    <ul class="game-tournament-list">
+      <% @game.tournaments.where { start_date >= Date.today }.order { start_date.asc }.each do |t| %>
+      <li>
+        <h3><%= link_to t.name, t %></h3>
+        <h4><i class="icon-calendar icon-large"></i> Tournament Date: <em><%= t.start_date.strftime("%m-%d-%Y") %></em></h4>
+        <h4> <i class="icon-money icon-large"></i> Prize Pool: <em><%= number_to_currency(t.prize_pool, :precision => 0) %></em></h4>
+        <p><%= t.description[0..225] %>...</p>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<% if current_user.admin? %>
+  <p>
+    <%= link_to "Edit", edit_game_path(@game) %>
+    <%= link_to "Delete", @game, method: :delete,
+                confirm: "You sure?" %> <br/>
+  </p>
+<% end %>
+
+
+
+

@@ -12,7 +12,7 @@
         <% end %>
         <p>
           <span class="text-success"><%= s.viewer_count %> viewers</span>
-          <i class="icon-play-circle"></i> <%= link_to "Watch Now", s.link %>
+          <i class="icon-play-circle"></i> <%= link_to "Watch Now", s.link, :target => "_blank" %>
         </p>
       </li>
     <% end %>

@@ -1,5 +1,6 @@
-<h1>Users#show</h1>
-<p><%= @user.name %></p>
-<p>Followed tournaments: <%= @user.followed_tournaments.size %></p>
-<p>Followed games: <%= @user.followed_games.size %></p>
-<p>Contributions: <%= @user.feed_items_as_owner.size %></p>
+<h1><%= @user.name %></h1>
+<ul class="user-show-stats">
+  <li>Contributions: <%= @user.feed_items_as_owner.count %></li>
+  <li>Followed Games: <%= @user.games.count %></li>
+  <li>Followed Tournaments: <%= @user.tournaments.count %></li>
+</ul>
