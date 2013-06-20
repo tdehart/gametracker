@@ -10,8 +10,19 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  # storage :file
+  storage :fog
+
+  CarrierWave.configure do |config|
+    config.fog_credentials = {
+      :provider               => 'AWS',                        # required
+      :aws_access_key_id      => 'AKIAIV5QYTJHRL6HW7MQ',                        # required
+      :aws_secret_access_key  => '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',                        # required
+      :region                 => 'us-east-1',                  # optional, defaults to 'us-east-1'
+    }
+
+    config.fog_directory  = 'gametracker' 
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -26,17 +37,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   #
       "/assets/" + [version_name, "placeholder.png"].compact.join('_')
   end
-
-  def cache_dir
-    "#{Rails.root}/tmp/uploads"
-  end
-
-  # Process files as they are uploaded:
-  # process :scale => [200, 300]
-  #
-  # def scale(width, height)
-  #   # do something
-  # end
 
   # Create different versions of your uploaded files:
   version :large_thumb do

@@ -17,6 +17,7 @@ gem 'httparty'
 gem 'kaminari'
 gem 'sass-rails', '~> 3.2'
 gem 'bootstrap-sass', '~> 2.3.1.3'
+gem "fog", "~> 1.3.1"
 
 
 group :assets do
