@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
 gem 'rails', '3.2.13'
 gem 'bcrypt-ruby'
 gem 'jquery-rails'
@@ -14,11 +15,11 @@ gem 'dotiw'
 gem 'thin'
 gem 'httparty'
 gem 'kaminari'
+gem 'sass-rails', '~> 3.2'
+gem 'bootstrap-sass', '~> 2.3.1.3'
+gem 'coffee-rails'
 
 group :assets do
-  gem 'sass-rails', '~> 3.2'
-  gem 'bootstrap-sass', '~> 2.3.1.3'
-  gem 'coffee-rails'
   gem 'uglifier'
   gem 'font-awesome-rails'
 end
