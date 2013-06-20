@@ -27,6 +27,10 @@ class ImageUploader < CarrierWave::Uploader::Base
       "/assets/" + [version_name, "placeholder.png"].compact.join('_')
   end
 
+  def cache_dir
+    "#{Rails.root}/tmp/uploads"
+  end
+
   # Process files as they are uploaded:
   # process :scale => [200, 300]
   #
