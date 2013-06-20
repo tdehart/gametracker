@@ -9,16 +9,18 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::RailsHelper
   # include Sprockets::Helpers::IsolatedHelper
 
-  # Choose what kind of storage to use for this uploader:
-  # storage :file
-  storage :fog
+  if Rails.env.production?
+    storage :fog
+  else
+    storage :file
+  end
 
   CarrierWave.configure do |config|
     config.fog_credentials = {
-      :provider               => 'AWS',                        # required
-      :aws_access_key_id      => 'AKIAIV5QYTJHRL6HW7MQ',                        # required
-      :aws_secret_access_key  => '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',                        # required
-      :region                 => 'us-east-1',                  # optional, defaults to 'us-east-1'
+      :provider               => 'AWS',
+      :aws_access_key_id      => ENV['S3_KEY'],
+      :aws_secret_access_key  => ENV['S3_SECRET'],
+      :region                 => ENV['S3_REGION'],
     }
 
     config.fog_directory  = 'gametracker' 
