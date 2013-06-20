@@ -3,7 +3,7 @@ body {
 }
 
 img.listing-game-icon {
-  vertical-align: middle;
+  vertical-align: middle; 
 }
 
 .listing {
@@ -23,7 +23,21 @@ img.listing-game-icon {
   padding-bottom: 10px;
 }
 
-.listing-last, .tournament-index-item-last {
+.game-index-item {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 15px;  
+  margin-bottom: 10px;
+}
+
+.game-index-stats {
+  font-size: 18px;
+}
+
+.game-index-stat {
+  margin-right: 30px;
+}
+
+.listing-last, .tournament-index-item-last, .game-index-item-last {
     border-bottom-style: none;
 }
 
@@ -90,19 +104,6 @@ ul.tournament-show-stats, .game-show-stats, .user-show-stats {
   margin-top: 20px;
 }
 
-.game-index-item {
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 15px;  
-  margin-bottom: 10px;
-}
-
-.game-index-stats {
-  font-size: 18px;
-}
-
-.game-index-stat {
-  margin-right: 30px;
-}
 
 #follow_form {
   display: inline;

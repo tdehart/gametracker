@@ -7,7 +7,7 @@
         <h4>
           <%= link_to image_tag(t.game.image_url(:med_thumb), :tooltip => t.game.name) %> <%= link_to t.name, t %>
           <span class="listing-submit-info">
-            submitted by <%= link_to @owner.name, @owner %>
+            submitted by <%= link_to @owner.name, @owner if @owner %>
             <span class="submit-info-time"> <%= time_ago_from_now(t.created_at) %></span>
           </span>
         </h4>

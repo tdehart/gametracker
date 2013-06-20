@@ -1,6 +1,6 @@
 <% @games.each do |g| %>
   <div class="row">
-      <div class="span6 game-index-item">
+      <div class="span6 game-index-item<%= ' game-index-item-last' if g.equal? @games.last %>">
       <%= link_to g do %>
       <h4>
         <%= image_tag g.image_url(:med_thumb) %> <%= g.name %>
