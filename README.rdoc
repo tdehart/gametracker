@@ -13,6 +13,7 @@
 * Admins can submit new content (done)
 * Track contributions (done)
 * Region support throughout various models including tournaments, events, players, and teams
+* Developers can submit news and assign it to certain games
 
 == Phase 2
 * Robust search

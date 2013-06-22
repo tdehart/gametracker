@@ -17,6 +17,8 @@
 #
 
 class Tournament < ActiveRecord::Base
+  monetize :prize_pool_cents
+
   attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :start_date, :description, :image, :remote_image_url
 
   belongs_to :game
@@ -39,6 +41,7 @@ class Tournament < ActiveRecord::Base
   #validates :region,          :presence =>     true
 
   validates :prize_pool,      :numericality => { greater_than_or_equal_to: 0, allow_nil: true }
+
 
   validates :game_id,         :presence =>     true
 

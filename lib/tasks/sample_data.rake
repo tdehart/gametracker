@@ -60,7 +60,7 @@ namespace :db do
                                      region: "US",
                                      num_competitors: 24,
                                      game_id: Game.first.id,
-                                     prize_pool: 12000,
+                                     prize_pool_cents: 12000,
                                      start_date: Date.today,
                                      description: "The ESL Major Series is a series of prize winning eSports tournaments hosted by Electronic Sports League.")
 
@@ -91,7 +91,7 @@ namespace :db do
       region = %w[US EU Asia International].sample
       num_competitors = [8, 12, 24, 36, 48, 64, 128, 256, 512, 1024].sample
       game = Game.all.sample.id
-      prize_pool = [2000, 4000, 8000, 12000, 24000, 48000, 64000, 80000, 100000, 200000, 500000, 1000000].sample
+      prize_pool_cents = [2000, 4000, 8000, 12000, 24000, 48000, 64000, 80000, 100000, 200000, 500000, 1000000].sample
       date1 = 100.days.ago
       date2 = 100.days.ago+200.days
       start_date = Time.at((date2.to_f - date1.to_f)*rand + date1.to_f).to_date
@@ -101,7 +101,7 @@ namespace :db do
                                        region: region,
                                        num_competitors: num_competitors,
                                        game_id: game,
-                                       prize_pool: prize_pool,
+                                       prize_pool_cents: prize_pool_cents,
                                        start_date: start_date,
                                        description: description)
 

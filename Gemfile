@@ -18,7 +18,8 @@ gem 'kaminari'
 gem 'sass-rails', '~> 3.2'
 gem 'bootstrap-sass', '~> 2.3.1.3'
 gem "fog", "~> 1.3.1"
-
+gem 'money-rails'
+gem 'google_currency'
 
 group :assets do
   gem 'coffee-rails'
