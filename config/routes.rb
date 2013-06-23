@@ -2,11 +2,12 @@ Gametracker::Application.routes.draw do
 
   resources :web_resources
 
-
   match '/landing', :to => 'static_pages#landing'
   match '/about', :to => 'static_pages#about'
 
-  resources :tournaments
+  resources :tournaments do
+    get :autocomplete_game_name, :on => :collection
+  end
   resources :events
   resources :developers
   resources :games

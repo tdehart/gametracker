@@ -17,9 +17,11 @@
 #
 
 class Tournament < ActiveRecord::Base
+  before_save :update_prize_pool
   monetize :prize_pool_cents
 
-  attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :start_date, :description, :image, :remote_image_url
+  attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool_cents, :region, :start_date, :end_date, :description, :image, :remote_image_url, :currency_iso_code
+  attr_accessor :currency_iso_code
 
   belongs_to :game
   has_many :web_resources, :as => :resourceable
@@ -33,7 +35,7 @@ class Tournament < ActiveRecord::Base
   has_many :feed_items, :as => :feedable
   
   validates :link,            :format => URI::regexp(%w(http https)),
-                              :presence =>     true
+  :presence =>     true
 
   validates :name,            :presence =>     true
 
@@ -77,8 +79,14 @@ class Tournament < ActiveRecord::Base
       tournaments
     end
 
-    def notable
 
+  end
+
+  private
+  def update_prize_pool
+    if self.prize_pool_cents && self.currency_iso_code
+      @currency = Money::Currency.new(self.currency_iso_code)
+      self.prize_pool = Money.new((@currency.subunit_to_unit * prize_pool_cents), self.currency_iso_code).exchange_to("USD")
     end
   end
 end

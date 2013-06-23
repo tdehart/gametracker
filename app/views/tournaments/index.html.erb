@@ -21,11 +21,7 @@
       </div>
 
       <div class="span">
-        <i class="icon-money icon-2x icon-align"></i> <%= number_to_currency(t.prize_pool, :precision => 0) %>
-      </div>
-
-      <div class="span">
-        <i class="icon-money icon-2x icon-align"></i> <%= humanized_money_with_symbol t.prize_pool.exchange_to("EUR") %>
+        <i class="icon-money icon-2x icon-align"></i> <%= humanized_money_with_symbol t.prize_pool %>
       </div>
 
       <div class="span">

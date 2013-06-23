@@ -9,12 +9,13 @@ class ApplicationController < ActionController::Base
   end
 
   def get_streams
-    @sidebar_streams = Stream.order { viewer_count.desc }.live
-    @sidebar_followed_streams = []
-    Stream.order { viewer_count.desc }.each do |s|
-      if (current_user.games.include?(s.current_game))
-        @sidebar_followed_streams << s
-      end
-    end
+    @sidebar_streams = []
+    # @sidebar_streams = Stream.order { viewer_count.desc }.live
+    # @sidebar_followed_streams = []
+    # Stream.order { viewer_count.desc }.each do |s|
+    #   if (current_user.games.include?(s.current_game))
+    #     @sidebar_followed_streams << s
+    #   end
+    # end
   end
 end

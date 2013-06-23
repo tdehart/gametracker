@@ -1,5 +1,8 @@
-<%= semantic_form_for @user do |f| %>
+<%= simple_form_for @user do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
-  <%= f.inputs :name, :email, :password, :password_confirmation %>
-  <%= f.actions %>
+  <%= f.input :email %>
+  <%= f.input :name, label: "Display Name" %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <%= f.button :submit, "Sign up" %>
 <% end %>

@@ -1,6 +1,7 @@
 class TournamentsController < ApplicationController
-  before_filter :admin_user?, except: [:index, :table, :show]
-  layout 'single_column', only: [:table, :new]
+  before_filter :admin_user?, except: [:index, :show]
+  layout 'single_column', only: [:new]
+  autocomplete :game, :name
 
   def index
     @tournaments = Tournament.where { start_date >= Date.today }.order { start_date.asc }.page(params[:page]).per(10)
