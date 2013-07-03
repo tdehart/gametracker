@@ -19,7 +19,7 @@ class Game < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  attr_accessible :genre, :name, :num_players, :website, :developer_id, :streams, :tournaments, :image, :remote_image_url, :abbreviation
+  attr_accessible :genre, :name, :num_players, :website, :developer_id, :streams, :tournaments, :image, :remote_image_url, :abbreviation, :competitor_type
 
   belongs_to :developer
   has_many :tournaments, :dependent => :destroy

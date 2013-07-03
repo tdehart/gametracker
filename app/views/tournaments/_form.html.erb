@@ -4,11 +4,12 @@
   <%= f.association :game %>
   <!-- <%= f.association :game, :url => autocomplete_game_name_tournaments_path, as: :autocomplete %> -->
   <%= f.input :link, label: 'Official Website' %>
-  <%= f.input :start_date, as: :date_picker %>
-  <%= f.input :end_date, as: :date_picker %>
-  <%= f.input :prize_pool_cents, label: 'Prize Pool' %>
-  <%= f.input :currency_iso_code %>
-  <%= f.input :region %>
+  <label>Start Date <%= link_to "(examples)", "https://github.com/mojombo/chronic#examples", :target => "_blank" %></label>
+  <%= f.input_field :chronic_start_input %>
+  <%= f.input :chronic_end_input, label: "End Date" %>
+  <%= f.input :prize_pool, label: 'Prize Pool' %>
+  <%= f.input :currency %>
+  <%= f.association :regions %>
   <%= f.input :image, as: :file %>
   <%= f.input :remote_image_url%>
   <%= f.button :submit %>

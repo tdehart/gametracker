@@ -1,5 +1,7 @@
 <%= simple_form_for @stream do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
-  <%= f.inputs :link, :description, :streamers, :games, :live, :platform, :channel_id %>
-  <%= f.actions %>
+  <%= f.input :link %>
+  <%= f.association :games %>
+  <%= f.association :streamers %>
+  <%= f.button :submit %>  
 <% end %>

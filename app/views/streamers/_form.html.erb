@@ -1,0 +1,11 @@
+<%= simple_form_for @streamer do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <%= f.input :online_name %>
+  <%= f.input :real_name %>
+  <%= f.input :biography %>
+  <%= f.input :nationality %>
+  <%= f.input :birthday %>
+  <%= f.input :image, as: :file %>
+  <%= f.input :remote_image_url%>
+  <%= f.button :submit %>
+<% end %>

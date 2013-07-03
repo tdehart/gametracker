@@ -19,10 +19,10 @@
     <h2><i class="icon-calendar icon-large"></i> <%= @tournament.start_date.strftime("%m-%d-%Y") %></h2>
   </div>
   <div class="span3">
-    <h2><i class="icon-money icon-large"></i> <%= number_to_currency(@tournament.prize_pool, :precision => 0) %></h2>
+    <h2><i class="icon-money icon-large"></i> <%= humanized_money_with_symbol @tournament.prize_pool %> <%= @tournament.prize_pool.currency %></h2>
   </div>
   <div class="span">
-    <h2><i class="icon-group icon-large"></i> <%= @tournament.num_competitors %> players</h2>
+    <h2><i class="icon-group icon-large"></i> <%= @tournament.num_competitors %> <%= @tournament.game.competitor_type %></h2>
   </div>
 </div>
 

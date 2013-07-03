@@ -13,7 +13,9 @@
 #
 
 class Event < ActiveRecord::Base
-  attr_accessible :max_concurrent_viewers, :stream_id, :event_time, :tournament_id, :name, :web_resources, :description
+  attr_accessible :max_concurrent_viewers, :stream_id, :event_time, :tournament_id, :name, :web_resources, :description, :chronic_input
+
+  before_save :parse_chronic_input
 
   belongs_to :tournament
   belongs_to :stream
@@ -22,10 +24,15 @@ class Event < ActiveRecord::Base
 
   validates :name,       :presence => {:message => "can't be blank"}
   validates :stream_id,  :presence => {:message => "can't be blank"}
-  validates :event_time, :presence => true
+  validates :chronic_input, :presence => true
   #validates :max_concurrent_viewers, :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true }
 
   #default_scope { order { event_time.desc } }
   #scope :soon, lambda { where { {event_time => Time.now-2.hours..Date.today+2} }.order { event_time.asc } }
+
+  private
+  def parse_chronic_input
+    self.event_time = Chronic.parse(self.chronic_input)
+  end
   
 end

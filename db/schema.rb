@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130623041149) do
+ActiveRecord::Schema.define(:version => 20130703000800) do
 
   create_table "developers", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20130623041149) do
     t.string   "name"
     t.datetime "event_time"
     t.text     "description"
+    t.string   "chronic_input"
   end
 
   add_index "events", ["event_time"], :name => "index_events_on_event_time"
@@ -85,11 +86,12 @@ ActiveRecord::Schema.define(:version => 20130623041149) do
     t.string   "genre"
     t.integer  "num_players"
     t.integer  "developer_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "image"
     t.string   "slug"
     t.string   "abbreviation"
+    t.string   "competitor_type"
   end
 
   add_index "games", ["developer_id"], :name => "index_games_on_developer_id"
@@ -111,6 +113,17 @@ ActiveRecord::Schema.define(:version => 20130623041149) do
   end
 
   add_index "games_users", ["game_id", "user_id"], :name => "index_games_users_on_game_id_and_user_id", :unique => true
+
+  create_table "regions", :force => true do |t|
+    t.string   "name"
+    t.string   "image"
+    t.integer  "regionable_id"
+    t.string   "regionable_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "regions", ["regionable_id", "regionable_type"], :name => "index_regions_on_regionable_id_and_regionable_type"
 
   create_table "streamers", :force => true do |t|
     t.string   "online_name"
@@ -150,16 +163,18 @@ ActiveRecord::Schema.define(:version => 20130623041149) do
   create_table "tournaments", :force => true do |t|
     t.string   "name"
     t.string   "link"
-    t.string   "region"
     t.date     "start_date"
     t.integer  "prize_pool_cents"
     t.integer  "num_competitors"
     t.integer  "game_id"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-    t.text     "description",      :limit => 255
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.text     "description",         :limit => 255
     t.string   "image"
     t.date     "end_date"
+    t.string   "currency"
+    t.string   "chronic_start_input"
+    t.string   "chronic_end_input"
   end
 
   add_index "tournaments", ["game_id"], :name => "index_tournaments_on_game_id"

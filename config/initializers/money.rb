@@ -3,9 +3,6 @@
 MoneyRails.configure do |config|
   require 'money'
   require 'money/bank/google_currency'
-  # To set the default currency
-  #
-  config.default_currency = :usd
 
   # Set default bank object
   #

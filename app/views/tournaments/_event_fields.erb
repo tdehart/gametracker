@@ -1,9 +1,0 @@
-<%= f.simple_fields_for :events do |e| %>
-  <% if e.object.id.nil? %>
-    <%= e.input :name, :label => "Event" %>
-    <!-- TODO: make stream an input field -->
-    <%= e.association :stream %>
-    <!-- TODO: redo date and time selectors -->
-    <%= e.input :event_time %>
-  <% end %>
-<% end %>

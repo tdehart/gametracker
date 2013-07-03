@@ -17,9 +17,9 @@ gem 'chronic'
 gem 'dotiw'
 gem 'thin'
 gem 'httparty'
+gem 'money-rails'
 gem 'kaminari'
 gem "fog", "~> 1.3.1"
-gem 'money-rails'
 gem 'google_currency'
 
 

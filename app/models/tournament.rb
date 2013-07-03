@@ -17,13 +17,14 @@
 #
 
 class Tournament < ActiveRecord::Base
-  before_save :update_prize_pool
-  monetize :prize_pool_cents
+  attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :description, :image, :remote_image_url, :currency, :chronic_start_input, :chronic_end_input, :region_ids
 
-  attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool_cents, :region, :start_date, :end_date, :description, :image, :remote_image_url, :currency_iso_code
-  attr_accessor :currency_iso_code
+  before_save :parse_chronic_inputs
+  monetize :prize_pool_cents
+  mount_uploader :image, ImageUploader
 
   belongs_to :game
+  has_many :regions, :as => :regionable
   has_many :web_resources, :as => :resourceable
 
   has_many :users, through: :followed_tournaments
@@ -34,31 +35,17 @@ class Tournament < ActiveRecord::Base
 
   has_many :feed_items, :as => :feedable
   
-  validates :link,            :format => URI::regexp(%w(http https)),
-  :presence =>     true
-
-  validates :name,            :presence =>     true
-
+  validates :link,       :format => URI::regexp(%w(http https))
+  validates :name,       :presence => true
+  validates :prize_pool, :numericality => { greater_than_or_equal_to: 0, allow_nil: true }
+  validates :game_id,    :presence => true
   #TODO: Write validator for region correctness
   #validates :region,          :presence =>     true
-
-  validates :prize_pool,      :numericality => { greater_than_or_equal_to: 0, allow_nil: true }
-
-
-  validates :game_id,         :presence =>     true
-
-  validates :start_date,            :presence =>     true
-
-
-
-  #validates :prize_pool,      :presence =>     true
 
   #validates :num_competitors, :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true },
   #                            :presence     => true
 
   #scope :soon, lambda { where { {start_date => Date.today-7..Date.today+7} }.order{ date.asc } }
-
-  mount_uploader :image, ImageUploader
 
   class << self
     def upcoming(h=24)
@@ -78,15 +65,11 @@ class Tournament < ActiveRecord::Base
 
       tournaments
     end
-
-
   end
 
   private
-  def update_prize_pool
-    if self.prize_pool_cents && self.currency_iso_code
-      @currency = Money::Currency.new(self.currency_iso_code)
-      self.prize_pool = Money.new((@currency.subunit_to_unit * prize_pool_cents), self.currency_iso_code).exchange_to("USD")
-    end
+  def parse_chronic_inputs
+    self.start_date = Chronic.parse(self.chronic_start_input) if self.chronic_start_input
+    self.end_date = Chronic.parse(self.chronic_end_input) if self.chronic_end_input
   end
 end

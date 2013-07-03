@@ -30,6 +30,10 @@ class Stream < ActiveRecord::Base
 
   scope :live, lambda { where { {live => true } } }
 
+  def to_s
+    self.channel_id
+  end
+
   private
   def sanitize_website
     unless self.link.include?("http://") || self.website.include?("https://")

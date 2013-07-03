@@ -1,7 +1,4 @@
 Gametracker::Application.routes.draw do
-
-  resources :web_resources
-
   match '/landing', :to => 'static_pages#landing'
   match '/about', :to => 'static_pages#about'
 
@@ -15,6 +12,7 @@ Gametracker::Application.routes.draw do
   resources :streams
   resources :users
   resources :web_resources
+  resources :regions
   match '/feed', to: 'users#feed'
   resources :sessions, only: [:new, :create, :destroy]
   resources :followed_tournaments, only: [:create, :destroy]

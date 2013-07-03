@@ -32,18 +32,20 @@
         <i class="icon-flag-checkered icon-2x icon-align"> </i> <%= pluralize(t.events.length, "event") %>
       </div>
     </div>
-      
-    <div class="row">
-      <div class="span9 tournament-index-item-description">
-        <%= t.description[0..260] %>...
+    
+    <% if t.description %>
+      <div class="row">
+        <div class="span9 tournament-index-item-description">
+          <%= t.description[0..260] %>...
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 <% end %>
 
 <%= paginate @tournaments %>
 
 
-<% if current_user.admin? %>
+<% if current_user && current_user.admin? %>
   <p><%= link_to "New tournament", new_tournament_path %></p>
 <% end %>

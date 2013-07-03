@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @region.name %>
+</p>
+
+<p>
+  <b>Image:</b>
+  <%= @region.image %>
+</p>
+
+<p>
+  <b>Regionable:</b>
+  <%= @region.regionable_id %>
+</p>
+
+<p>
+  <b>Regionable type:</b>
+  <%= @region.regionable_type %>
+</p>
+
+
+<%= link_to 'Edit', edit_region_path(@region) %> |
+<%= link_to 'Back', regions_path %>

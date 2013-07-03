@@ -1,5 +1,10 @@
 <%= simple_form_for @event do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
-  <%= f.inputs %>
-  <%= f.actions %>
+  <%= f.input :name %>
+  <%= f.association :tournament %>
+  <label>Event date/time <%= link_to "(examples)", "https://github.com/mojombo/chronic#examples", :target => "_blank" %></label>
+  <%= f.input_field :chronic_input %>
+  <%= f.input :description %>
+  <%= f.association :stream %>
+  <%= f.button :submit %>
 <% end %>

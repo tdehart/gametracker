@@ -1,8 +1,2 @@
-<%= form_for(@streamer) do |f| %>
-    <%= render 'shared/error_messages', :object => f.object %>
-    <%= render 'fields', :f => f %>
-
-    <div class="actions">
-      <%= f.submit "Create" %>
-    </div>
-<% end %>
+<%= render 'form' %>
+<span class="back_link"><%= link_to "cancel", :back %></span>
