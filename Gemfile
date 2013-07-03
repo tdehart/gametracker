@@ -5,6 +5,7 @@ gem 'rails', '3.2.13'
 gem 'bcrypt-ruby'
 gem 'sass-rails', '~> 3.2'
 gem 'bootstrap-sass', '~> 2.3.1.3'
+gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'rails3-jquery-autocomplete'
@@ -26,7 +27,7 @@ gem 'google_currency'
 group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
-  gem 'font-awesome-rails'
+  
 end
 
 group :development, :test do
