@@ -2,7 +2,6 @@
   <%= render 'shared/error_messages', :object => f.object %>
   <%= f.input :name %>
   <%= f.association :game %>
-  <!-- <%= f.association :game, :url => autocomplete_game_name_tournaments_path, as: :autocomplete %> -->
   <%= f.input :link, label: 'Official Website' %>
   <label>Start Date <%= link_to "(examples)", "https://github.com/mojombo/chronic#examples", :target => "_blank" %></label>
   <%= f.input_field :chronic_start_input %>
