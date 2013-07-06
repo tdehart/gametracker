@@ -73,4 +73,8 @@ module ApplicationHelper
       event.name
     end
   end
+
+  def calculate_total_prizes(tournaments)
+    tournaments.collect { |t| humanized_money_with_symbol t.prize_pool.exchange_to("USD") }.inject(:+)
+  end
 end

@@ -13,7 +13,7 @@
           <span style="margin-right: 20px">
             <i class="icon-trophy"></i> Total Tournaments: <%= g.tournaments.length %>
           </span>
-          <i class="icon-money"></i> Total Prizes: <%= number_to_currency(g.tournaments.collect { |t| t.prize_pool }.inject(:+), :precision => 0)  %>
+          <i class="icon-money"></i> Total Prizes: <%= humanized_money_with_symbol calculate_total_prizes g.tournaments %>
         </div>
       </div>
     </div>

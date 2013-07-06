@@ -4,7 +4,8 @@ class TournamentsController < ApplicationController
   autocomplete :game, :name
 
   def index
-    @tournaments = Tournament.where { start_date >= Date.today }.order { start_date.asc }.page(params[:page]).per(10)
+    #@tournaments = Tournament.where { start_date >= Date.today }.order { start_date.asc }.page(params[:page]).per(10)
+    @tournaments = Tournament.order {start_date.asc }.page(params[:page]).per(10)
   end
 
   def show

@@ -1,4 +1,3 @@
-<h1>Upcoming Tournaments</h1>
 <% @tournaments.each do |t| %>
   <% @owner = t.feed_items.where { key == "Tournament.create" }[0].owner %>
   <div class="tournament-index-item<%= ' tournament-index-item-last' if t.equal? @tournaments.last %>">
@@ -36,7 +35,7 @@
     <% if t.description %>
       <div class="row">
         <div class="span9 tournament-index-item-description">
-          <%= t.description[0..260] %>...
+          <%= t.description[0..260] %>
         </div>
       </div>
     <% end %>
