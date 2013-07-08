@@ -40,7 +40,7 @@ class RegionsController < ApplicationController
   # POST /regions
   # POST /regions.json
   def create
-    @region = Region.new(params[:region])
+    @region = Region.new(region_params)
 
     respond_to do |format|
       if @region.save
@@ -59,7 +59,7 @@ class RegionsController < ApplicationController
     @region = Region.find(params[:id])
 
     respond_to do |format|
-      if @region.update_attributes(params[:region])
+      if @region.update_attributes(region_params)
         format.html { redirect_to @region, notice: 'Region was successfully updated.' }
         format.json { head :no_content }
       else

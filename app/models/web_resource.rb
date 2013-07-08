@@ -12,7 +12,5 @@
 #
 
 class WebResource < ActiveRecord::Base
-  attr_accessible :resource_type, :resourceable_id, :resourceable_type, :url
-
   belongs_to :resourceable, :polymorphic => true
 end

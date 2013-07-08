@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :admin_user?, only: [:index, :destroy]
-  before_filter :signed_in_user, only: [:feed]
+  before_action :admin_user?, only: [:index, :destroy]
+  before_action :signed_in_user, only: [:feed]
 
   def index
     @users = User.all
@@ -20,10 +20,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     if @user.save
       sign_in @user
-      redirect_to root_path
+      flash[:success] = "Welcome to the Sample App!"
+      redirect_to @user
     else
       render 'new'
     end
@@ -32,5 +33,11 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     redirect_to users_path
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:name, :email, :password,
+                                 :password_confirmation)
   end
 end

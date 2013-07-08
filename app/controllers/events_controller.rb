@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :admin_user?, except: [:index, :show]
+  before_action :admin_user?, except: [:index, :show]
   
   def index
     @events = Event.all
@@ -14,7 +14,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(params[:event])
+    @event = Event.new(event_params)
     if @event.save
       FeedItem.create!(feedable: @event, owner: current_user, key: "Event.create")
       redirect_to @event
@@ -29,7 +29,7 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    if @event.update_attributes(params[:event])
+    if @event.update_attributes(event_params)
       FeedItem.create!(feedable: @event, owner: current_user, key: "Event.update")
       redirect_to @event
     else
@@ -42,5 +42,10 @@ class EventsController < ApplicationController
     FeedItem.create!(feedable: @event, owner: current_user, key: "Event.delete")
     @event.destroy
     redirect_to events_path
+  end
+
+  private
+  def event_params
+    params.require(:event).permit(:name, :event_time, :tournament_id, :stream_id)
   end
 end

@@ -1,5 +1,5 @@
 class StreamersController < ApplicationController
-  before_filter :admin_user?, except: [:index, :show]
+  before_action :admin_user?, except: [:index, :show]
   
   def index
     @streamers = Streamer.all
@@ -15,7 +15,7 @@ class StreamersController < ApplicationController
   end
 
   def create
-    @streamer = Streamer.new(params[:streamer])
+    @streamer = Streamer.new(streamer_params)
     if @streamer.save
       redirect_to @streamer
     else
@@ -29,7 +29,7 @@ class StreamersController < ApplicationController
 
   def update
     @streamer = Streamer.find(params[:id])
-    if @streamer.update_attributes(params[:streamer])
+    if @streamer.update_attributes(streamer_params)
       redirect_to @streamer
     else
       render 'edit'
@@ -40,4 +40,10 @@ class StreamersController < ApplicationController
     Streamer.find(params[:id]).destroy
     redirect_to streamers_path
   end
+
+  private
+  def streamer_params
+    params.require(:streamer).permit(:online_name, :real_name, :nationality, :website, :birthday, :biography, :image)
+  end
+
 end

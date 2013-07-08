@@ -13,8 +13,6 @@
 #
 
 class Event < ActiveRecord::Base
-  attr_accessible :max_concurrent_viewers, :stream_id, :event_time, :tournament_id, :name, :web_resources, :description, :chronic_input
-
   before_save :parse_chronic_input
 
   belongs_to :tournament

@@ -1,5 +1,5 @@
 class TournamentsController < ApplicationController
-  before_filter :admin_user?, except: [:index, :show]
+  before_action :admin_user?, except: [:index, :show]
   layout 'single_column', only: [:new]
 
   def index
@@ -18,7 +18,7 @@ class TournamentsController < ApplicationController
   end
 
   def create
-    @tournament = Tournament.new(params[:tournament])
+    @tournament = Tournament.new(tournament_params)
 
     if @tournament.save
       FeedItem.create!(feedable: @tournament, owner: current_user, key: "Tournament.create")
@@ -35,7 +35,7 @@ class TournamentsController < ApplicationController
 
   def update
     @tournament = Tournament.find(params[:id])
-    if @tournament.update_attributes(params[:tournament])
+    if @tournament.update_attributes(tournament_params)
       FeedItem.create!(feedable: @tournament, owner: current_user, key: "Tournament.update")
       redirect_to @tournament
     else
@@ -49,4 +49,9 @@ class TournamentsController < ApplicationController
     @tournament.destroy
     redirect_to tournaments_path
   end
+
+  private
+  def tournament_params
+    params.require(:tournament).permit(:name, :link, :region, :start_date, :end_date, :prize_pool, :num_competitors, :description, :image, :game_id)
+  end    
 end

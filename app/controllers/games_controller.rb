@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_filter :admin_user?, except: [:index, :show]
+  before_action :admin_user?, except: [:index, :show]
   
   def index
     @games = Game.all
@@ -18,7 +18,7 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Game.new(params[:game])
+    @game = Game.new(game_params)
     if @game.save
       redirect_to @game
     else
@@ -34,7 +34,7 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
-    if @game.update_attributes(params[:game])
+    if @game.update_attributes(game_params)
       redirect_to @game
     else
       @developers = Developer.all
@@ -45,5 +45,10 @@ class GamesController < ApplicationController
   def destroy
     Game.find(params[:id]).destroy
     redirect_to games_path
+  end
+
+  private
+  def game_params
+    params.require(:game).permit(:name, :website, :genre, :abbreviation, :developer_id, :image)
   end
 end

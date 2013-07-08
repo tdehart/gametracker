@@ -19,8 +19,6 @@ class Game < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  attr_accessible :genre, :name, :num_players, :website, :developer_id, :streams, :tournaments, :image, :remote_image_url, :abbreviation, :competitor_type
-
   belongs_to :developer
   has_many :tournaments, :dependent => :destroy
   has_and_belongs_to_many :streams
@@ -33,8 +31,6 @@ class Game < ActiveRecord::Base
 
   validates :genre,        :presence     => true,
                            :length       => { :maximum => 20 }
-
-  validates :website,      :format       => { :with => VALID_LINK_REGEX }
 
   validates :developer_id, :presence     => true
 

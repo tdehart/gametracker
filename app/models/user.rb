@@ -13,7 +13,6 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation
   has_secure_password
 
   before_save { email.downcase! }
@@ -37,8 +36,8 @@ class User < ActiveRecord::Base
   #Get all tournaments of followed games and any followed tournaments
   #Remove duplicates and sort by created_at
   def feed
-    @tournaments = games.collect { |g| g.tournaments }.flatten if !games.nil?
-    @tournaments = (@tournaments + tournaments).uniq
+    @tournaments = self.games.collect { |g| g.tournaments }.flatten if !self.games.nil?
+    @tournaments = (@tournaments + self.tournaments).uniq
     @tournament_ids = @tournaments.collect { |t| t.id }
     @event_ids = (@tournaments.collect { |t| t.events.collect { |e| e.id } }.flatten)
 

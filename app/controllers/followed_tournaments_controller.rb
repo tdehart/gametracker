@@ -1,5 +1,5 @@
 class FollowedTournamentsController < ApplicationController
-  before_filter :signed_in?
+  before_action :signed_in?
 
   respond_to :html, :js
 

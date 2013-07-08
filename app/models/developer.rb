@@ -15,15 +15,12 @@ class Developer < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  attr_accessible :name, :website, :image, :remote_image_url
-
   has_many :games, :dependent => :destroy
 
   validates :name,    :presence => true,
                       :length   => { :maximum => 50 }
 
-  validates :website, :presence => true,
-                      :format   => { :with => VALID_LINK_REGEX}
+  validates :website, :presence => true
 
   mount_uploader :image, ImageUploader
 end

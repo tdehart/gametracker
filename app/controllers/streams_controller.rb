@@ -1,5 +1,5 @@
 class StreamsController < ApplicationController
-  before_filter :admin_user?, except: [:index, :show]
+  before_action :admin_user?, except: [:index, :show]
   
   def index
     # @streams = Stream.live
@@ -33,7 +33,7 @@ class StreamsController < ApplicationController
 
   def update
     @stream = Stream.find(params[:id])
-    if @stream.update_attributes(params[:stream])
+    if @stream.update_attributes(stream_params)
       redirect_to @stream
     else
       @streamers = Streamer.all
@@ -46,4 +46,9 @@ class StreamsController < ApplicationController
     Stream.find(params[:id]).destroy
     redirect_to streams_path
   end
+
+  private
+  def stream_params
+    params.require(:stream).permit(:link, :description, :channel_id)
+  end  
 end

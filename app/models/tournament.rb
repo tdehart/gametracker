@@ -17,8 +17,6 @@
 #
 
 class Tournament < ActiveRecord::Base
-  attr_accessible :game_id, :link, :name, :num_competitors, :prize_pool, :region, :description, :image, :remote_image_url, :currency, :chronic_start_input, :chronic_end_input, :region_ids
-
   before_save :parse_chronic_inputs
   monetize :prize_pool_cents
   mount_uploader :image, ImageUploader
