@@ -4,3 +4,13 @@
   <li>Followed Games: <%= @user.games.count %></li>
   <li>Followed Tournaments: <%= @user.tournaments.count %></li>
 </ul>
+
+<% if current_user?(@user) %>
+	Current currency: <%= "#{@currency.name} (#{@currency.symbol})" %>
+	
+	<%= simple_form_for @user do |f| %>
+		<%= render 'shared/error_messages', :object => f.object %>
+		<%= f.input :currency_iso_code, collection: Money::Currency.stringified_keys.collect { |k| k.upcase }, label: "Choose a currency:" %>
+		<%= f.submit %>
+	<% end %>
+<% end %>

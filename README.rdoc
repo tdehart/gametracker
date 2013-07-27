@@ -1,6 +1,7 @@
 = GameTracker (working title)
 * eSports gaming hub, one stop shop for eSports news, tournament tracking, and statistics
-* Follow your favorite games/players/teams and GameTracker will create a custom activity feed just for you.
+* Promote eSports by showing people important tournaments from games that they don't necessarily follow
+* Follow your favorite games/players/teams and GameTracker will create a custom activity feed just for you
 * Submit content and gain reputation/points
 * Track the health of eSports through statistics
 

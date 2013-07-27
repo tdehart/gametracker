@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git://github.com/ernie/squeel.git
-  revision: c232bf9ea9240f96cf84c18d6ea2bd8d11ab563e
+  revision: 23281d5d65f0039c4774fea9dfb687537044a947
   specs:
     squeel (1.1.0)
       activerecord (>= 3.0)
@@ -19,6 +19,13 @@ GIT
   specs:
     spork-rails (3.2.1)
       spork (>= 1.0rc0)
+
+GIT
+  remote: git://github.com/tdehart/dotiw
+  revision: e142ed937eeceb9221b2c139eea7b07cf67f8eb5
+  specs:
+    dotiw (1.1.1)
+      actionpack (~> 4)
 
 GEM
   remote: https://rubygems.org/
@@ -53,7 +60,7 @@ GEM
     atomic (1.1.10)
     bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
-    bootstrap-sass (2.3.2.0)
+    bootstrap-sass (2.3.2.1)
       sass (~> 3.2)
     builder (3.1.4)
     capybara (2.1.0)
@@ -62,9 +69,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    carrierwave (0.8.0)
+    carrierwave (0.9.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
+      json (>= 1.7)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.9.1)
@@ -79,6 +87,7 @@ GEM
     daemons (1.1.9)
     diff-lcs (1.2.4)
     erubis (2.7.0)
+    eventmachine (1.0.3)
     eventmachine (1.0.3-x86-mingw32)
     excon (0.23.0)
     execjs (1.4.0)
@@ -88,8 +97,9 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
-    faker (1.1.2)
+    faker (1.2.0)
       i18n (~> 0.5)
+    ffi (1.9.0)
     ffi (1.9.0-x86-mingw32)
     fog (1.12.1)
       builder
@@ -104,7 +114,6 @@ GEM
     font-awesome-rails (3.2.1.2)
       railties (>= 3.2, < 5.0)
     formatador (0.2.4)
-    friendly_id (4.0.9)
     google_currency (2.2.0)
       money (~> 5.1.0)
       multi_json (>= 1.0.0)
@@ -126,13 +135,13 @@ GEM
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
     i18n (0.6.4)
-    jbuilder (1.4.2)
+    jbuilder (1.5.0)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
-    jquery-rails (3.0.2)
+    jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (4.0.3)
+    jquery-ui-rails (4.0.4)
       jquery-rails
       railties (>= 3.1.0)
     json (1.8.0)
@@ -161,11 +170,16 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.6.8)
+    nokogiri (1.5.10)
     nokogiri (1.5.10-x86-mingw32)
-    pg (0.15.1-x86-mingw32)
+    pg (0.16.0-x86-mingw32)
     polyamorous (0.6.3)
       activerecord (>= 3.0)
     polyglot (0.3.3)
+    pry (0.9.12.2)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     pry (0.9.12.2-x86-mingw32)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -197,24 +211,24 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     rmagick (2.13.2)
-    rspec (2.13.0)
-      rspec-core (~> 2.13.0)
-      rspec-expectations (~> 2.13.0)
-      rspec-mocks (~> 2.13.0)
-    rspec-core (2.13.1)
-    rspec-expectations (2.13.0)
+    rspec (2.14.1)
+      rspec-core (~> 2.14.0)
+      rspec-expectations (~> 2.14.0)
+      rspec-mocks (~> 2.14.0)
+    rspec-core (2.14.4)
+    rspec-expectations (2.14.0)
       diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.13.1)
-    rspec-rails (2.13.2)
+    rspec-mocks (2.14.1)
+    rspec-rails (2.14.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
-      rspec-core (~> 2.13.0)
-      rspec-expectations (~> 2.13.0)
-      rspec-mocks (~> 2.13.0)
+      rspec-core (~> 2.14.0)
+      rspec-expectations (~> 2.14.0)
+      rspec-mocks (~> 2.14.0)
     ruby-hmac (0.4.0)
     rubyzip (0.9.9)
-    sass (3.2.9)
+    sass (3.2.10)
     sass-rails (4.0.0)
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
@@ -230,7 +244,7 @@ GEM
     simple_form (3.0.0.rc)
       actionpack (>= 4.0.0.rc1, < 4.1)
       activemodel (>= 4.0.0.rc1, < 4.1)
-    slop (3.4.5)
+    slop (3.4.6)
     spork (1.0.0rc3)
     sprockets (2.10.0)
       hike (~> 1.2)
@@ -241,25 +255,27 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    sqlite3 (1.3.7)
     sqlite3 (1.3.7-x86-mingw32)
     thin (1.5.1)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
     thor (0.18.1)
-    thread_safe (0.1.0)
+    thread_safe (0.1.2)
       atomic
     tilt (1.4.1)
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (1.2.0)
+    turbolinks (1.3.0)
       coffee-rails
     tzinfo (0.3.37)
-    uglifier (2.1.1)
+    uglifier (2.1.2)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
     websocket (1.0.7)
+    win32console (1.3.2)
     win32console (1.3.2-x86-mingw32)
     xpath (2.0.0)
       nokogiri (~> 1.3)
@@ -277,11 +293,11 @@ DEPENDENCIES
   chronic
   coffee-rails (~> 4.0.0)
   database_cleaner!
+  dotiw!
   factory_girl_rails (~> 4.2.1)
   faker
   fog (~> 1.12.1)
   font-awesome-rails
-  friendly_id
   google_currency
   guard-rspec
   guard-spork

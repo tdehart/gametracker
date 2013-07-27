@@ -22,7 +22,7 @@
     <h2 class="game-show-stats-header">Competitive Statistics</h2>
     <ul class="game-show-stats">
       <li><i class="icon-trophy"></i> Total Tournaments: <em><%= @game.tournaments.length %></em></li>
-      <li><i class="icon-money"></i> Total Prizes: <em><%= number_to_currency(@game.tournaments.collect { |t| t.prize_pool }.inject(:+), :precision => 0)  %></em>  </li>    
+      <li><i class="icon-money"></i> Total Prizes: <em><%= humanized_money_with_symbol calculate_total_prizes @game.tournaments %></em>  </li>    
     </ul>
   </div>
 </div>

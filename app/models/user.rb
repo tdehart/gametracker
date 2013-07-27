@@ -17,13 +17,14 @@ class User < ActiveRecord::Base
 
   before_save { email.downcase! }
   before_save :create_remember_token
+  before_create :default_currency
 
-  validates :name, presence: true, length: { maximum: 30 }
+  validates :name, presence: true, length: { maximum: 30 }, on: :create
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },
-            uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
+            uniqueness: { case_sensitive: false }, on: :create
+  validates :password, presence: true, length: { minimum: 6 }, on: :create
+  validates :password_confirmation, presence: true, on: :create
 
   has_many :feed_items_as_owner, :class_name => "FeedItem", :as => :owner
   has_many :feed_items_as_recipient, :class_name => "FeedItem", :as => :recipient
@@ -74,6 +75,10 @@ class User < ActiveRecord::Base
   private
   def create_remember_token
     self.remember_token = SecureRandom.urlsafe_base64
+  end
+
+  def default_currency
+    self.currency_iso_code = "USD"
   end
 end
 

@@ -75,6 +75,13 @@ module ApplicationHelper
   end
 
   def calculate_total_prizes(tournaments)
-    tournaments.collect { |t| humanized_money_with_symbol t.prize_pool.exchange_to("USD") }.inject(:+)
+    currency = current_user.currency_iso_code
+    begin
+      tournaments.collect { |t| t.prize_pool }.inject(:+).exchange_to(currency)
+    rescue Money::Bank::UnknownRate
+      #Just use USD if conversion rate not found
+      tournaments.collect { |t| t.prize_pool }.inject(:+).exchange_to("USD")
+    end
+    
   end
 end

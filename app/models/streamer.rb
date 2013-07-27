@@ -16,8 +16,8 @@
 #
 
 class Streamer < ActiveRecord::Base
-  extend FriendlyId
-  friendly_id :online_name, use: :slugged
+  #extend FriendlyId
+  #friendly_id :online_name, use: :slugged
 
   has_and_belongs_to_many :streams
 

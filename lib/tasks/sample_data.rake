@@ -12,9 +12,10 @@ namespace :db do
     FollowedGame.delete_all
     FeedItem.delete_all
 
-    developers = ["Blizzard Entertainment", "Valve", "Riot Games", "S2 Games", "id Software"]
     genres = ["RTS", "FPS", "ARTS"]
     games = ["Starcraft II", "League of Legends", "Starcraft: Brood War", "Dota 2", "Team Fortress 2", "Counter-Strike Source", "Quake Live", "Call of Duty 4", "Heroes of Newerth"]
+    game_developers = ["Blizzard", "Riot Games", "Blizzard", "Valve", "Valve", "Valve", "id Software", "Infinity Ward", "S2 Games"]
+    developers = ["Blizzard", "Riot Games", "Valve", "id Software", "Infinity Ward", "S2 Games"]
     user = User.first
 
     #Create some developers
@@ -25,10 +26,11 @@ namespace :db do
 
     #Create some games -- choose random developer
     games.each do |g|
+      
       Game.create!(name: g,
                    website: "http://www.google.com",
                    genre: genres.sample,
-                   developer_id: Developer.all.sample.id)
+                   developer_id: Developer.find_by_name(game_developers[games.index(g)]).id)
     end
 
     #Create some fake streamers
@@ -57,27 +59,28 @@ namespace :db do
 
     @tournament = Tournament.create!(name: "ESL Major Series X",
                                      link: "http://www.twitch.tv/esltv_studio1",
-                                     region: "US",
                                      num_competitors: 24,
                                      game_id: Game.first.id,
-                                     prize_pool_cents: 12000,
-                                     start_date: Date.today,
+                                     prize_pool: 12000,
+                                     currency: "USD",
+                                     chronic_start_input: Date.today.to_s,
+                                     chronic_end_input: (Date.today+30).to_s,
                                      description: "The ESL Major Series is a series of prize winning eSports tournaments hosted by Electronic Sports League.")
 
     FeedItem.create!(feedable: @tournament, owner: user, key: "Tournament.create")
 
     @event1 = @tournament.events.create(name: "Ro64",
-                                        event_time: Chronic.parse("in 1 hour").to_datetime,
+                                        chronic_input: "in 1 hour",
                                         stream_id: Stream.all.sample.id,
                                         description: "This is the event for Ro64")
 
     @event2 = @tournament.events.create(name: "Ro32",
-                                        event_time: Chronic.parse("in 3 hours").to_datetime,
+                                        chronic_input: "in 3 hours",
                                         stream_id: Stream.all.sample.id,
                                         description: "This is the event for Ro32")
 
-    @event3 =@tournament.events.create(name: "Quarter Finals",
-                                       event_time: Chronic.parse("in 8 hours").to_datetime,
+    @event3 = @tournament.events.create(name: "Quarter Finals",
+                                       chronic_input: "in 8 hours",
                                        stream_id: Stream.all.sample.id,
                                        description: "This is the event for Quarter Finals")
 
@@ -88,21 +91,22 @@ namespace :db do
     99.times do
       name = Faker::Lorem.words(rand(3..5)).join(" ").capitalize
       link = "http://#{Faker::Internet.domain_name}"
-      region = %w[US EU Asia International].sample
       num_competitors = [8, 12, 24, 36, 48, 64, 128, 256, 512, 1024].sample
       game = Game.all.sample.id
-      prize_pool_cents = [2000, 4000, 8000, 12000, 24000, 48000, 64000, 80000, 100000, 200000, 500000, 1000000].sample
+      prize_pool = [2000, 4000, 8000, 12000, 24000, 48000, 64000, 80000, 100000, 200000, 500000, 1000000].sample
       date1 = 100.days.ago
       date2 = 100.days.ago+200.days
       start_date = Time.at((date2.to_f - date1.to_f)*rand + date1.to_f).to_date
+      end_date = start_date+rand(1..30)
       description = Faker::Lorem.paragraphs(3).join()
       @tournament = Tournament.create!(name: name,
                                        link: link,
-                                       region: region,
                                        num_competitors: num_competitors,
                                        game_id: game,
-                                       prize_pool_cents: prize_pool_cents,
-                                       start_date: start_date,
+                                       prize_pool: prize_pool,
+                                       currency: "USD",
+                                       chronic_start_input: start_date.to_s,
+                                       chronic_end_input: end_date.to_s,
                                        description: description)
 
       FeedItem.create!(feedable: @tournament, owner: user, key: "Tournament.create")
@@ -110,12 +114,12 @@ namespace :db do
       (rand(4)+1).times do
         name = ["Ro256", "Ro128", "Ro64", "Ro32", "Ro16", "Ro8", "Quarter Finals", "Semi Finals", "Grand Finals"].sample
         day = [@tournament.start_date, @tournament.start_date+1, @tournament.start_date+2].sample
-        time = Chronic.parse(%w[1pm 1:30pm 2pm 2:30pm 3pm 3:30pm 4pm 4:30pm 5pm 5:30pm 6pm 6:30pm 7pm 7:30pm 8pm].sample, :now => day).to_datetime
+        time = %w[1pm 1:30pm 2pm 2:30pm 3pm 3:30pm 4pm 4:30pm 5pm 5:30pm 6pm 6:30pm 7pm 7:30pm 8pm].sample
         description = Faker::Lorem.paragraphs(3).join()
 
         stream = Stream.all.sample.id
         @event = @tournament.events.create(name: name,
-                                           event_time: time,
+                                           chronic_input: time,
                                            stream_id: stream,
                                            description: description)
 

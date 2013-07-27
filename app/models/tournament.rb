@@ -35,7 +35,7 @@ class Tournament < ActiveRecord::Base
   
   validates :link,       :format => URI::regexp(%w(http https))
   validates :name,       :presence => true
-  validates :prize_pool, :numericality => { greater_than_or_equal_to: 0, allow_nil: true }
+  validates :prize_pool, numericality: { greater_than_or_equal_to: 0, allow_blank: true }
   validates :game_id,    :presence => true
   #TODO: Write validator for region correctness
   #validates :region,          :presence =>     true
