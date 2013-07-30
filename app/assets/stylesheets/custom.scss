@@ -6,6 +6,25 @@ img.listing-game-icon {
   vertical-align: middle; 
 }
 
+.live-text {
+  color: red;
+}
+
+.home-item {
+  margin-bottom: 20px;
+  
+  .home-item-events {
+    margin: 0;
+    list-style: none;
+    font-size: 16px;
+    li { margin: 5px 5px 10px 0; }
+  }
+}
+
+h3.feed-item-heading {
+  margin: 0;
+}
+
 .listing {
   margin-bottom: 15px;
   margin-right: 20px;

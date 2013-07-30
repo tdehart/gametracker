@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130727180559) do
+ActiveRecord::Schema.define(version: 20130728212204) do
 
   create_table "developers", force: true do |t|
     t.string   "name"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20130727180559) do
 
   create_table "events", force: true do |t|
     t.integer  "tournament_id"
-    t.integer  "stream_id"
     t.integer  "max_concurrent_viewers"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -38,8 +37,14 @@ ActiveRecord::Schema.define(version: 20130727180559) do
   end
 
   add_index "events", ["event_time"], name: "index_events_on_event_time"
-  add_index "events", ["stream_id"], name: "index_events_on_stream_id"
   add_index "events", ["tournament_id"], name: "index_events_on_tournament_id"
+
+  create_table "events_streams", id: false, force: true do |t|
+    t.integer "event_id"
+    t.integer "stream_id"
+  end
+
+  add_index "events_streams", ["event_id", "stream_id"], name: "index_events_streams_on_event_id_and_stream_id", unique: true
 
   create_table "feed_items", force: true do |t|
     t.integer  "feedable_id"

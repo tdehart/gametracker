@@ -16,24 +16,34 @@ module ApplicationHelper
     if event_time < Time.now
       if days < 1
         event_time.strftime("Today at %l:%M%p") +  " (live #{hours}h #{mins}m ago)"
+      elsif days == 1
+        event_time.strftime("Yesterday at %l:%M%p") +  " (#{24+hours}h ago)"
       elsif months <= 1
-        event_time.strftime("%m-%d-%Y") + " (#{pluralize(total_days, "day")} ago)"
+        event_time.strftime("%m-%d-%Y") + " (#{pluralize(days, "day")} ago)"
       elsif years < 1
         event_time.strftime("%m-%d-%Y") + " (#{pluralize(months, "month")} ago)"
       else
         event_time.strftime("%m-%Y") + " (over #{pluralize(years, "year")} ago)"
       end
     else
-      if hours < 1
-        event_time.strftime("Today at %l:%M%p") + " (in #{mins} minutes)"
-      elsif days < 1
-        event_time.strftime("Today at %l:%M%p") + " (in #{hours}h #{mins}m)"
-      elsif months <= 1
-        event_time.strftime("%m-%d") + " (in #{pluralize(total_days, "day")})"
-      elsif years < 1
-        event_time.strftime("%m-%d-%Y") + " (in #{pluralize(months, "month")})"
-      else
+      if years > 1
         event_time.strftime("%m-%Y") + " (in #{pluralize(years, "year")})"
+      elsif months > 1
+        event_time.strftime("%m-%d-%Y") + " (in #{pluralize(months, "month")})"
+      elsif months == 1
+        event_time.strftime("%m-%d") + " (in #{pluralize(total_days, "day")})"
+      elsif days > 7
+        event_time.strftime("%m-%d") + " (in #{pluralize(days, "day")})"
+      elsif days > 1
+        event_time.strftime("%m-%d at %l:%M%p") + " (in #{pluralize(days, "day")})"
+      elsif days == 1
+        event_time.strftime("%m-%d at %l:%M%p") +  " (in #{24+hours}h)"
+      elsif hours > 1
+        event_time.strftime("%m-%d at %l:%M%p") +  " (in #{hours}h)"
+      elsif mins > 1
+        event_time.strftime("Today at %l:%M%p") + " (in #{mins} minutes)"
+      else
+        event_time.strftime("Today at %l:%M%p") + " (starting now!)"
       end
     end
   end
@@ -61,11 +71,6 @@ module ApplicationHelper
     end
   end
 
-  def get_event_time(event_time)
-    #feed_item.event_time.strftime("%m/%d at %l:%m%p") %> (<%= event_time_format(feed_item.event_time)")
-  end
-
-
   def get_event_name(event)
     if event.name.length < 10
       "#{event.tournament.name}: #{event.name}"
@@ -74,8 +79,14 @@ module ApplicationHelper
     end
   end
 
+  def convert_prize_pool(tournament)
+    currency = signed_in? ? current_user.currency_iso_code : "USD"
+    tournament.prize_pool.exchange_to(currency)
+  end
+
   def calculate_total_prizes(tournaments)
-    currency = current_user.currency_iso_code
+    currency = signed_in? ? current_user.currency_iso_code : "USD"
+
     begin
       tournaments.collect { |t| t.prize_pool }.inject(:+).exchange_to(currency)
     rescue Money::Bank::UnknownRate

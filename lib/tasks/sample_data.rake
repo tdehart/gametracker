@@ -71,17 +71,17 @@ namespace :db do
 
     @event1 = @tournament.events.create(name: "Ro64",
                                         chronic_input: "in 1 hour",
-                                        stream_id: Stream.all.sample.id,
+                                        streams: [Stream.all.sample],
                                         description: "This is the event for Ro64")
 
     @event2 = @tournament.events.create(name: "Ro32",
                                         chronic_input: "in 3 hours",
-                                        stream_id: Stream.all.sample.id,
+                                        streams: [Stream.all.sample],
                                         description: "This is the event for Ro32")
 
     @event3 = @tournament.events.create(name: "Quarter Finals",
                                        chronic_input: "in 8 hours",
-                                       stream_id: Stream.all.sample.id,
+                                       streams: [Stream.all.sample],
                                        description: "This is the event for Quarter Finals")
 
     FeedItem.create!(feedable: @event1, owner: user, key: "Event.create")
@@ -117,10 +117,10 @@ namespace :db do
         time = %w[1pm 1:30pm 2pm 2:30pm 3pm 3:30pm 4pm 4:30pm 5pm 5:30pm 6pm 6:30pm 7pm 7:30pm 8pm].sample
         description = Faker::Lorem.paragraphs(3).join()
 
-        stream = Stream.all.sample.id
+        stream = Stream.all.sample
         @event = @tournament.events.create(name: name,
-                                           chronic_input: time,
-                                           stream_id: stream,
+                                           chronic_input: "#{day.to_s} at #{time}",
+                                           streams: [stream],
                                            description: description)
 
         FeedItem.create!(feedable: @event, owner: user, key: "Event.create")

@@ -2,7 +2,9 @@
   <div class="span9">
     <h1>
       <%= image_tag @game.image_url(:large_thumb) %> <%= @game.name %>
-      <%= render 'follow_form' %>
+      <% if signed_in? %>
+        <%= render 'follow_form' %>
+      <% end %>
     </h1>
   </div>
   
@@ -46,7 +48,7 @@
   </div>
 </div>
 
-<% if current_user.admin? %>
+<% if signed_in_admin? %>
   <p>
     <%= link_to "Edit", edit_game_path(@game) %>
     <%= link_to "Delete", @game, method: :delete,

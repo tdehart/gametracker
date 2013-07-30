@@ -2,17 +2,18 @@
 #
 # Table name: games
 #
-#  id           :integer          not null, primary key
-#  name         :string(255)
-#  website      :string(255)
-#  genre        :string(255)
-#  num_players  :integer
-#  developer_id :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  image        :string(255)
-#  slug         :string(255)
-#  abbreviation :string(255)
+#  id              :integer          not null, primary key
+#  name            :string(255)
+#  website         :string(255)
+#  genre           :string(255)
+#  num_players     :integer
+#  developer_id    :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  image           :string(255)
+#  slug            :string(255)
+#  abbreviation    :string(255)
+#  competitor_type :string(255)
 #
 
 class Game < ActiveRecord::Base

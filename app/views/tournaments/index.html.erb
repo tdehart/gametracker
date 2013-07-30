@@ -1,10 +1,14 @@
+<% if signed_in_admin? %>
+  <p><%= link_to "New tournament", new_tournament_path %></p>
+<% end %>
 <% @tournaments.each do |t| %>
   <% @owner = t.feed_items.where { key == "Tournament.create" }[0].owner %>
   <div class="tournament-index-item<%= ' tournament-index-item-last' if t.equal? @tournaments.last %>">
     <div class="row">
       <div class="span9">
         <h4>
-          <%= link_to image_tag(t.game.image_url(:med_thumb), :tooltip => t.game.name) %> <%= link_to t.name, t %>
+          <%= link_to image_tag(t.game.image_url(:med_thumb), :tooltip => t.game.name), t.game %> 
+          <%= link_to t.name, t %>
           <span class="listing-submit-info">
             submitted by <%= link_to @owner.name, @owner if @owner %>
             <span class="submit-info-time"> <%= time_ago_from_now(t.created_at) %></span>
@@ -43,8 +47,3 @@
 <% end %>
 
 <%= paginate @tournaments %>
-
-
-<% if current_user && current_user.admin? %>
-  <p><%= link_to "New tournament", new_tournament_path %></p>
-<% end %>

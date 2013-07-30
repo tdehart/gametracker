@@ -2,21 +2,22 @@
 #
 # Table name: streams
 #
-#  id           :integer          not null, primary key
-#  link         :string(255)
-#  description  :text
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  channel_id   :string(255)
-#  platform     :string(255)
-#  viewer_count :integer          default(0)
-#  live         :boolean          default(FALSE)
+#  id              :integer          not null, primary key
+#  link            :string(255)
+#  description     :text
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  channel_id      :string(255)
+#  platform        :string(255)
+#  viewer_count    :integer          default(0)
+#  live            :boolean          default(FALSE)
+#  current_game_id :integer
 #
 
 class Stream < ActiveRecord::Base
   has_and_belongs_to_many :streamers
   has_and_belongs_to_many :games
-  has_many :events
+  has_and_belongs_to_many :events
   has_many :tournaments, :through => :events
   belongs_to :current_game, class_name: "Game", foreign_key: "current_game_id"
 

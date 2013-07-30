@@ -10,6 +10,8 @@
 #  updated_at             :datetime         not null
 #  name                   :string(255)
 #  event_time             :datetime
+#  description            :text
+#  chronic_input          :string(255)
 #
 
 require 'spec_helper'

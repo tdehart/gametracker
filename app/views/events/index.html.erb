@@ -1,10 +1,15 @@
-<% @events.each do |e| %>
-  <% e.attributes.each do |attr_name, attr_value| %>
-    <div>
-      <%= attr_name %>: <%= attr_value %>
-    </div>
-  <% end %>
-  <%= link_to "Show", event_path(e) %>, <%= link_to "Edit", edit_event_path(e) %>
+<% if signed_in_admin? %>
+  <p><%= link_to "New event", new_event_path %></p>
 <% end %>
 
-<p><%= link_to "New event", new_event_path %></p>
+<% @events.each do |e| %>
+  <div>
+    <%= e.tournament.name %> - <%= e.name %>
+    <%= link_to "Show", event_path(e) %>, <%= link_to "Edit", edit_event_path(e) %>
+    <p>
+      <%= e.event_time %><br />
+      <strong><%= event_time_format e.event_time %></strong><br />
+      <%= event_time_format e.event_time, true %>
+    </p>
+  </div>
+<% end %>

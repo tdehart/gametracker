@@ -1,20 +1,20 @@
-  <div class="row listing-header">
+  <div class="row">
     <div class="span9">
-      <h2><%= link_to image_tag(feed_item.tournament.game.image_url(:large_thumb), :tooltip => feed_item.tournament.game.name), feed_item.tournament.game %> <%= link_to get_event_name(feed_item), feed_item.tournament %>
-      </h2>
+      <h3 class="feed-item-heading"><%= link_to image_tag(feed_item.tournament.game.image_url(:med_thumb), :tooltip => feed_item.tournament.game.name), feed_item.tournament.game %> <%= link_to get_event_name(feed_item), feed_item.tournament %>
+      </h3>
     </div>
   </div>
   <div class="row listing-stats">
-    <div class="span6">
-      <h3><i class="icon-time icon-large"></i> <%= event_time_format feed_item.event_time %></h3>
+    <div class="span3">
+      <h4><i class="icon-time icon-large"></i> <%= event_time_format feed_item.event_time %></h4>
     </div>
-    <div class="span">
-      <h3>
+    <div class="span3">
+      <h4>
         <i class="icon-facetime-video icon-large"></i>
-        <%= link_to feed_item.stream.link do %>
+        <%= link_to feed_item.streams[0].link do %>
           Stream Link
         <% end %>
-      </h3>
+      </h4>
     </div>
   </div>
   <div class="row">

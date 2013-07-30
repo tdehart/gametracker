@@ -11,6 +11,15 @@ class UsersController < ApplicationController
     @feed_items = current_user.feed.page(params[:page]).per(6)
   end
 
+  def home
+    @current_events = Event.current
+    @soon_events = Event.soon
+    @current_tournaments = Set.new
+    @soon_tournaments = Set.new
+    @current_events.each { |e| @current_tournaments.add(e.tournament) }
+    @soon_events.each { |e| @soon_tournaments.add(e.tournament) }
+  end
+
   def show
     @user = User.find(params[:id])
     @currency = Money::Currency.new(@user.currency_iso_code)

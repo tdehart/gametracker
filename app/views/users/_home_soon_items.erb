@@ -1,0 +1,15 @@
+<% tournaments.each do |tournament| %>
+  <div class="home-item">
+    <h4>
+      <%= link_to image_tag(tournament.game.image_url(:med_thumb), :tooltip => tournament.game.name), tournament.game %> 
+      <%= link_to tournament.name, tournament %>
+    </h4>
+    <ol class="home-item-events">
+    <% tournament.events.soon.each do |e| %>
+      <li>
+        <strong><%= e.name %></strong> <%= event_time_format e.event_time %>
+      </li>
+    <% end %>
+    </ol>
+  </div>
+<% end %>

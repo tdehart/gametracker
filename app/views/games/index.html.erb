@@ -20,6 +20,6 @@
   </div>
 <% end %>
 
-<% if current_user && current_user.admin? %>
+<% if signed_in_admin? %>
   <p><%= link_to "New game", new_game_path %></p>
 <% end %>

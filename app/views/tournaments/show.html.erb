@@ -8,7 +8,9 @@
     <h1>
       <%= link_to image_tag(@tournament.game.image_url(:large_thumb)), @tournament.game %> 
       <%= @tournament.name %> 
-      <%= render 'follow_form' %>
+      <% if signed_in? %>
+        <%= render 'follow_form' %>
+      <% end %>
     </h1>
   </div>
   
@@ -38,8 +40,13 @@
       <% @events.each do |e| %>
       <li>
         <h3><%= e.name %></h3>
-        <h4>Event Date: <em><%= event_time_format e.event_time %></em></h4>
-        <h4>Stream Link: <%= link_to e.stream.link, e.stream.link, :target => "_blank" %></h4>
+        <h4>Event Date: <em><%= event_time_format e.event_time %> </em></h4>
+        <h4>
+          <% e.streams.each do |s| %>
+            Stream Link: <%= link_to s.link, s.link, :target => "_blank" %> 
+          <% end %>
+        </h4>
+        
         <p><%= e.description %></p>
       </li>
       <% end %>
@@ -47,7 +54,7 @@
   </div>
 </div>
 
-<% if current_user.admin? %>
+<% if signed_in? %>
   <p>
     <%= link_to "Edit", edit_tournament_path(@tournament) %>
     <%= link_to "Delete", @tournament, method: :delete,

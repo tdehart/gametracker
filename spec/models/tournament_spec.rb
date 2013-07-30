@@ -2,18 +2,21 @@
 #
 # Table name: tournaments
 #
-#  id              :integer          not null, primary key
-#  name            :string(255)
-#  link            :string(255)
-#  region          :string(255)
-#  start_date      :date
-#  prize_pool      :integer
-#  num_competitors :integer
-#  game_id         :integer
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  description     :string(255)
-#  image           :string(255)
+#  id                  :integer          not null, primary key
+#  name                :string(255)
+#  link                :string(255)
+#  start_date          :date
+#  prize_pool_cents    :integer
+#  num_competitors     :integer
+#  game_id             :integer
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  description         :text(255)
+#  image               :string(255)
+#  end_date            :date
+#  currency            :string(255)
+#  chronic_start_input :string(255)
+#  chronic_end_input   :string(255)
 #
 
 require 'spec_helper'

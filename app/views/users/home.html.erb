@@ -1,0 +1,11 @@
+<% if @soon_tournaments.empty? %>
+  <h1>Nothing seems to be happening. Try following more games:</h1>
+  <% Game.all.each do |g| %>
+    <p><%= link_to g.name, g %></p>
+  <% end %>
+<% else %>
+  <h2>What's Happening Now</h2>
+  <%= render partial: 'home_current_items', locals: { tournaments: @current_tournaments } %>
+  <h2>What's Happening Soon</h2>
+  <%= render partial: 'home_soon_items', locals: { tournaments: @soon_tournaments } %>
+<% end %>
