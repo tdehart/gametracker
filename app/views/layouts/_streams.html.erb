@@ -6,9 +6,11 @@
         <i class="icon-user"></i>
         <%= link_to s.streamers[0].online_name, s.streamers[0] %>
         is streaming
-        <%= link_to s.current_game do %>
-          <%= image_tag s.current_game.image_url(:small_thumb) %> 
-          <%= s.current_game.abbreviation ? s.current_game.abbreviation : s.current_game.name %>
+        <% if s.current_game %>
+          <%= link_to s.current_game do %>
+            <%= image_tag s.current_game.image_url(:small_thumb) %> 
+            <%= s.current_game.abbreviation ? s.current_game.abbreviation : s.current_game.name %>
+          <% end %>
         <% end %>
         <p>
           <span class="text-success"><%= s.viewer_count %> viewers</span>

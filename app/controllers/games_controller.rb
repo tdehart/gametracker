@@ -7,7 +7,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    @tournaments = @game.tournaments
+    @tournaments = @game.tournaments.where { start_date >= Date.today }.order { start_date.asc }
     #@prize_total = @game.tournaments.collect { |t| t.prize_pool }.inject(:+)
     #@prize_average = @prize_total / @game.tournaments.count
   end

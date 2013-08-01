@@ -1,5 +1,5 @@
 <% if @soon_tournaments.empty? %>
-  <h1>Nothing seems to be happening. Try following more games:</h1>
+  <h1>No current activity! Follow a game:</h1>
   <% Game.all.each do |g| %>
     <p><%= link_to g.name, g %></p>
   <% end %>

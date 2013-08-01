@@ -14,7 +14,7 @@
   <div class="span9">
     <ul class="game-show-stats">
       <li>Developer: <%= image_tag @game.developer.image_url(:med_thumb) %> <%= @game.developer.name %></li>
-      <li>Genre: <em><%= @game.genre %></em></li>
+      <li>Genre: <%= @game.genre %></li>
     </ul>
   </div>
 </div>
@@ -30,20 +30,27 @@
 </div>
 
 
+
 <div class="row">
   <div class="span8">
     <h2 class="game-show-stats-header">Upcoming Tournaments</h2>
     <ul class="game-tournament-list">
-      <% @game.tournaments.where { start_date >= Date.today }.order { start_date.asc }.each do |t| %>
-      <li>
-        <h3><%= link_to t.name, t %></h3>
-        <h4><i class="icon-calendar icon-large"></i> Tournament Date: <em><%= t.start_date.strftime("%m-%d-%Y") %></em></h4>
-        <h4> <i class="icon-money icon-large"></i> Prize Pool: <em><%= number_to_currency(t.prize_pool, :precision => 0) %></em></h4>
-        <% if t.description %>
-          <p><%= t.description[0..225] %>...</p>
+      <% if @tournaments.any? %>
+        <% @tournaments.each do |t| %>
+          <li>
+            <h3><%= link_to t.name, t %></h3>
+            <h4><i class="icon-calendar icon-large"></i> Tournament Date: <em><%= t.start_date.strftime("%m-%d-%Y") %></em></h4>
+            <h4> <i class="icon-money icon-large"></i> Prize Pool: <em><%= number_to_currency(t.prize_pool, :precision => 0) %></em></h4>
+            <% if t.description && t.description.length > 0 %>
+              <p><%= t.description[0..225] %></p>
+            <% end %>
+          </li>
         <% end %>
-      </li>
+      <% else %>
+        No upcoming tournaments found.
       <% end %>
+      
+
     </ul>
   </div>
 </div>

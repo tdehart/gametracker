@@ -88,11 +88,14 @@ module ApplicationHelper
     currency = signed_in? ? current_user.currency_iso_code : "USD"
 
     begin
-      tournaments.collect { |t| t.prize_pool }.inject(:+).exchange_to(currency)
+      total = tournaments.collect { |t| t.prize_pool }.inject(:+)
+
     rescue Money::Bank::UnknownRate
       #Just use USD if conversion rate not found
-      tournaments.collect { |t| t.prize_pool }.inject(:+).exchange_to("USD")
+      total = tournaments.collect { |t| t.prize_pool }.inject(:+).exchange_to("USD")
     end
+
+    total ? total.exchange_to(currency) : 0
     
   end
 end
