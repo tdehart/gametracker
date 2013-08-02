@@ -9,8 +9,15 @@ class ApplicationController < ActionController::Base
   end
 
   def get_streams
-    # @sidebar_streams = []
-    @sidebar_streams = Stream.order { viewer_count.desc }.live
+    @sidebar_streams = []
+    Game.find_each do |g|
+      Stream.where{ current_game_id == g.id }.order { viewer_count.desc }.take(3).each do |s|
+        @sidebar_streams << s
+      end
+    end
+
+    @sidebar_streams.sort! { |a,b| b.viewer_count <=> a.viewer_count }
+
     # @sidebar_followed_streams = []
     # Stream.order { viewer_count.desc }.each do |s|
     #   if (current_user.games.include?(s.current_game))

@@ -1,10 +1,14 @@
 class TournamentsController < ApplicationController
   before_action :admin_user?, except: [:index, :show]
-  layout 'single_column', only: [:new]
+  layout 'single_column', only: [:new, :table]
 
   def index
     @tournaments = Tournament.where { start_date >= Date.today-1 }.order { start_date.asc }.page(params[:page]).per(10)
     #@tournaments = Tournament.order { start_date.asc }.page(params[:page]).per(10)
+  end
+
+  def table
+    @tournaments = Tournament.all
   end
 
   def show

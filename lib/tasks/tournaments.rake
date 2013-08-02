@@ -1,84 +1,33 @@
 namespace :db do
-  require 'chronic'
-  require 'httparty'
-  desc "Fill database with sample data"
-  task better: :environment do
-    Game.delete_all
-    Developer.delete_all
+  require 'csv'
+  task tournaments: :environment do
     Event.delete_all
     Tournament.delete_all
-    Streamer.delete_all
-    Stream.delete_all
     FollowedTournament.delete_all
     FollowedGame.delete_all
     FeedItem.delete_all
 
-    games = ["Starcraft II", "League of Legends", "Dota 2", "Ultimate Marvel vs. Capcom 3"]
-    genres = ["Real-time strategy", "Action real-time strategy", "Action real-time strategy", "Fighting game"]
-    games_images = ["http://i.imgur.com/s99COCk.png", "http://i.imgur.com/908QtoG.png", "http://i.imgur.com/1u7xQff.png", "http://i.imgur.com/QBsMVaw.png"]
-    developers = ["Blizzard Entertainment", "Riot Games", "Valve", "Capcom"]
-    developer_images = ["http://i.imgur.com/5eSLN0b.png", "http://i.imgur.com/XeIKvhO.jpg", "http://i.imgur.com/k4ysenH.png", "http://i.imgur.com/5CWcsb9.png"]
-    developer_websites = ["http://www.blizzard.com", "http://www.riotgames.com", "http://www.valvesoftware.com/", "http://www.capcom.com/"]
-
     user = User.first
 
-    #Create some developers
-    developers.each do |d|
-      Developer.create!(name: d,
-                        remote_image_url: developer_images[developers.index(d)],
-                        website: developer_websites[developers.index(d)]).id
-    end
+    csv_text = File.read("#{Rails.root}/app/assets/data/HotS-Series-Tournaments.csv", :encoding => "windows-1251:utf-8")
+    csv = CSV.parse(csv_text)
 
-    #Create some games -- choose random developer
-    games.each do |g|
-      Game.create!(name: g,
-                   developer_id: Developer.find_by_name(developers[games.index(g)]).id,
-                   remote_image_url: games_images[games.index(g)],
-                   genre: genres[games.index(g)])
+    game = Game.find_by_name("StarCraft II: Heart of the Swarm")
+    csv.each do |tournament|
+        @tournament = Tournament.create!(name: tournament[1],
+                                         link: "http://wiki.teamliquid.net/starcraft2/" + tournament[1].split(" ").join("_"),
+                                         num_competitors: tournament[3],
+                                         game_id: game.id,
+                                         prize_pool: tournament[2].tr("^0-9", ''),
+                                         currency: "USD",
+                                         chronic_start_input: "#{tournament[0]} 2013",
+                                         description: Faker::Lorem.paragraphs(3).join())
+        
+        FeedItem.create!(feedable: @tournament, owner: user, key: "Tournament.create")
     end
-
+   
 
     
-
-    games.each do |g|
-      name = g.split(' ').join('+')
-      streams = HTTParty.get("https://api.twitch.tv/kraken/streams/?game=#{name}").parsed_response["streams"]
-
-      puts name
-
-      streams.each do |s|
-        channel = s["channel"]
-        link = channel["url"]
-        image = channel["logo"]
-        game = Game.find_by_name(channel["game"])
-        online_name = channel["display_name"]
-        viewers = s["viewers"]
-
-        streamer = Streamer.create!(online_name: online_name,
-                                    remote_image_url: image)
-
-        Stream.create!(link: link,
-                       games: [game],
-                       current_game: game,
-                       streamers: [streamer],
-                       live: viewers == 0 ? false : true,
-                       viewer_count: viewers)
-      end
-    end
-
-    
-
-    # @tournament = Tournament.create!(name: "ESL Major Series X",
-    #                                  link: "http://www.twitch.tv/esltv_studio1",
-    #                                  num_competitors: 24,
-    #                                  game_id: Game.first.id,
-    #                                  prize_pool: 12000,
-    #                                  currency: "USD",
-    #                                  chronic_start_input: Date.today.to_s,
-    #                                  chronic_end_input: (Date.today+30).to_s,
-    #                                  description: "The ESL Major Series is a series of prize winning eSports tournaments hosted by Electronic Sports League.")
-
-    # FeedItem.create!(feedable: @tournament, owner: user, key: "Tournament.create")
 
     # @event1 = @tournament.events.create(name: "Ro64",
     #                                     chronic_input: "in 1 hour",

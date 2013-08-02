@@ -1,0 +1,28 @@
+<h1>Tournaments</h1>
+
+<table id="tournaments-table" class="table table-striped table-hover">
+<thead>
+  <tr>
+    <th>Game</th>
+    <th>Name</th>
+    <th>Date</th>
+    <th>Prize Pool</th>
+    <th>Competitors</th>
+  </tr>
+</thead>
+<tbody>
+  <% @tournaments.each do |tournament| %>
+    <tr>
+      <td><%= link_to(tournament.game.name, tournament.game) %></td>
+      <td><%= link_to(tournament.name, tournament) %></td>
+      <td><%= tournament.start_date %></td>
+      <td><%= humanized_money_with_symbol tournament.prize_pool %></td>
+      <% if tournament.num_competitors %>
+        <td><%= "#{tournament.num_competitors} #{tournament.game.competitor_type}" %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+    </tr>
+  <% end %>
+</tbody>
+</table>

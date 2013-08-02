@@ -26,6 +26,7 @@ gem 'money-rails'
 gem 'kaminari'
 gem 'fog', '~> 1.12.1'
 gem 'google_currency'
+gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 
 group :development, :test do
   gem 'sqlite3', '1.3.7'
