@@ -7,7 +7,6 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'uglifier', '>= 1.3.0'
-
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-ui-rails'
 gem 'bootstrap-sass', '~> 2.3.2.0'
@@ -27,12 +26,13 @@ gem 'kaminari'
 gem 'fog', '~> 1.12.1'
 gem 'google_currency'
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+gem 'faker'
 
 group :development, :test do
   gem 'sqlite3', '1.3.7'
   gem 'rspec-rails'
   gem 'annotate'
-  gem 'faker'
+  
   gem 'guard-rspec'
   gem 'spork-rails', github: 'railstutorial/spork-rails'
   gem 'guard-spork'
