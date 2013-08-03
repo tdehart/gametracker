@@ -79,9 +79,17 @@ module ApplicationHelper
     end
   end
 
+  def tournament_date_range(tournament)
+    if tournament.end_date
+      "#{tournament.start_date.strftime("%m-%d-%Y")} to #{tournament.end_date.strftime("%m-%d-%Y")}"    
+    else
+      "#{tournament.start_date.strftime("%m-%d-%Y")}"    
+    end
+  end
+
   def convert_prize_pool(tournament)
-    currency = signed_in? ? current_user.currency_iso_code : "USD"
-    tournament.prize_pool.exchange_to(currency)
+    user_currency = signed_in? ? current_user.currency_iso_code : "USD"
+    tournament.prize_pool.exchange_to(user_currency)
   end
 
   def calculate_total_prizes(tournaments)

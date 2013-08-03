@@ -4,7 +4,7 @@ Gametracker::Application.routes.draw do
 
   resources :tournaments do
     collection do
-      get 'table'
+      get 'all'
     end
   end
   resources :events

@@ -6,7 +6,7 @@
 </div>
 <div class="row">
   <div class="span3">
-    <h4><i class="icon-calendar icon-large"></i> <%= "#{feed_item.start_date.strftime("%m-%d-%Y")} to #{feed_item.end_date.strftime("%m-%d-%Y")}" %></h4>
+    <h4><i class="icon-calendar icon-large"></i> <%= tournament_date_range feed_item %></h4>
   </div>
   <div class="span3">
     <h4><i class="icon-money icon-large"></i> <%= humanized_money_with_symbol feed_item.prize_pool %> <%= feed_item.prize_pool.currency %></h4>

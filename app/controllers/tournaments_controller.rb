@@ -1,13 +1,13 @@
 class TournamentsController < ApplicationController
-  before_action :admin_user?, except: [:index, :show]
-  layout 'single_column', only: [:new, :table]
+  before_action :admin_user?, except: [:index, :all, :show]
+  layout 'single_column', only: [:new, :all]
 
   def index
     @tournaments = Tournament.where { start_date >= Date.today-1 }.order { start_date.asc }.page(params[:page]).per(10)
     #@tournaments = Tournament.order { start_date.asc }.page(params[:page]).per(10)
   end
 
-  def table
+  def all
     @tournaments = Tournament.all
   end
 
@@ -56,6 +56,6 @@ class TournamentsController < ApplicationController
 
   private
   def tournament_params
-    params.require(:tournament).permit(:name, :link, :region, :chronic_start_input, :chronic_end_input, :prize_pool, :num_competitors, :description, :image, :game_id)
+    params.require(:tournament).permit(:name, :link, :region, :chronic_start_input, :chronic_end_input, :prize_pool, :num_competitors, :description, :image, :game_id, :currency)
   end    
 end

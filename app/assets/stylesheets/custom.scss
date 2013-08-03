@@ -92,6 +92,9 @@ ul.sidebar-list {
   .sidebar-list-item-text {
     padding-left: 5px;
   }
+  img {
+    vertical-align: text-top;
+  }
 }
 
 ul.tournament-event-list, .game-tournament-list {
@@ -118,6 +121,10 @@ ul.tournament-show-stats, .game-show-stats, .user-show-stats {
   }
 }
 
+.tournament-show-header {
+  font-size: 38px;
+}
+
 .game-show-stats-header {
   border-bottom: 1px solid #ddd;
   margin-top: 20px;
@@ -142,4 +149,13 @@ input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.header-subtext {
+  font-size: 14px;
+}
+
+::selection {
+  text-shadow: none;
+  background: rgba(65,131,196,0.4);
 }

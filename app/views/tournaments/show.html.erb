@@ -5,26 +5,26 @@
       <span class="submit-info-time"><%= time_ago_from_now(@tournament.created_at) %></span>
     </span>
     
-    <h1>
+    <h2 class="tournament-show-header">
       <%= link_to image_tag(@tournament.game.image_url(:large_thumb)), @tournament.game %> 
       <%= @tournament.name %> 
       <% if signed_in? %>
         <%= render 'follow_form' %>
       <% end %>
-    </h1>
+    </h2>
   </div>
   
 </div>
 
 <div class="row">
   <div class="span3">
-    <h2><i class="icon-calendar icon-large"></i> <%= @tournament.start_date.strftime("%m-%d-%Y") %></h2>
+    <h3><i class="icon-calendar icon-large"></i> <%= @tournament.start_date.strftime("%m-%d-%Y") %></h3>
   </div>
   <div class="span3">
-    <h2><i class="icon-money icon-large"></i> <%= humanized_money_with_symbol @tournament.prize_pool %> <%= @tournament.prize_pool.currency %></h2>
+    <h3><i class="icon-money icon-large"></i> <%= humanized_money_with_symbol @tournament.prize_pool %> <%= @tournament.prize_pool.currency %></h3>
   </div>
-  <div class="span">
-    <h2><i class="icon-group icon-large"></i> <%= @tournament.num_competitors %> <%= @tournament.game.competitor_type %></h2>
+  <div class="span3">
+    <h3><i class="icon-group icon-large"></i> <%= @tournament.num_competitors %> <%= @tournament.game.competitor_type %></h3>
   </div>
 </div>
 

@@ -26,9 +26,8 @@ class Event < ActiveRecord::Base
   validates :chronic_input, :presence => true
   #validates :max_concurrent_viewers, :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true }
 
-  #All events happening between 6 hours ago and 36 hours from now ordered by start time
   scope :current, -> { where(event_time: 6.hours.ago..36.hours.from_now).order { event_time.asc } }
-  scope :soon, -> { where(event_time: 37.hours.from_now..5.days.from_now).order { event_time.asc } }
+  scope :soon,    -> { where(event_time: 37.hours.from_now..5.days.from_now).order { event_time.asc } }
 
   private
   def parse_chronic_input
