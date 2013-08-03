@@ -32,7 +32,7 @@ group :development, :test do
   gem 'sqlite3', '1.3.7'
   gem 'rspec-rails'
   gem 'annotate'
-  
+  gem 'rails_12factor'
   gem 'guard-rspec'
   gem 'spork-rails', github: 'railstutorial/spork-rails'
   gem 'guard-spork'

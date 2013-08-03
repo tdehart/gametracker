@@ -100,7 +100,7 @@ module ApplicationHelper
 
     rescue Money::Bank::UnknownRate
       #Just use USD if conversion rate not found
-      total = tournaments.collect { |t| t.prize_pool }.inject(:+).exchange_to("USD")
+      return tournaments.collect { |t| t.prize_pool }.inject(:+).exchange_to("USD")
     end
 
     total ? total.exchange_to(currency) : 0
