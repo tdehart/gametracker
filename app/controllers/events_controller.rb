@@ -46,6 +46,6 @@ class EventsController < ApplicationController
 
   private
   def event_params
-    params.require(:event).permit(:name, :event_time, :tournament_id, :tournament_name, { :stream_ids => [] }, :chronic_input)
+    params.require(:event).permit(:name, :description, :event_time, :tournament_id, :tournament_name, { :stream_ids => [] }, :chronic_input)
   end
 end

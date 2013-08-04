@@ -8,14 +8,14 @@
     <div class="span3">
       <h4><i class="icon-time icon-large"></i> <%= event_time_format feed_item.event_time %></h4>
     </div>
-    <div class="span3">
-      <h4>
-        <i class="icon-facetime-video icon-large"></i>
-        <%= link_to feed_item.streams[0].link do %>
-          Stream Link
-        <% end %>
-      </h4>
-    </div>
+    <% if feed_item.streams[0] %>
+      <div class="span3">
+        <h4>
+          <i class="icon-facetime-video icon-large"></i>
+          <%= link_to "Stream Link", feed_item.streams[0].link %>
+        </h4>
+      </div>
+    <% end %>
   </div>
   <div class="row">
     <div class="span9">
@@ -24,4 +24,3 @@
       </p>
     </div>
   </div>
-

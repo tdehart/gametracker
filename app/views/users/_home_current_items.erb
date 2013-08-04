@@ -8,9 +8,14 @@
     <% tournament.events.current.each do |e| %>
       <li>
         <strong><%= e.name %></strong> <%= event_time_format e.event_time %>
-        <% e.streams.each do |s| %>
-          <%= link_to s.link, s.link, target: "_blank" %> 
-        <% end %>
+        <ul>
+          <% e.streams.each do |s| %>
+            <li>
+              <i class="icon-play-circle"></i>
+              <%= link_to s.link, s.link, target: "_blank" %>
+            </li>
+          <% end %>
+        </ul>
       </li>
     <% end %>
     </ol>

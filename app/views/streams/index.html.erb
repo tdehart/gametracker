@@ -17,5 +17,6 @@
     </div>
     <%= link_to "Show", stream_path(s) %>
     <%= link_to "Edit", edit_stream_path(s) %>
+    <%= link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
 </div>
