@@ -17,7 +17,7 @@ class StreamsController < ApplicationController
   end
 
   def create
-    @stream = Stream.new(params[:stream])
+    @stream = Stream.new(stream_params)
     if @stream.save
       redirect_to @stream
     else
@@ -49,6 +49,6 @@ class StreamsController < ApplicationController
 
   private
   def stream_params
-    params.require(:stream).permit(:link, :description, :channel_id)
+    params.require(:stream).permit(:link, :description, :channel_id, :name, :current_game_name, :image, :remote_image_url)
   end  
 end

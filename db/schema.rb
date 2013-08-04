@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130728212204) do
+ActiveRecord::Schema.define(version: 20130804151432) do
 
   create_table "developers", force: true do |t|
     t.string   "name"
@@ -160,6 +160,8 @@ ActiveRecord::Schema.define(version: 20130728212204) do
     t.integer  "viewer_count",    default: 0
     t.boolean  "live",            default: false
     t.integer  "current_game_id"
+    t.string   "name"
+    t.string   "image"
   end
 
   add_index "streams", ["current_game_id"], name: "index_streams_on_current_game_id"

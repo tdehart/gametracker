@@ -43,7 +43,7 @@ class StreamersController < ApplicationController
 
   private
   def streamer_params
-    params.require(:streamer).permit(:online_name, :real_name, :nationality, :website, :birthday, :biography, :image)
+    params.require(:streamer).permit(:online_name, :real_name, :nationality, :website, :birthday, :biography, :image, :remote_image_url)
   end
 
 end

@@ -56,6 +56,8 @@ class TournamentsController < ApplicationController
 
   private
   def tournament_params
-    params.require(:tournament).permit(:name, :link, :region, :chronic_start_input, :chronic_end_input, :prize_pool, :num_competitors, :description, :image, :game_id, :currency)
+    params.require(:tournament).permit(:name, :link, :region, :chronic_start_input, :chronic_end_input, 
+                                       :prize_pool, :num_competitors, :description, :image, :game_id, 
+                                       :currency, :current_game_name)
   end    
 end

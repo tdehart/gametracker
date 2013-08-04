@@ -48,6 +48,14 @@ class Tournament < ActiveRecord::Base
 
   #scope :soon, lambda { where { {start_date => Date.today-7..Date.today+7} }.order{ date.asc } }
 
+  def current_game_name
+    game.try(:game_name)
+  end
+
+  def current_game_name=(game_name)
+    self.game = Game.find_by_name(game_name) if game_name.present?
+  end
+
   class << self
     def upcoming(h=24)
       events = Event.all(conditions: { event_time: h.hours.ago...Time.now }, order: "event_time DESC")

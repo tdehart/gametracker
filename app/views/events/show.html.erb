@@ -1,6 +1,8 @@
 <%= link_to "<< back", :back %>
-<% @event.attributes.each do |attr_name, attr_value| %>
-  <div>
-    <%= attr_name %>: <%= attr_value %>
-  </div>
+<p><%= @event.tournament.name %></p>
+<p><%= @event.name %></p>
+<p><%= @event.event_time %></p>
+<p><%= @event.description %></p>
+<% @event.streams.each do |e| %>
+  <%= e %>
 <% end %>

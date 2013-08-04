@@ -32,3 +32,9 @@ jQuery ->
                 { "sType": "currency" },
                 { "sType": "formatted-num"}
             ]})
+
+    $(".tournament-autocomplete").autocomplete(
+      source: $(".tournament-autocomplete").data('autocomplete-source')
+      minLength: 0).focus ->
+        $(this).val("")
+        $(this).autocomplete("search")

@@ -12,6 +12,7 @@
 #  viewer_count    :integer          default(0)
 #  live            :boolean          default(FALSE)
 #  current_game_id :integer
+#  name            :string(255)
 #
 
 require 'spec_helper'

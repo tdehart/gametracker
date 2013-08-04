@@ -1,7 +1,6 @@
 namespace :db do
   require 'httparty'
   task streams: :environment do
-    Streamer.delete_all
     Stream.delete_all
 
     games = ["StarCraft II: Heart of the Swarm", "League of Legends", "Dota 2", "Ultimate Marvel vs. Capcom 3"]
@@ -15,18 +14,16 @@ namespace :db do
         link = channel["url"]
         image = channel["logo"]
         game = Game.find_by_name(channel["game"])
-        online_name = channel["display_name"]
+        display_name = channel["display_name"]
         viewers = s["viewers"]
 
-        streamer = Streamer.create!(online_name: online_name,
-                                    remote_image_url: image)
-
-        Stream.create!(link: link,
+        Stream.create!(name: display_name,
+                       link: link,
                        games: [game],
                        current_game: game,
-                       streamers: [streamer],
                        live: viewers == 0 ? false : true,
-                       viewer_count: viewers)
+                       viewer_count: viewers,
+                       remote_image_url: image)
       end
     end
   end

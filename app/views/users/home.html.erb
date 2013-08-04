@@ -1,8 +1,5 @@
 <% if @soon_tournaments.empty? %>
-  <h1>No current activity! Follow a game:</h1>
-  <% Game.all.each do |g| %>
-    <p><%= link_to g.name, g %></p>
-  <% end %>
+  <h1>No current activity</h1>
 <% else %>
   <h2>What's Happening Now</h2>
   <%= render partial: 'home_current_items', locals: { tournaments: @current_tournaments } %>

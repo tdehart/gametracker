@@ -12,6 +12,7 @@
 #  viewer_count    :integer          default(0)
 #  live            :boolean          default(FALSE)
 #  current_game_id :integer
+#  name            :string(255)
 #
 
 class Stream < ActiveRecord::Base
@@ -21,16 +22,24 @@ class Stream < ActiveRecord::Base
   has_many :tournaments, :through => :events
   belongs_to :current_game, class_name: "Game", foreign_key: "current_game_id"
 
-  before_create :sanitize_website, :find_channel_id
+  before_save :sanitize_website, :find_channel_id
 
   validates :link, :presence => true
-  validates :streamers, :presence => true
-  validates :games, :presence => true
+
+  mount_uploader :image, ImageUploader
 
   scope :live, lambda { where { {live => true } } }
 
   def to_s
     self.channel_id
+  end
+
+  def current_game_name
+    current_game.try(:game_name)
+  end
+
+  def current_game_name=(game_name)
+    self.current_game = Game.find_by_name(game_name) if game_name.present?
   end
 
   private

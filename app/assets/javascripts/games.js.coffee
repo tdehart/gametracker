@@ -23,4 +23,4 @@ jQuery ->
     source: $(".game-autocomplete").data('autocomplete-source')
     minLength: 0).focus ->
       $(this).val("")
-      $(this).autocomplete("search")
+      $(this).autocomplete("search")    

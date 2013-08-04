@@ -4,7 +4,6 @@
 #
 #  id                     :integer          not null, primary key
 #  tournament_id          :integer
-#  stream_id              :integer
 #  max_concurrent_viewers :integer
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null

@@ -1,7 +1,9 @@
 <%= simple_form_for @stream do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <%= f.input :link %>
-  <%= f.association :games %>
-  <%= f.association :streamers %>
+  <%= f.input :name %>
+  <%= f.input :current_game_name, label: "Current Game", input_html: { class: "game-autocomplete", data: {autocomplete_source: Game.order{ name.asc }.map(&:name)} } %>
+  <%= f.input :image, as: :file %>
+  <%= f.input :remote_image_url%>
   <%= f.button :submit %>  
 <% end %>

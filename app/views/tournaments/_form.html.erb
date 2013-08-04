@@ -1,7 +1,7 @@
 <%= simple_form_for @tournament do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <%= f.input :name %>
-  <%= f.association :game %>
+  <%= f.input :current_game_name, label: "Current Game", input_html: { class: "game-autocomplete", data: {autocomplete_source: Game.order{ name.asc }.map(&:name)} } %>
   <%= f.input :link, label: 'Official Website' %>
   <label>Start Date <%= link_to "(examples)", "https://github.com/mojombo/chronic#examples", :target => "_blank" %></label>
   <%= f.input_field :chronic_start_input %>

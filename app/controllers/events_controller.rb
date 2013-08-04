@@ -28,7 +28,7 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = Event.find(params[:id])
+    @event = Event.find(event_params)
     if @event.update_attributes(event_params)
       FeedItem.create!(feedable: @event, owner: current_user, key: "Event.update")
       redirect_to @event
@@ -46,6 +46,6 @@ class EventsController < ApplicationController
 
   private
   def event_params
-    params.require(:event).permit(:name, :event_time, :tournament_id, :stream_id)
+    params.require(:event).permit(:name, :event_time, :tournament_id, :tournament_name, { :stream_ids => [] }, :chronic_input)
   end
 end

@@ -1,37 +1,14 @@
-<!-- <h2>Streams</h2>
-<div class="streams">
-  <ul class="sidebar-list">
-    <% @sidebar_streams.each do |s| %>
-      <li>
-        <i class="icon-user"></i>
-        <%= link_to s.streamers[0].online_name, s.streamers[0] %>
-        stream
-        <% if s.current_game %>
-          <%= link_to s.current_game do %>
-            <%= image_tag s.current_game.image_url(:small_thumb) %> 
-            <%= s.current_game.abbreviation ? s.current_game.abbreviation : s.current_game.name %>
-          <% end %>
-        <% end %>
-        <p>
-          <span class="text-success"><%= s.viewer_count %> viewers</span>
-          <i class="icon-play-circle"></i> <%= link_to "Watch Now", s.link, :target => "_blank" %>
-        </p>
-      </li>
-    <% end %>
-  </ul>
-</div> -->
-
 <h2>Streams</h2>
 <div class="streams">
   <ul class="sidebar-list">
     <% @sidebar_streams.each do |s| %>
       <li>
-        <% if s.streamers[0].image.file %>
-          <%= image_tag s.streamers[0].image_url(:small_thumb) %>
+        <% if s.image.file %>
+          <%= image_tag s.image_url(:small_thumb) %>
         <% else %>
           <i class="icon-user"></i>
         <% end %>
-        <strong><%= s.streamers[0] %></strong>
+        <strong><%= s.name %></strong>
         <p>
           <% if s.current_game %>
             <%= link_to image_tag(s.current_game.image_url(:small_thumb), :tooltip => s.current_game.name), s.current_game %>

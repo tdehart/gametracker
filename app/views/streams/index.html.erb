@@ -1,25 +1,21 @@
+<% if signed_in_admin? %>
+  <p><%= link_to "New stream", new_stream_path %></p>
+<% end %>
+
 <h2>Popular Streams</h2>
 <div id="popular_streams">
   <% @streams.each do |s| %>
     <div class="popular_stream">
-      <%= link_to s.streamers[0] do %>
-        <%= image_tag s.streamers[0].image_url(:med_thumb) %>
-        <%= s.streamers[0].online_name %>
-        <%= image_tag image_path('us-flag.png'), :size => "16x16", :class => "flag_image" %>
-      <% end %>
+      <%= image_tag s.image_url(:med_thumb) %>
+      <%= s.name %>
       <span id="popular_stream_viewers"><%= s.live ? "LIVE" : "Not Live" %> <%= link_to "#{s.viewer_count} viewers", s.link, :target => "_blank" %></span>
       <br/>
-      <%= link_to s.games[0] do %>
-        <%= image_tag s.games[0].image_url(:small_thumb) %>
-        <%= s.games[0].name %>
+      <%= link_to s.current_game do %>
+        <%= image_tag s.current_game.image_url(:small_thumb) %>
+        <%= s.current_game.name %>
       <% end %>
-
-      Current game: <%= s.current_game == nil ? "nil" : s.current_game.name %>
-
     </div>
     <%= link_to "Show", stream_path(s) %>
     <%= link_to "Edit", edit_stream_path(s) %>
   <% end %>
 </div>
-
-<p><%= link_to "New stream", new_stream_path %></p>
