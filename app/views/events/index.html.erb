@@ -6,6 +6,7 @@
   <div>
     <%= e.tournament.name %> - <%= e.name %>
     <%= link_to "Show", event_path(e) %>, <%= link_to "Edit", edit_event_path(e) %>
+    <%= link_to 'Destroy', e, method: :delete, data: { confirm: 'Are you sure?' } %>
     <p>
       <%= e.event_time %><br />
       <strong><%= event_time_format e.event_time %></strong><br />

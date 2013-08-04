@@ -28,7 +28,7 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = Event.find(event_params)
+    @event = Event.find(params[:id])
     if @event.update_attributes(event_params)
       FeedItem.create!(feedable: @event, owner: current_user, key: "Event.update")
       redirect_to @event
