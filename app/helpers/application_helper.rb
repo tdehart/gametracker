@@ -1,11 +1,11 @@
 module ApplicationHelper
   def randomized_background_image
-    images = ["assets/backgrounds/2.jpg", "assets/backgrounds/3.jpg",
-              "assets/backgrounds/4.jpg", "assets/backgrounds/6.jpg",
-              "assets/backgrounds/7.jpg", "assets/backgrounds/8.jpg",
-              "assets/backgrounds/11.jpg", "assets/backgrounds/12.jpg", "assets/backgrounds/13.jpg",
-              "assets/backgrounds/14.jpg",
-              "assets/backgrounds/17.jpg", "assets/backgrounds/18.jpg", "assets/backgrounds/19.jpg"]
+    images = ["backgrounds/2.jpg", "backgrounds/3.jpg",
+              "backgrounds/4.jpg", "backgrounds/6.jpg",
+              "backgrounds/7.jpg", "backgrounds/8.jpg",
+              "backgrounds/11.jpg", "backgrounds/12.jpg", "backgrounds/13.jpg",
+              "backgrounds/14.jpg",
+              "backgrounds/17.jpg", "backgrounds/18.jpg", "backgrounds/19.jpg"]
 
     images[rand(images.size)]
   end
