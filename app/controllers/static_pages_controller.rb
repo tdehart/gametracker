@@ -1,7 +1,8 @@
 class StaticPagesController < ApplicationController
-  def landing
-  end
+    layout 'blank', only: [:landing]
+    def landing
+    end
 
-  def about
-  end
+    def about
+    end
 end

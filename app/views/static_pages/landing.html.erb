@@ -1,69 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bootstrap In Action - Landing Page Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Bootstrap -->
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
 
-  <div class="row">
-    <div class="col4"><h1>Big image</h1></div>
-    <div class="col8"><h1>asdfasdfasdfasdfsadf</h1></div>
-    <div class="row-end">&nbsp;</div>
-  </div>
+  <link href="http://fonts.googleapis.com/css?family=Abel|Open+Sans:400,600" rel="stylesheet" />
 
-  <div class="row">
-    <div class="col5"><h1>Events</h1></div>
-    <div class="col7"><h1>Graph</h1></div>
-    <div class="row-end">&nbsp;</div>
-  </div>
+  <style>
+      html {
+          background: url(<%= randomized_background_image %>) no-repeat center center fixed;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+      }
 
-  <div class="row">
-    <div class="col12"><h1>Slim sign up form</h1></div>
-    <div class="row-end">&nbsp;</div>
-  </div>
+      body {
+          padding-top: 20px;
+          font-size: 16px;
+          font-family: "Open Sans",serif;
+          background: transparent;
+      }
 
-  <div class="row">
-    <div class="col4"><h1>Another big image</h1></div>
-    <div class="col8">
-      <h1>eSports eXposure monitors the health of your favorite competitive games</h1>
+      h1 {
+          font-family: "Abel", Arial, sans-serif;
+          font-weight: 400;
+          font-size: 40px;
+      }
 
-      <p>
-        With the help of users, Game Tracker will collect information about eSports and their events - information like
-        tournament dates and their prize pools, the number of competitors in each tournament, and concurrent viewers on
-        streams.
-      </p>
+      /* Override B3 .panel adding a subtly transparent background */
+      .panel {
+          background-color: rgba(255, 255, 255, 0.9);
+      }
 
+      .margin-base-vertical {
+          margin: 40px 0;
+      }
+
+  </style>
+
+</head>
+<body>
+
+  <div class="container">
       <div class="row">
-        <div class="col4 nomargin">
-          <p>
-            <strong>Discover new streams</strong><br/>
-            Find out who's streaming now! Browse the most popular streamers by game or by streamer.
-          </p>
-        </div>
-        <div class="col4">
-          <p>
-            <strong>Monitor eSports health</strong><br/>
-            Track how well competitive games have fared over time by tournament count or by prize pools.
-          </p>
-        </div>
-        <div class="row-end">&nbsp;</div>
-      </div>
-      <div class="row">
-        <div class="col4 nomargin">
-          <p>
-            <strong>Track your favorite games</strong><br/>
-            Never miss out on the upcoming tournaments. Sign in now to customize your feed.
-          </p>
-        </div>
-        <div class="col4">
-          <p>
-            <strong>Compare games</strong><br/>
-            Compare games to see how they stack up to each other by a number of variables.
-          </p>
-        </div>
-        <div class="row-end">&nbsp;</div>
-      </div>
-    </div>
-    <div class="row-end">&nbsp;</div>
-  </div>
+          <div class="col-lg-6 col-offset-3 panel">
 
-  <div class="row">
-    <div class="col4"><h1>Biggest Events</h1></div>
-    <div class="col4"><h1>Popular Games</h1></div>
-    <div class="col4"><h1>Prominent Streams</h1></div>
-    <div class="row-end">&nbsp;</div>
-  </div>
+              <h1 class="margin-base-vertical">ESPORTS</h1>
+
+              <p>
+                  League of Legends is the worst game
+              </p>
+              <p>
+                  5 man doto
+              </p>
+
+              <p>
+                  dendi pudge op
+              </p>
+
+              <form class="margin-base-vertical">
+                  <p class="input-group">
+                      <span class="input-group-addon"><span class="icon-envelope"></span></span>
+                      <input type="text" class="form-control input-large" name="email" placeholder="jonsnow@knowsnothi.ng" />
+                  </p>
+                  <p class="help-block text-center"><small>Kappa</small></p>
+                  <p class="text-center">
+                      <button type="submit" class="btn btn-success btn-large">Keep me posted</button>
+                  </p>
+                  </span>
+              </form>
+
+          </div><!-- //main content -->
+      </div><!-- //row -->
+  </div> <!-- //container -->
+
+</body>
+</html>
