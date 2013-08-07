@@ -2,13 +2,8 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Bootstrap -->
-  <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
-  <%= stylesheet_link_tag "icons", :media => "all" %>
-  <!-- Latest compiled and minified JavaScript -->
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
-
   <link href="http://fonts.googleapis.com/css?family=Abel|Open+Sans:400,600" rel="stylesheet" />
 
   <style>
@@ -33,14 +28,17 @@
       font-size: 40px;
     }
 
-    /* Override B3 .panel adding a subtly transparent background */
     .panel {
       background-color: rgba(255, 255, 255, 0.9);
     }
 
-    .margin-base-vertical {
+    .margin-base-bottom {
       margin: 0 0 20px 0;
     }
+
+    .margin-base-top {
+      margin: 10px 0 0 0;
+    }    
 
     .sub-header {
       font-size: 20px;
@@ -54,15 +52,76 @@
       font-size: 92px;
     }
 
-  </style>
 
+    @charset "UTF-8";
+
+    @font-face {
+      font-family: "landing";
+      src: url('<%= asset_path('fonts/landing.eot') %>');
+      src: url('<%= asset_path('fonts/landing.eot#iefix') %>') format("embedded-opentype"),
+           url('<%= asset_path('fonts/landing.ttf') %>') format("truetype"),
+           url('<%= asset_path('fonts/landing.svg') %>') format("svg"),
+           url('<%= asset_path('fonts/landing.woff') %>') format("woff");
+      font-weight: normal;
+      font-style: normal;
+
+    }
+
+    [data-icon]:before {
+      font-family: "landing";
+      content: attr(data-icon);
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none !important;
+      speak: none;
+      display: inline-block;
+      text-decoration: none;
+      width: 1em;
+      line-height: 1em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    [class^="icon-"]:before,
+    [class*=" icon-"]:before {
+      font-family: "landing";
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none !important;
+      speak: none;
+      display: inline-block;
+      text-decoration: none;
+      width: 1em;
+      line-height: 1em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+
+    .icon-trophy:before {
+      content: "a";
+    }
+
+    .icon-chart-line:before {
+      content: "b";
+    }
+
+    .icon-fontawesome-webfont:before {
+      content: "c";
+    }
+
+    .icon-news:before {
+      content: "d";
+    }
+
+  </style>
 </head>
 <body>
   <div class="container">
     <div class="row">
       <div class="col-lg-6 col-offset-3 panel ">
 
-        <h1 class="margin-base-vertical">Welcome to eSports Tracker</h1>
+        <h1 class="margin-base-bottom">Welcome to eSports Tracker</h1>
 
         <div class="row">
           <div class="col-lg-4 text-center">
@@ -82,11 +141,11 @@
           </div>
         </div>
 
-        <p class="text-center">
+        <p class="text-center margin-base-top">
           <%= link_to "Try it now", home_path, :class => "btn btn-success btn-large" %>
         </p>
-      </div><!-- //main content -->
-    </div><!-- //row -->
-  </div> <!-- //container -->
+      </div>
+    </div>
+  </div>
 </body>
 </html>
