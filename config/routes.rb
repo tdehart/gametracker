@@ -21,7 +21,7 @@ Gametracker::Application.routes.draw do
   resources :followed_tournaments, only: [:create, :destroy]
   resources :followed_games, only: [:create, :destroy]
 
-  root :to => "users#home"
+  root :to => "static_pages#landing"
 
   match '/signup',  to: 'users#new', via: 'get'
   match '/signin',  to: 'sessions#new', via: 'get'
