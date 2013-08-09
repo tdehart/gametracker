@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 
 gem 'rails', '4.0.0'
+
+
 gem 'sass-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
@@ -18,7 +20,6 @@ gem 'rmagick', '2.13.2'
 #gem "friendly_id", :git => "git://github.com/FriendlyId/friendly_id.git"
 gem "squeel", :git => "git://github.com/ernie/squeel.git"
 gem 'chronic'
-gem 'thin'
 gem 'httparty'
 gem 'dotiw', :git => "git://github.com/tdehart/dotiw"
 gem 'money-rails'
@@ -29,6 +30,7 @@ gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-ra
 gem 'faker'
 
 group :development, :test do
+  gem 'thin'
   gem 'sqlite3', '1.3.7'
   gem 'rspec-rails'
   gem 'annotate'
@@ -50,6 +52,8 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+  gem 'unicorn'
+  gem 'newrelic_rpm'
 end
 
 group :doc do
