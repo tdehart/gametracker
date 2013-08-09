@@ -2,6 +2,10 @@ body {
   padding-top: 60px;
 }
 
+.top-vert-align {
+  vertical-align: text-top;
+}
+
 img.listing-game-icon {
   vertical-align: middle; 
 }
@@ -11,16 +15,33 @@ img.listing-game-icon {
 }
 
 .home-item {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   
-  .home-item-events, ul {
+  .home-item-events, .home-item-streams {
     margin: 0;
+    padding-top: 5px;
     list-style: none;
     font-size: 16px;
-    li { margin: 5px 5px 10px 0; }
+    li { 
+      margin: 5px 5px 10px 0; 
+    }
+
+    img {
+      vertical-align: text-top;
+    }
+  }
+
+  .home-item-streams {
+    li {
+      display: inline;
+    }
   }
 
 
+}
+
+.home-item-header {
+  margin-bottom: 2px;
 }
 
 h3.feed-item-heading {

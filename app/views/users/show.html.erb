@@ -11,6 +11,6 @@
 	<%= simple_form_for @user do |f| %>
 		<%= render 'shared/error_messages', :object => f.object %>
 		<%= f.input :currency_iso_code, collection: Money::Currency.stringified_keys.collect { |k| k.upcase }, label: "Choose a currency:" %>
-		<%= f.submit %>
+		<%= f.submit "Update Currency", class: "btn btn-primary" %>
 	<% end %>
 <% end %>
