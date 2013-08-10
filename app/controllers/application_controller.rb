@@ -17,12 +17,5 @@ class ApplicationController < ActionController::Base
     end
 
     @sidebar_streams.sort! { |a,b| b.viewer_count <=> a.viewer_count }
-
-    # @sidebar_followed_streams = []
-    # Stream.order { viewer_count.desc }.each do |s|
-    #   if (current_user.games.include?(s.current_game))
-    #     @sidebar_followed_streams << s
-    #   end
-    # end
   end
 end
