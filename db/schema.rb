@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130804151432) do
+ActiveRecord::Schema.define(version: 20130810183034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -174,7 +174,7 @@ ActiveRecord::Schema.define(version: 20130804151432) do
     t.string   "name"
     t.string   "link"
     t.date     "start_date"
-    t.integer  "prize_pool_cents"
+    t.integer  "prize_pool_cents",    limit: 8
     t.integer  "num_competitors"
     t.integer  "game_id"
     t.datetime "created_at"

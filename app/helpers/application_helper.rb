@@ -1,8 +1,8 @@
 module ApplicationHelper
   def randomized_background_image
-    images = ["backgrounds/1.jpg", "backgrounds/2.jpg", "backgrounds/3.jpg", 
-              "backgrounds/4.jpg", "backgrounds/5.jpg", "backgrounds/6.jpg",
-              "backgrounds/7.jpg"]
+    images = ["backgrounds/01.jpg", "backgrounds/02.jpg", "backgrounds/03.jpg", 
+              "backgrounds/04.jpg", "backgrounds/05.jpg", "backgrounds/06.jpg",
+              "backgrounds/07.jpg"]
     images[rand(images.size)]
   end
 
