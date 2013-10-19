@@ -6,7 +6,7 @@ class GamesController < ApplicationController
   end
 
   def show
-    @game = Game.find(params[:id])
+    @game = Game.friendly.find(params[:id])
     @tournaments = @game.tournaments.where { start_date >= Date.today }.order { start_date.asc }.take(10)
   end
 
@@ -26,12 +26,12 @@ class GamesController < ApplicationController
   end
 
   def edit
-    @game = Game.find(params[:id])
+    @game = Game.friendly.find(params[:id])
     @developers = Developer.all
   end
 
   def update
-    @game = Game.find(params[:id])
+    @game = Game.friendly.find(params[:id])
     if @game.update_attributes(game_params)
       redirect_to @game
     else
@@ -41,7 +41,7 @@ class GamesController < ApplicationController
   end
 
   def destroy
-    Game.find(params[:id]).destroy
+    Game.friendly.find(params[:id]).destroy
     redirect_to games_path
   end
 

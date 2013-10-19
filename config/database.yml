@@ -6,7 +6,7 @@
 development:
   adapter: postgresql
   database: db/development
-  username: Tom
+  username: tom
   password: 123123
   host: localhost
   encoding: UTF8
@@ -19,7 +19,7 @@ development:
 test:
   adapter: postgresql
   database: db/development
-  username: Tom
+  username: tom
   password: 123123
   host: localhost
   encoding: UTF8

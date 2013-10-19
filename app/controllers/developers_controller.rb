@@ -6,7 +6,7 @@ class DevelopersController < ApplicationController
   end
 
   def show
-    @developer = Developer.find(params[:id])
+    @developer = Developer.friendly.find(params[:id])
   end
 
   def new
@@ -23,11 +23,11 @@ class DevelopersController < ApplicationController
   end
 
   def edit
-    @developer = Developer.find(params[:id])
+    @developer = Developer.friendly.find(params[:id])
   end
 
   def update
-    @developer = Developer.find(params[:id])
+    @developer = Developer.friendly.find(params[:id])
     if @developer.update_attributes(developer_params)
       redirect_to @developer
     else
@@ -36,7 +36,7 @@ class DevelopersController < ApplicationController
   end
 
   def destroy
-    Developer.find(params[:id]).destroy
+    Developer.friendly.find(params[:id]).destroy
     redirect_to developers_path
   end
 

@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
+ruby '2.0.0'
 
 gem 'rails', '4.0.0'
 gem 'pg'
@@ -17,7 +17,7 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'simple_form', '~> 3.0.0rc'
 gem 'carrierwave'
 gem 'rmagick', '2.13.2'
-#gem "friendly_id", :git => "git://github.com/FriendlyId/friendly_id.git"
+gem 'friendly_id', '~> 5.0.0'
 gem "squeel", :git => "git://github.com/ernie/squeel.git"
 gem 'chronic'
 gem 'httparty'
@@ -45,7 +45,6 @@ group :test do
   gem 'factory_girl_rails', '~> 4.2.1'
   gem 'database_cleaner', github: 'bmabey/database_cleaner'
   gem 'rb-notifu', '0.0.4'
-  gem 'win32console', '1.3.2'
 end
 
 group :production do

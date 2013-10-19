@@ -6,7 +6,7 @@ class StreamersController < ApplicationController
   end
 
   def show
-    @streamer = Streamer.find(params[:id])
+    @streamer = Streamer.friendly.find(params[:id])
   end
 
   def new
@@ -24,11 +24,11 @@ class StreamersController < ApplicationController
   end
 
   def edit
-    @streamer = Streamer.find(params[:id])
+    @streamer = Streamer.friendly.find(params[:id])
   end
 
   def update
-    @streamer = Streamer.find(params[:id])
+    @streamer = Streamer.friendly.find(params[:id])
     if @streamer.update_attributes(streamer_params)
       redirect_to @streamer
     else
@@ -37,7 +37,7 @@ class StreamersController < ApplicationController
   end
 
   def destroy
-    Streamer.find(params[:id]).destroy
+    Streamer.friendly.find(params[:id]).destroy
     redirect_to streamers_path
   end
 
