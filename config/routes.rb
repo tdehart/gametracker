@@ -12,7 +12,11 @@ Gametracker::Application.routes.draw do
   resources :games
   resources :streamers
   resources :streams
-  resources :users
+  resources :users do
+    member do
+      get 'toggle_admin'
+    end
+  end
   match '/feed', to: 'users#feed', via: 'get'
   match '/home', to: 'users#home', via: 'get'
   resources :web_resources

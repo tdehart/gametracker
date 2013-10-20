@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :admin_user?, only: [:index, :destroy]
+  before_action :admin_user?, only: [:index, :destroy, :toggle_user]
   before_action :signed_in_user, only: [:feed]
   before_action :correct_user, only: [:update]
 
@@ -28,6 +28,16 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     #render :layout => false
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def toggle_admin
+    @user = User.find(params[:id])
+    @user.toggle!(:admin)
+    redirect_to users_path
   end
 
   def create
@@ -70,6 +80,6 @@ class UsersController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(root_path) unless current_user?(@user)
+    redirect_to(signin_path) unless current_user?(@user)
   end
 end

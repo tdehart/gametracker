@@ -45,3 +45,5 @@
 == Phase 7
 * Start automatically tracking and recording stream counts
 * Aggregate various data to start showing cool statistics like "Games sorted by most prize money" or "Most money earned by nation"
+* Add Twitter/Facebook posts/Other social media to user feeds
+* Embedded streams with more personal chat

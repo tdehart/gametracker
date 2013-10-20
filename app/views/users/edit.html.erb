@@ -1,0 +1,5 @@
+<%= simple_form_for @user do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <%= f.input :admin %>
+  <%= f.button :submit, "Update" %>
+<% end %>

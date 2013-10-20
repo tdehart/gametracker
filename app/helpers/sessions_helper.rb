@@ -13,7 +13,7 @@ module SessionsHelper
   end
 
   def admin_user?
-    redirect_to root_path unless signed_in_admin?
+    redirect_to signin_path unless signed_in_admin?
   end
 
   def current_user=(user)

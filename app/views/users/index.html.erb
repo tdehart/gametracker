@@ -7,6 +7,7 @@
       <% if signed_in_admin? && !current_user?(u) %>
           <%= link_to "Delete", u, method: :delete,
                       confirm: "You sure?" %><br/>
+          <%= link_to "Toggle Admin", toggle_admin_user_path(u) %>
       <% end %>
     </p>
 <% end %>
