@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   def get_streams
     @sidebar_streams = []
     Game.find_each do |g|
-      Stream.where{ current_game_id == g.id }.order { viewer_count.desc }.take(3).each do |s|
+      Stream.where{ current_game_id == g.id }.order { viewer_count.desc }.includes(:current_game).take(3).each do |s|
         @sidebar_streams << s
       end
     end

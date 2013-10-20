@@ -5,7 +5,7 @@ namespace :db do
 
     games.each do |g|
       name = g.split(' ').join('+')
-      streams = HTTParty.get("https://api.twitch.tv/kraken/streams/?game=#{name}", headers: { "Client-ID" => ENV["TWITCH-ID"] }).parsed_response["streams"]
+      streams = HTTParty.get("https://api.twitch.tv/kraken/streams/?game=#{name}", headers: { "Client-ID" => ENV["TWITCH_ID"] }).parsed_response["streams"]
 
       streams.each do |s|
         channel = s["channel"]

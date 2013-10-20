@@ -3,7 +3,7 @@ class StreamsController < ApplicationController
   
   def index
     # @streams = Stream.live
-    @streams = Stream.all
+    @streams = Stream.includes(:current_game).all
   end
 
   def show

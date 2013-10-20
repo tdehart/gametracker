@@ -3,12 +3,12 @@ class TournamentsController < ApplicationController
   layout 'single_column', only: [:new, :all]
 
   def index
-    @tournaments = Tournament.where { start_date >= Date.today-1 }.order { start_date.asc }.page(params[:page]).per(10)
+    @tournaments = Tournament.where { start_date >= Date.today-1 }.order { start_date.asc }.includes(:game).includes(:events).page(params[:page]).per(10)
     #@tournaments = Tournament.order { start_date.asc }.page(params[:page]).per(10)
   end
 
   def all
-    @tournaments = Tournament.all
+    @tournaments = Tournament.includes(:game).all
   end
 
   def show
