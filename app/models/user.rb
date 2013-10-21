@@ -38,15 +38,26 @@ class User < ActiveRecord::Base
   #Get all tournaments of followed games and any followed tournaments
   #Remove duplicates and sort by created_at
   def feed
-    @tournaments = self.games.collect { |g| g.tournaments }.flatten if !self.games.nil?
-    @tournaments = (@tournaments + self.tournaments).uniq
-    @tournament_ids = @tournaments.collect { |t| t.id }
-    @event_ids = (@tournaments.collect { |t| t.events.collect { |e| e.id } }.flatten)
+    if self.games
+      u = User.find(self)
+      game_ids = u.games.pluck(:id)
+      tournament_ids = u.tournaments.pluck(:id)
 
-    #Get all tournament and event feed_items
-    #Hint: Use my{} to interpolate instance variables with squeel
-    FeedItem.where{ (feedable_id.in(my{@tournament_ids}) & feedable_type.eq('Tournament')) | 
-                    (feedable_id.in(my{@event_ids}) & feedable_type.eq('Event')) }.order { created_at.desc }
+      @tournaments = Tournament.where { (game_id.in(game_ids)) | (id.in(tournament_ids)) }
+      @events = Event.where { tournament_id.in(my{@tournaments.pluck(:id)}) }
+
+      #Get all tournament and event feed_items
+      #Hint: Use my{} to interpolate instance variables with squeel
+      # FeedItem.where{ (feedable_id.in(my{@tournaments.ids}) & feedable_type.eq('Tournament')) | 
+      #                 (feedable_id.in(my{@events.ids}) & feedable_type.eq('Event')) }.includes(:games).includes(:owner).order { created_at.desc }
+      tournament_feed = FeedItem.where{ (feedable_id.in(my{@tournaments.ids}) & feedable_type.eq('Tournament')) }.includes(:owner).includes(:feedable => :game)
+      event_feed = FeedItem.where{ (feedable_id.in(my{@events.ids}) & feedable_type.eq('Event')) }
+
+      tournament_feed + event_feed
+    end
+
+
+    
   end
 
   def following?(object)

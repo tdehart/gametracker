@@ -47,3 +47,7 @@
 * Aggregate various data to start showing cool statistics like "Games sorted by most prize money" or "Most money earned by nation"
 * Add Twitter/Facebook posts/Other social media to user feeds
 * Embedded streams with more personal chat
+
+== Graph Ideas
+* Number of tournamnets over time
+* Line chart comparing game prize pools over time

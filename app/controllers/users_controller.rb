@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def feed
-    @feed_items = current_user.feed.page(params[:page]).per(6)
+    @feed_items = Kaminari.paginate_array(current_user.feed.sort! { |a,b| b.created_at <=> a.created_at }).page(params[:page]).per(6)
   end
 
   def home
