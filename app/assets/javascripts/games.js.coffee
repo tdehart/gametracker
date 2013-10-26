@@ -14,11 +14,6 @@ jQuery ->
     container: 'body'
   });
 
-  $(document).click ->
-    setTimeout ( ->
-      $(".tooltip").fadeOut()
-    ), 7000
-
   $(".game-autocomplete").autocomplete(
     source: $(".game-autocomplete").data('autocomplete-source')
     minLength: 0).focus ->

@@ -1,7 +1,11 @@
 <%= simple_form_for @event do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <%= f.input :name %>
-  <%= f.input :tournament_name, label: "Tournament", input_html: { class: "tournament-autocomplete", data: {autocomplete_source: Tournament.order{ created_at.desc }.map(&:name)} } %>
+  <% if params["tournament"] %>
+  	<%= f.input :tournament_name, label: "Tournament", :input_html => { :value => params["tournament"] } %>	
+  <% else %>
+  	<%= f.input :tournament_name, label: "Tournament", input_html: { class: "tournament-autocomplete", data: {autocomplete_source: Tournament.order{ created_at.desc }.map(&:name)} } %>
+  <% end %>
   <label>Event date/time <%= link_to "(examples)", "https://github.com/mojombo/chronic#examples", :target => "_blank" %></label>
   <%= f.input_field :chronic_input %>
   <%= f.input :description %>

@@ -26,8 +26,8 @@ class Event < ActiveRecord::Base
   validates :tournament,    presence: true
   #validates :max_concurrent_viewers, :numericality => { :greater_than_or_equal_to => 0, :allow_nil => true }
 
-  scope :current, -> { where(event_time: 12.hours.ago..36.hours.from_now).order { event_time.asc } }
-  scope :soon,    -> { where(event_time: 37.hours.from_now..5.days.from_now).order { event_time.asc } }
+  scope :current, -> { where(event_time: 12.hours.ago..36.hours.from_now).order { event_time.asc }.includes(:tournament, :streams) }
+  scope :soon,    -> { where(event_time: 37.hours.from_now..5.days.from_now).order { event_time.asc }.includes(:tournament, :streams) }
 
   def tournament_name
     tournament.try(:name)

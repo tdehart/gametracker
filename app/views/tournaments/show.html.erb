@@ -54,8 +54,9 @@
   </div>
 </div>
 
-<% if signed_in? %>
+<% if signed_in_admin? %>
   <p>
+    <%= link_to "New Event", new_event_path(:tournament => @tournament.name) %>
     <%= link_to "Edit", edit_tournament_path(@tournament) %>
     <%= link_to "Delete", @tournament, method: :delete,
                 confirm: "You sure?" %>

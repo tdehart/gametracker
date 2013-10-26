@@ -10,14 +10,15 @@ jQuery ->
 
   $(".follow-game").tooltip({
     title: "You just followed a game! Check your feed for new activity."
-    trigger: "click"
     container: 'body'
+    trigger: 'manual'
   });
 
-  $(document).click ->
-    setTimeout ( ->
+  $(".follow-game").click ->
+    $(this).tooltip('show')
+    setTimeout (->
       $(".tooltip").fadeOut()
-    ), 7000
+    ), 5000
 
   $(".game-autocomplete").autocomplete(
     source: $(".game-autocomplete").data('autocomplete-source')
