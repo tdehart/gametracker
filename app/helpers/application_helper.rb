@@ -105,9 +105,12 @@ module ApplicationHelper
     begin
       total = tournaments.collect { |t| t.prize_pool }.inject(:+)
 
+    #Just use USD if conversion rate not found
     rescue Money::Bank::UnknownRate
-      #Just use USD if conversion rate not found
       return tournaments.collect { |t| t.prize_pool }.inject(:+).exchange_to("USD")
+    #Broken API error
+    rescue MultiJson::LoadError
+      return 0
     end
 
     total ? total.exchange_to(currency) : 0
