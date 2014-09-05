@@ -5,6 +5,8 @@
 * Submit content and gain reputation/points
 * Track the health of eSports through statistics
 
+Demo: https://arcane-forest-8131.herokuapp.com/
+
 == Done
 * User auth
 * Users can follow games/tournaments
